@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('username', 50)->unique();
             $table->string('password', 150);
             $table->tinyInteger('user_type'); // 1 for admin, 2 for eic, 3 for layout editor, 4 for section editor, 5 for correspondent
+            $table->tinyInteger('active')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

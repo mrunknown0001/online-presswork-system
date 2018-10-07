@@ -35,6 +35,9 @@ class LoginController extends Controller
     		if(Auth::user()->user_type == 1) {
     			return redirect()->route('admin.dashboard');
     		}
+            else if(Auth::user()->user_type == 2) {
+                return redirect()->route('eic.dashboard');
+            }
     	}
 
     	return redirect()->back()->with('error', 'Invalid Username or Password!');

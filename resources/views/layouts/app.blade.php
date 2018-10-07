@@ -15,28 +15,28 @@
   <body>
   	@if(Auth::user()->user_type == 1)
   		@include('admin.includes.header')
-  	@else
-
+  	@elseif(Auth::user()->user_type == 2)
+      @include('eic.includes.header')
   	@endif
 
     <div class="page-content">
     	<div class="row">
-		  <div class="col-md-2">
+		  <div class="col-md-3">
 
 		  	@if(Auth::user()->user_type == 1)
 		  		@include('admin.includes.nav')
-		  	@else
-
+		  	@elseif(Auth::user()->user_type == 2)
+          @include('eic.includes.nav')
 		  	@endif
 		  </div>
 
-		  <div class="col-md-10">
+		  <div class="col-md-9">
 		  	@yield('content')
 		  </div>
 
 		</div>
     </div>
-	@include('includes.footer')
+	{{--@include('includes.footer')--}}
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>

@@ -15,6 +15,15 @@ Route::get('/logout', 'GeneralController@logout')->name('logout');
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+
+	// route to go to section editor
+	Route::get('/section/management', 'AdminController@sectionManagement')->name('admin.section.management');
+
+	// route to go to article review
+	Route::get('/article/management', 'AdminController@articleManagement')->name('admin.article.management');
+
+	// route to show audit trail/activity log in admin
+	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.log');
 });
 
 
