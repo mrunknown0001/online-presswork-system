@@ -1,13 +1,9 @@
 <?php
 
-Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+Route::get('/', 'GeneralController@landing')->name('landing');
 
 
-Route::get('/login', function () {
-	return view('login');
-})->name('login');
+Route::get('/login', 'GeneralController@login')->name('login');
 
 
 Route::post('/login', 'LoginController@postLogin')->name('login.post');
@@ -24,6 +20,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
 Route::group(['prefix' => 'eic', 'middleware' => 'eic'], function () {
 
+	Route::get('/dashboard', 'EicController@dashboard')->name('eic.dashboard');
 });
 
 

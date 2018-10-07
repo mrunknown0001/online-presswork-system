@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+use App\Http\Controllers\GeneralController;
+
 class LoginController extends Controller
 {
     public function postLogin(Request $request)
     {
+    	// check if authenticated
+    	if(Auth::check()) {
+    		return redirect()->route('login');
+    	}
+
     	$request->validate([
     		'username' => 'required',
     		'password' => 'required'
@@ -21,9 +28,11 @@ class LoginController extends Controller
     	// redirect intedned or to user type dashboard
     	if(Auth::attempt(['username' => $username, 'password' => $password])) {
     		// redirect to specific user type dashboard
+    		// add activity log for audit trail
+			$action = 'Login';
+			GeneralController::activity_log($action);
+
     		if(Auth::user()->user_type == 1) {
-    			// add activity log for audit trail
-    			
     			return redirect()->route('admin.dashboard');
     		}
     	}

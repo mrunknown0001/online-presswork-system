@@ -37,7 +37,7 @@
                         <div class="content-wrap">
                             <h6>Login</h6>
                             @include('includes.all')
-                            <form action="{{ route('login.post') }}" method="POST">
+                            <form action="{{ route('login.post') }}" method="POST" autocomplete="off">
                               {{ csrf_field() }}
                               <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
                               <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
