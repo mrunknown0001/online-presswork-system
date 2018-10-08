@@ -111,6 +111,9 @@ class AdminController extends Controller
         $section->active = 0;
         $section->save();
 
+        $action = 'Admin Removed Section Name: ' . ucwords($section->name);
+        GeneralController::activity_log($action);
+
         return redirect()->back()->with('success', 'Section ' . ucwords($section->name) . ' removed.');
     }
 

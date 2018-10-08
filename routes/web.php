@@ -38,6 +38,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to remove section
 	Route::post('/section/remove', 'AdminController@postRemoveSection')->name('admin.remove.section.post');
 
+	Route::get('/section/remove', function () {
+		return redirect()->route('admin.section.management');
+	});
+
 	// route to go to article review
 	Route::get('/article/management', 'AdminController@articleManagement')->name('admin.article.management');
 
@@ -52,6 +56,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']], function () {
 
 	Route::get('/dashboard', 'EicController@dashboard')->name('eic.dashboard');
+
+	// route to go to layout editor management
+	Route::get('/layout-editor/management', 'EicController@layoutEditorManagement')->name('eic.layout.editor.management');
+
+	// route to add layout editor
+	Route::get('/layout-editor/management/add', 'EicController@addLayoutEditor')->name('eic.add.layout.editor');
+
+	// route to save new layout editor
+	Route::post('/layout-editor/management/add', 'EicController@postAddLayoutEditor')->name('eic.add.layout.editor.post');
+
+	// route to update layout editor
+	
+
+	// route to go to section editor management
+	Route::get('/section-editor/management', 'EicController@sectioneditorManagement')->name('eic.section.editor.management');
+
+	// route to go to correspondent management
+	Route::get('/correspondent/management', 'EicController@correspondentManagement')->name('eic.correspondent.management');
+
+	// route to go to article management
+	Route::get('/article/management', 'EicController@articleManagement')->name('eic.article.management');
+
+	// route to go to layout management
+	Route::get('/layout/management', 'EicController@layoutManagement')->name('eic.layout.management');
 });
 
 

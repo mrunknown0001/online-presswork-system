@@ -49,7 +49,7 @@
 						@endforeach
 					</tbody>
 				</table>
-				<p class="text-center">{{ $logs->links() }}</p>
+				<div class="text-center">{{ $logs->links() }}</div>
 			</div>
 		@else		
 		<p class="text-center">No Activity Found!</p>

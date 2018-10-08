@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
-@section('title') Editor In Chief Dashboard @endsection
+@section('title') Layout Management @endsection
 
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<h3>Dashboard</h3>
+		<h3>Layout Management</h3>
 	</div>
+	
 </div>
 @endsection
