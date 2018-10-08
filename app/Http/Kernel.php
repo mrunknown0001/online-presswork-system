@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
         'layout.editor' => \App\Http\Middleware\CheckLayoutEditor::class,
         'section.editor' => \App\Http\Middleware\CheckSectionEditor::class,
         'correspondent' => \App\Http\Middleware\CheckCorrespondent::class,
+        'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
     ];
 }

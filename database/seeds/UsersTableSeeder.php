@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         		'firstname' => 'Admin',
         		'lastname' => 'Administrator',
         		'username' => 'admin',
-        		'password' => bcrypt('pressworkadmin'),
+        		'password' => bcrypt('password'),
         		'user_type' => 1
         	],
 
@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
         		'firstname' => 'Editor In',
         		'lastname' => 'Chief',
         		'username' => 'eic',
-        		'password' => bcrypt('pressworkeic'),
+        		'password' => bcrypt('password'),
         		'user_type' => 2
         	]
         ]);

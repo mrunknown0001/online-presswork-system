@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 
+use App\Http\Controllers\GeneralController;
+
 use App\ActivityLog;
 use App\Section;
 use App\Article;
@@ -22,10 +24,44 @@ class AdminController extends Controller
     // method use to show section management
     public function sectionManagement()
     {
-        $sections = Section::orderBy('name', 'asc')
+        $sections = Section::where('active', 1)
+                        ->orderBy('name', 'asc')
                         ->paginate(15);
 
         return view('admin.section', ['sections' => $sections]);
+    }
+
+
+    // method use to add section
+    public function addSection()
+    {
+        return view('admin.section-add');
+    }
+
+
+    // method use to save new section
+    public function postAddSection(Request $request)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $name = $request['name'];
+        $description = $request['description'];
+
+        // save section to database
+        $section = new Section();
+        $section->name = $name;
+        $section->description = $description;
+        $section->save();
+
+        // add activity log
+        $action = 'Admin Added New Section Name: ' . ucwords($name);
+        GeneralController::activity_log($action);
+
+        // return to section management
+        return redirect()->route('admin.section.management')->with('success', 'New Section Added!');
+
     }
 
 
