@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') ARticle Management @endsection
+@section('title') Article Management @endsection
 
 @section('content')
 <div class="row">

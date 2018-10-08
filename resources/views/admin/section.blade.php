@@ -25,10 +25,11 @@
 							<td class="text-center">{{ ucwords($s->name) }}</td>
 							<td>{{ ucwords($s->description) }}</td>
 							<td class="text-center">
-								<button class="btn btn-info btn-xs">Update</button>
-								<button class="btn btn-danger btn-xs">Remove</button>
+								<a href="{{ route('admin.update.section', ['id' => $s->id]) }}" class="btn btn-info btn-xs">Update</a>
+								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeSection-{{ $s->id }}">Remove</button>
 							</td>
 						</tr>
+						@include('admin.includes.modal-section-remove')
 					@endforeach
 				</tbody>
 			</table>

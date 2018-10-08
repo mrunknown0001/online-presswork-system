@@ -65,6 +65,56 @@ class AdminController extends Controller
     }
 
 
+    // method use to update section
+    public function updateSection($id = null)
+    {
+        $section = Section::findorfail($id);
+
+        // return to view for update of section
+        return view('admin.section-update', ['section' => $section]);
+    }
+
+
+    // method use to save update section
+    public function postUpdateSection(Request $request)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $name = $request['name'];
+        $description = $request['description'];
+
+        $id = $request['id'];
+
+        $section = Section::findorfail($id);
+        $section->name = $name;
+        $section->description = $description;
+        $section->save();
+
+        // add activity log
+        $action = 'Admin Update Section Name: ' . ucwords($name);
+        GeneralController::activity_log($action);
+
+        // return to sections
+        return redirect()->route('admin.section.management')->with('success', 'Section Updated!');
+    }
+
+
+    // method use to remove section
+    // make section active to 0 
+    public function postRemoveSection(Request $request)
+    {
+        $id = $request['id'];
+
+        $section = Section::findorfail($id);
+        $section->active = 0;
+        $section->save();
+
+        return redirect()->back()->with('success', 'Section ' . ucwords($section->name) . ' removed.');
+    }
+
+
     // method use to show articles management
     public function articleManagement()
     {
@@ -72,6 +122,13 @@ class AdminController extends Controller
                         ->paginate(15);
 
         return view('admin.article', ['articles' => $articles]);
+    }
+
+
+    // method use to publish and deny articles 
+    public function publish()
+    {
+        return view('admin.publish');
     }
 
 

@@ -25,8 +25,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to save new section
 	Route::post('/section/add', 'AdminController@postAddSection')->name('admin.add.section.post');
 
+	// route to update section
+	Route::get('/section/{id}/update', 'AdminController@updateSection')->name('admin.update.section');
+
+	// route to save update on section
+	Route::post('/section/update', 'AdminController@postUpdateSection')->name('admin.update.section.post');
+
+	Route::get('/section/update', function () {
+		return redirect()->route('admin.section.management');
+	});
+
+	// route to remove section
+	Route::post('/section/remove', 'AdminController@postRemoveSection')->name('admin.remove.section.post');
+
 	// route to go to article review
 	Route::get('/article/management', 'AdminController@articleManagement')->name('admin.article.management');
+
+	// route to go to publish management
+	Route::get('/publish', 'AdminController@publish')->name('admin.publish');
 
 	// route to show audit trail/activity log in admin
 	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.log');

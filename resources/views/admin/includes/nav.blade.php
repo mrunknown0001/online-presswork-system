@@ -7,7 +7,7 @@
 
         <li class="{{ route('admin.article.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.article.management') }}"><i class="glyphicon glyphicon-list-alt"></i> Mange Articles</a></li>
 
-        <li><a href="#"><i class="glyphicon glyphicon-book"></i> Publish</a></li>
+        <li class="{{ route('admin.publish') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.publish') }}"><i class="glyphicon glyphicon-book"></i> Publish</a></li>
 
         <li class="{{ route('admin.activity.log') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.activity.log') }}"><i class="glyphicon glyphicon-time"></i> Activity Logs</a></li>
         <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
