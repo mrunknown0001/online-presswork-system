@@ -29,7 +29,7 @@
 								{{ strtolower($l->username) }}
 							</td>
 							<td class="text-center">
-								<button class="btn btn-info btn-xs">Update</button>
+								<a href="{{ route('eic.update.layout.editor', ['id' => $l->id]) }}" class="btn btn-info btn-xs">Update</a>
 								<button class="btn btn-danger btn-xs">Delete</button>
 							</td>
 						</tr>

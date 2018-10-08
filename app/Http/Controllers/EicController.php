@@ -66,6 +66,64 @@ class EicController extends Controller
 	}
 
 
+	// method use to update layout editor
+	public function updateLayoutEditor($id = null)
+	{
+		$le = User::findorfail($id);
+
+		if($le->user_type != 3) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		return view('eic.le-update', ['le' => $le]);
+	}
+
+
+	// method use to save update layout editor
+	public function postUpdateLayoutEditor(Request $request)
+	{
+		$request->validate([
+			'firstname' => 'required',
+			'lastname' => 'required',
+			'username' => 'required'
+		]);
+
+		$id = $request['id'];
+		$firstname = $request['firstname'];
+		$lastname = $request['lastname'];
+		$username = $request['username'];
+
+		$le = User::findorfail($id);
+
+		if($le->user_type != 3) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		// check username if exists
+		$check_username = User::where('username', $username)
+								->first();
+
+		if(count($check_username) > 0) {
+			if($le->id != $check_username->id) {
+				return redirect()->back()->with('error', 'Username already exists!');
+			}
+		}
+
+		$le->firstname = $firstname;
+		$le->lastname = $lastname;
+		$le->username = $username;
+		$le->save();
+
+		// add activity log
+		$action = 'Editor In Chief Updated Layout Editor  ' . ucwords($firstname . ' ' . $lastname);
+        GeneralController::activity_log($action);
+
+		// return to layout editor management
+        return redirect()->route('eic.layout.editor.management')->with('success', 'Updated Layout Editor');
+
+	}
+
+
 	// method use to go to section editor management
 	public function sectioneditorManagement()
 	{
