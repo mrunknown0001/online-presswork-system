@@ -76,8 +76,18 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 		return redirect()->route('eic.layout.editor.management');
 	});
 
+	// route to remove layout editor 
+	Route::post('/layout-editor/management/remove', 'EicController@postRemoveLayoutEditor')->name('eic.remove.layout.editor.post');
+
+	Route::get('/layout-editor/management/remove', function () {
+		return redirect()->route('eic.layout.editor.management');
+	});
+
 	// route to go to section editor management
 	Route::get('/section-editor/management', 'EicController@sectioneditorManagement')->name('eic.section.editor.management');
+
+	// route to add section editor 
+	Route::get('/section-editor/management/add', 'EicController@addSectionEditor')->name('eic.add.section.editor');
 
 	// route to go to correspondent management
 	Route::get('/correspondent/management', 'EicController@correspondentManagement')->name('eic.correspondent.management');

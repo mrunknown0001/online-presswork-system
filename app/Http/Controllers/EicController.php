@@ -124,10 +124,40 @@ class EicController extends Controller
 	}
 
 
+	// method use to remove layout editor
+	public function postRemoveLayoutEditor(Request $request)
+	{
+		$id = $request['id'];
+
+		$le = User::findorfail($id);
+
+		if($le->user_type != 3) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		$le->active = 0;
+		$le->save();
+
+		// add activity log
+		$action = 'Editor In Chief Removed Layout Editor  ' . ucwords($le->firstname . ' ' . $le->lastname);
+        GeneralController::activity_log($action);
+
+        return redirect()->route('eic.layout.editor.management')->with('success', 'Layout Editor Removed!');
+
+	}
+
+
 	// method use to go to section editor management
 	public function sectioneditorManagement()
 	{
 		return view('eic.se');
+	}
+
+
+	// method use to add section editor
+	public function addSectionEditor()
+	{
+		
 	}
 
 
