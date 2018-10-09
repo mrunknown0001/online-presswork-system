@@ -27,6 +27,6 @@ class SectionEditorController extends Controller
     						->where('se_proofread', 0)
     						->get();
 
-    	return view('se.articles', ['articles' => $articles]);
+    	return view('se.articles', ['articles' => $articles, 'sa' => $section_assign]);
     }
 }

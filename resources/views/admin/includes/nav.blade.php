@@ -10,6 +10,13 @@
         <li class="{{ route('admin.publish') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.publish') }}"><i class="glyphicon glyphicon-book"></i> Publish</a></li>
 
         <li class="{{ route('admin.activity.log') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.activity.log') }}"><i class="glyphicon glyphicon-time"></i> Activity Logs</a></li>
+		
+		<li class="">
+			<a href="#">
+				<i class="fa fa-database"></i> Database
+			</a>
+		</li>
+
         <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
     </ul>
 </div>

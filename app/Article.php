@@ -8,7 +8,7 @@ class Article extends Model
 {
     public function user()
     {
-    	return $this->belongsTo('App\User', 'corresponden_id');
+    	return $this->belongsTo('App\User', 'correspondent_id');
     }
 
     public function section()

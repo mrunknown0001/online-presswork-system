@@ -4,7 +4,7 @@
            <div class="col-md-5">
               <!-- Logo -->
               <div class="logo">
-                 <h1><a>Layout Editor Account</a></h1>
+                 <h1><a>Layout Editor, {{ ucwords(Auth::user()->firstname . ' ' . Auth::user()->lastname) }}</a></h1>
               </div>
            </div>
            <div class="col-md-5">
