@@ -17,6 +17,12 @@
   		@include('admin.includes.header')
   	@elseif(Auth::user()->user_type == 2)
       @include('eic.includes.header')
+    @elseif(Auth::user()->user_type == 3)
+      @include('le.includes.header')
+    @elseif(Auth::user()->user_type == 4)
+      @include('se.includes.header')
+    @elseif(Auth::user()->user_type == 5)
+      @include('correspondent.includes.header')
   	@endif
 
     <div class="page-content">
@@ -27,7 +33,13 @@
 		  		@include('admin.includes.nav')
 		  	@elseif(Auth::user()->user_type == 2)
           @include('eic.includes.nav')
-		  	@endif
+        @elseif(Auth::user()->user_type == 3)
+          @include('le.includes.nav')
+        @elseif(Auth::user()->user_type == 4)
+          @include('se.includes.nav')
+        @elseif(Auth::user()->user_type == 5)
+          @include('correspondent.includes.nav')
+        @endif
 		  </div>
 
 		  <div class="col-md-9">

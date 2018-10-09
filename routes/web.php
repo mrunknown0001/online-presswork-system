@@ -137,14 +137,19 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 
 Route::group(['prefix' => 'layout/editor', 'middleware' => ['layout.editor','prevent-back-history']], function () {
 
+	Route::get('/dashboard', 'LayoutEditorController@dashboard')->name('le.dashboard');
+
 });
 
 
 Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','prevent-back-history']], function () {
+
+	Route::get('/dashboard', 'SectionEditorController@dashboard')->name('se.dashboard');
 
 });
 
 
 Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','prevent-back-history']], function () {
 
+	Route::get('/dashboard', 'CorrespondentController@dashboard')->name('correspondent.dashboard');
 });

@@ -39,7 +39,7 @@
                             @include('includes.all')
                             <form action="{{ route('login.post') }}" method="POST" autocomplete="off">
                               {{ csrf_field() }}
-                              <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                              <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
                               <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
                               <div class="action">
                                   <button type="submit" class="btn btn-primary signup">Login</button>
