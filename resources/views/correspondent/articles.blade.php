@@ -12,15 +12,15 @@
 		</p>
 
 		@include('includes.all')
-
+		<hr>
 		@if(count($articles) > 0)
-			<ul>
 				@foreach($articles as $a)
-					<li>
-						<a href="#">{{ ucwords($a->title) }}</a>
-					</li>	
+					<h4><a href="#">{{ ucwords($a->title) }}</a></h4>
 				@endforeach
-			</ul>
+
+			<div class="text-center">
+				{{ $articles->links() }}
+			</div>
 		@else
 			<p class="text-center">You have not yet submitted any article.</p>
 		@endif

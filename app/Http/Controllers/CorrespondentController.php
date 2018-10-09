@@ -27,7 +27,7 @@ class CorrespondentController extends Controller
     {
     	$articles = Article::where('correspondent_id', Auth::user()->id)
     					->where('active', 1)
-    					->get();
+    					->paginate(10);
 
     	return view('correspondent.articles', ['articles' => $articles]);
     }
