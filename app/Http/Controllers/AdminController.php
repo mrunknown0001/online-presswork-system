@@ -43,7 +43,8 @@ class AdminController extends Controller
     public function postAddSection(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'description' => 'required'
         ]);
 
         $name = $request['name'];
@@ -79,7 +80,8 @@ class AdminController extends Controller
     public function postUpdateSection(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'description' => 'required'
         ]);
 
         $name = $request['name'];

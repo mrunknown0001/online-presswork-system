@@ -33,15 +33,6 @@ class CorrespondentController extends Controller
     }
 
 
-    // method use to view submitted articles
-    public function submittedArticles()
-    {
-    	// get all active articles with submitted status
-
-    	return view('correspondent.articles-submitted');
-    }
-
-
     // method use to add new article
     public function newArticle()
     {

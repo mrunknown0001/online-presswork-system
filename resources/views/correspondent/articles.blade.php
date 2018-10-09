@@ -8,7 +8,7 @@
 		<h3>Articles</h3>
 		<p>
 			<a href="{{ route('correspondent.new.article') }}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-asterisk"></i> New Article</a>
-			<a href="{{ route('correspondent.submitted.articles') }}" class="btn btn-success btn-sm">Submitted Articles</a>
+			
 		</p>
 
 		@include('includes.all')
@@ -22,7 +22,7 @@
 				@endforeach
 			</ul>
 		@else
-			<p>You have not yet submitted any article.</p>
+			<p class="text-center">You have not yet submitted any article.</p>
 		@endif
 
 	</div>

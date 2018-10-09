@@ -156,9 +156,6 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 	// route to view articles
 	Route::get('/articles', 'CorrespondentController@articles')->name('correspondent.articles');
 
-	// route to view submitted articles
-	Route::get('/articles/submitted', 'CorrespondentController@submittedArticles')->name('correspondent.submitted.articles');
-
 	// route to add article
 	Route::get('/article/new', 'CorrespondentController@newArticle')->name('correspondent.new.article');
 
