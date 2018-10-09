@@ -306,7 +306,61 @@ class EicController extends Controller
 	// method use to go to correspondent management
 	public function correspondentManagement()
 	{
-		return view('eic.correspondent');
+		$correspondents = User::where('user_type', 5)
+							->where('active', 1)
+							->orderBy('lastname', 'asc')
+							->get();
+
+		return view('eic.correspondent', ['correspondents' => $correspondents]);
+	}
+
+
+	// method use to add correspondent
+	public function addCorrespondent()
+	{
+		return view('eic.correspondent-add');
+	}
+
+
+	// method use to save new correspondent
+	public function postAddCorrespondent(Request $request)
+	{
+		$request->validate([
+			'firstname' => 'required',
+			'lastname' => 'required',
+			'username' => 'required|unique:users'
+		]);
+
+		$firstname = $request['firstname'];
+		$lastname = $request['lastname'];
+		$username = $request['username'];
+
+		// add user with the user type of 5
+		$user = new User();
+		$user->firstname = $firstname;
+		$user->lastname = $lastname;
+		$user->username = $username;
+		$user->password = bcrypt('password');
+		$user->user_type = 5;
+		$user->save();
+
+		// add activity log
+		$action = 'Editor In Chief Added New Correspondent  ' . ucwords($user->firstname . ' ' . $user->lastname);
+        GeneralController::activity_log($action);
+
+		// return to correspondent
+		return redirect()->route('eic.correspondent.management')->with('success', 'New Correspondent Added!');
+	}
+
+
+	// method use to update correspodent
+	public function updateCorrespodent($id = null)
+	{
+		$c = User::findorfail($id);
+
+		if($c->user_type != 5) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
 	}
 
 

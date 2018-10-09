@@ -108,6 +108,15 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to go to correspondent management
 	Route::get('/correspondent/management', 'EicController@correspondentManagement')->name('eic.correspondent.management');
 
+	// route to add correspondents
+	Route::get('/correspondent/management/add', 'EicController@addCorrespondent')->name('eic.add.correspondent');
+
+	// route to save new correspondents
+	Route::post('/correspondent/management/add', 'EicController@postAddCorrespondent')->name('eic.add.correspondent.post');
+
+	// route to update correspondent
+	Route::get('/correspondent/management/{id}/update', 'EicController@updateCorrespodent')->name('eic.update.correspondent');
+
 	// route to go to article management
 	Route::get('/article/management', 'EicController@articleManagement')->name('eic.article.management');
 

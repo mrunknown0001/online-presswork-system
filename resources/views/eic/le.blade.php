@@ -30,7 +30,7 @@
 							</td>
 							<td class="text-center">
 								<a href="{{ route('eic.update.layout.editor', ['id' => $l->id]) }}" class="btn btn-info btn-xs">Update</a>
-								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeLayoutEditor-{{ $l->id }}">Delete</button>
+								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeLayoutEditor-{{ $l->id }}">Remove</button>
 							</td>
 						</tr>
 						@include('eic.includes.modal-layout-editor-remove')
