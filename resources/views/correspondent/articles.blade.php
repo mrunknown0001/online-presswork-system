@@ -14,10 +14,25 @@
 		@include('includes.all')
 		<hr>
 		@if(count($articles) > 0)
-				@foreach($articles as $a)
-					<h4><a href="#">{{ ucwords($a->title) }}</a></h4>
-				@endforeach
-
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center">Article Title</th>
+						<th class="text-center">Date &amp; Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($articles as $a)
+						<tr>
+							<td><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a>
+							</td>
+							<td class="text-center">
+								{{ $a->created_at }}
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
 			<div class="text-center">
 				{{ $articles->links() }}
 			</div>

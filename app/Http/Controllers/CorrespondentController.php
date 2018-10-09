@@ -27,6 +27,7 @@ class CorrespondentController extends Controller
     {
     	$articles = Article::where('correspondent_id', Auth::user()->id)
     					->where('active', 1)
+                        ->orderBy('created_at', 'desc')
     					->paginate(10);
 
     	return view('correspondent.articles', ['articles' => $articles]);
@@ -77,5 +78,18 @@ class CorrespondentController extends Controller
 
     	// return to articles with success message
     	return redirect()->route('correspondent.articles')->with('success', 'Article Submitted!');
+    }
+
+
+    // method use to view article
+    public function viewArticle($id = null)
+    {
+        $c = Auth::user();
+
+        $article = Article::findorfail($id);
+
+        if($article->correspondent_id != $c->id) {
+            return redirect()->back()->with('error', 'Please Try Again!');
+        }
     }
 }
