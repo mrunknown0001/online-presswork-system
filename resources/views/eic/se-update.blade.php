@@ -17,17 +17,18 @@
 		</div>
 		<div class="content-box-large box-with-header">
 			@include('includes.all')
-			<form action="#" method="POST" autocomplete="off">
+			<form action="{{ route('eic.update.section.editor.post') }}" method="POST" autocomplete="off">
 				{{ csrf_field() }}
+				<input type="hidden" name="id" value="{{ $se->id }}">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-6">
 							<label>Firstname</label>
-							<input type="text" name="firstname" id="firstname" class="form-control" placeholder="Firstname" required>
+							<input type="text" name="firstname" id="firstname" class="form-control" value="{{ $se->firstname }}" placeholder="Firstname" required>
 						</div>
 						<div class="col-md-6">
 							<label>Lastname</label>
-							<input type="text" name="lastname" id="lastname" class="form-control" placeholder="Lastname" required>
+							<input type="text" name="lastname" id="lastname" class="form-control" value="{{ $se->lastname }}" placeholder="Lastname" required>
 						</div>
 					</div>
 				</div>
@@ -35,7 +36,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<label>Username</label>
-							<input type="text" name="username" id="username" class="form-control" placeholder="Username" required>							
+							<input type="text" name="username" id="username" class="form-control" value="{{ $se->username }}" placeholder="Username" required>							
 						</div>
 					</div>
 				</div>
@@ -48,7 +49,7 @@
 								<option value="">Select Section</option>
 								@if(count($sections) > 0)
 									@foreach($sections as $s)
-										<option value="{{ $s->id }}">{{ ucwords($s->name) }}</option>
+										<option value="{{ $s->id }}" {{ $se->section_assignment->section->id == $s->id ? 'selected' : '' }}>{{ ucwords($s->name) }}</option>
 									@endforeach
 								@else
 									<option value="">No Section Available</option>

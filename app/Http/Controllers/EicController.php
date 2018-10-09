@@ -108,7 +108,7 @@ class EicController extends Controller
 
 		if(count($check_username) > 0) {
 			if($le->id != $check_username->id) {
-				return redirect()->back()->with('error', 'Username already exists!');
+				return redirect()->back()->with('error', 'Username already used!');
 			}
 		}
 
@@ -228,6 +228,78 @@ class EicController extends Controller
 
 		// return to update form
 		return view('eic.se-update', ['se' => $se, 'sections' => $sections]);
+	}
+
+
+	// method use to save udpate on section editor
+	public function postUpdateSectionEditor(Request $request)
+	{
+		$request->validate([
+			'firstname' => 'required',
+			'lastname' => 'required',
+			'username' => 'required',
+			'section' => 'required'
+		]);
+
+		$firstname = $request['firstname'];
+		$lastname = $request['lastname'];
+		$username = $request['username'];
+		$section = $request['section'];
+
+		$id = $request['id'];
+
+		$se = User::findorfail($id);
+
+		if($se->user_type != 4) {
+			return redirect()->back()->with('error', 'Please Reload This Page And Try Again Later!');
+		}
+
+		// check username
+		$check_username = User::where('username', $username)
+								->first();
+
+		if(count($check_username) > 0) {
+			if($se->id != $check_username->id) {
+				return redirect()->back()->with('error', 'Username already used!');
+			}
+		}
+
+		$se->firstname = $firstname;
+		$se->lastname = $lastname;
+		$se->username = $username;
+		$se->save();
+
+		$se->section_assignment->section_id = $section;
+		$se->section_assignment->save();
+
+		$action = 'Editor In Chief Updated Section Editor  ' . ucwords($firstname . ' ' . $lastname);
+        GeneralController::activity_log($action);
+
+		// return to layout editor management
+        return redirect()->route('eic.section.editor.management')->with('success', 'Updated Section Editor');
+
+	}
+
+
+	// method use to remove section editor
+	public function postRemoveSectionEditor(Request $request)
+	{
+		$id = $request['id'];
+
+		$se = User::findorfail($id);
+
+		if($se->user_type != 4) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		$se->active = 0;
+		$se->save();
+
+		$action = 'Editor In Chief Removed Section Editor  ' . ucwords($se->firstname . ' ' . $se->lastname);
+        GeneralController::activity_log($action);
+
+		// return to layout editor management
+        return redirect()->route('eic.section.editor.management')->with('success', 'Removed Section Editor');
 	}
 
 
