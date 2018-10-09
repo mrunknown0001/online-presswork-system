@@ -216,7 +216,18 @@ class EicController extends Controller
 	// method use to update section editor
 	public function updateSectionEditor($id = null)
 	{
-		return $se = User::findorfail($id);
+		$se = User::findorfail($id);
+
+		if($se->user_type != 4) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		$sections = Section::where('active', 1)
+						->orderBy('name', 'asc')
+						->get(['id', 'name']);
+
+		// return to update form
+		return view('eic.se-update', ['se' => $se, 'sections' => $sections]);
 	}
 
 
