@@ -91,5 +91,7 @@ class CorrespondentController extends Controller
         if($article->correspondent_id != $c->id) {
             return redirect()->back()->with('error', 'Please Try Again!');
         }
+
+        return view('correspondent.article-view', ['article' => $article]);
     }
 }
