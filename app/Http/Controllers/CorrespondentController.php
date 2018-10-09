@@ -25,7 +25,7 @@ class CorrespondentController extends Controller
     // method use to show articles 
     public function articles()
     {
-    	$articles = Article::where('user_id', Auth::user()->id)
+    	$articles = Article::where('correspondent_id', Auth::user()->id)
     					->where('active', 1)
     					->get();
 
