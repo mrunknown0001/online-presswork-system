@@ -10,4 +10,5 @@ class SectionEditorAssignment extends Model
     {
     	return $this->belongsTo('App\Section', 'section_id');
     }
+
 }

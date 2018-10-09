@@ -66,11 +66,6 @@ class CorrespondentController extends Controller
     	$article->content = $content;
     	$article->section_id = $section;
     	$article->save();
-    	
-    	// add to articles attrib
-    	$attrib = new ArticleAttrib();
-    	$attrib->article_id = $article->id;
-    	$attrib->save();
 
     	// add to activity log
     	$action = 'Correspondent Submitted New Article: ' . ucwords($article->title);

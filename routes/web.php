@@ -146,6 +146,9 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 
 	Route::get('/dashboard', 'SectionEditorController@dashboard')->name('se.dashboard');
 
+	// route to view articles based on what artciles assigned to the section editor
+	Route::get('/articles', 'SectionEditorController@articles')->name('se.articles');
+
 });
 
 
