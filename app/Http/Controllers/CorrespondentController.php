@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 use App\Http\Controllers\GeneralController;
 
@@ -23,7 +25,20 @@ class CorrespondentController extends Controller
     // method use to show articles 
     public function articles()
     {
-    	return view('correspondent.articles');
+    	$articles = Article::where('user_id', Auth::user()->id)
+    					->where('active', 1)
+    					->get();
+
+    	return view('correspondent.articles', ['articles' => $articles]);
+    }
+
+
+    // method use to view submitted articles
+    public function submittedArticles()
+    {
+    	// get all active articles with submitted status
+
+    	return view('correspondent.articles-submitted');
     }
 
 
