@@ -29,10 +29,10 @@ class GeneralController extends Controller
 				return redirect()->route('eic.dashboard');
 			}
 			else if(Auth::user()->user_type == 3) {
-				return redirect()->route('layout.editor.dashboard');
+				return redirect()->route('le.dashboard');
 			}
 			else if(Auth::user()->user_type == 4) {
-				return redirect()->route('section.editor.dashboard');
+				return redirect()->route('se.dashboard');
 			}
 			else if(Auth::user()->user_type == 5) {
 				return redirect()->route('correspondent.dashboard');
