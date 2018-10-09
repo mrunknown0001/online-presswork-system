@@ -69,6 +69,7 @@ class CorrespondentController extends Controller
 
     	// save to articles marks submitted
     	$article = new Article();
+    	$article->correspondent_id = Auth::user()->id;
     	$article->title = $title;
     	$article->content = $content;
     	$article->section_id = $section;
