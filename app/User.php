@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function section_assignment()
+    {
+        return $this->hasOne('App\SectionEditorAssignment', 'user_id');
+    }
 }

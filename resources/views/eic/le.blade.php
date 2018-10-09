@@ -23,7 +23,7 @@
 					@foreach($le as $l)
 						<tr>
 							<td class="text-center">
-								{{ ucwords($l->firstname . ' ' . $l->lastname) }}
+								{{ ucwords($l->lastname . ', ' . $l->firstname) }}
 							</td>
 							<td class="text-center">
 								{{ strtolower($l->username) }}

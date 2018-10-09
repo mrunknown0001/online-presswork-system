@@ -84,10 +84,16 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	});
 
 	// route to go to section editor management
-	Route::get('/section-editor/management', 'EicController@sectioneditorManagement')->name('eic.section.editor.management');
+	Route::get('/section-editor/management', 'EicController@sectionEditorManagement')->name('eic.section.editor.management');
 
 	// route to add section editor 
 	Route::get('/section-editor/management/add', 'EicController@addSectionEditor')->name('eic.add.section.editor');
+
+	// route to save new section editor
+	Route::post('/section-editor/management/add', 'EicController@postAddSectionEditor')->name('eic.add.section.editor.post');
+
+	// route to update section editor
+	Route::get('/section-editor/management/{id}/update', 'EicController@updateSectionEditor')->name('eic.update.section.editor');
 
 	// route to go to correspondent management
 	Route::get('/correspondent/management', 'EicController@correspondentManagement')->name('eic.correspondent.management');

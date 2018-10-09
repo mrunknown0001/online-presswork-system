@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\GeneralController;
 
 use App\User;
+use App\Section;
+use App\SectionEditorAssignment;
 
 class EicController extends Controller
 {
@@ -22,6 +24,7 @@ class EicController extends Controller
 	{
 		$le = User::where('user_type', 3)
 				->where('active', 1)
+				->orderBy('lastname', 'asc')
 				->get();
 
 		return view('eic.le', ['le' => $le]);
@@ -148,16 +151,72 @@ class EicController extends Controller
 
 
 	// method use to go to section editor management
-	public function sectioneditorManagement()
+	public function sectionEditorManagement()
 	{
-		return view('eic.se');
+		$se = User::where('user_type', 4)
+				->where('active', 1)
+				->orderBy('lastname', 'asc')
+				->get();
+
+		return view('eic.se', ['se' => $se]);
 	}
 
 
 	// method use to add section editor
 	public function addSectionEditor()
 	{
-		
+		// get all section to assign for section editor
+		$sections = Section::where('active', 1)
+						->orderBy('name', 'asc')
+						->get(['id', 'name']);
+
+		return view('eic.se-add', ['sections' => $sections]);
+	}
+
+
+	// method use to save new section editor
+	public function postAddSectionEditor(Request $request)
+	{
+		$request->validate([
+			'firstname' => 'required',
+			'lastname' => 'required',
+			'username' => 'required|unique:users',
+			'section' => 'required'
+		]);
+
+		$firstname = $request['firstname'];
+		$lastname = $request['lastname'];
+		$username = $request['username'];
+		$section = $request['section'];
+
+		// add in users table and section editor assignments
+		$user = new User();
+		$user->firstname = $firstname;
+		$user->lastname = $lastname;
+		$user->username = $username;
+		$user->password = bcrypt('password');
+		$user->user_type = 4;
+		$user->save();
+
+		$assign = new SectionEditorAssignment();
+		$assign->user_id = $user->id;
+		$assign->section_id = $section;
+		$assign->save();
+
+		// add activity log
+		$action = 'Editor In Chief Added New Section Editor  ' . ucwords($user->firstname . ' ' . $user->lastname);
+        GeneralController::activity_log($action);
+
+		// return to section editor management
+		return redirect()->route('eic.section.editor.management')->with('success', 'Added New Section Editor');
+
+	}
+
+
+	// method use to update section editor
+	public function updateSectionEditor($id = null)
+	{
+		return $se = User::findorfail($id);
 	}
 
 
