@@ -152,4 +152,13 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','prevent-back-history']], function () {
 
 	Route::get('/dashboard', 'CorrespondentController@dashboard')->name('correspondent.dashboard');
+
+	// route to view articles
+	Route::get('/articles', 'CorrespondentController@articles')->name('correspondent.articles');
+
+	// route to add article
+	Route::get('/article/new', 'CorrespondentController@newArticle')->name('correspondent.new.article');
+
+	// route to add new article
+	Route::post('/article/new', 'CorrespondentController@postNewArticle')->name('correspondent.new.article.post');
 });

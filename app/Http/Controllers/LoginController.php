@@ -26,7 +26,7 @@ class LoginController extends Controller
 
     	// attempt to login
     	// redirect intedned or to user type dashboard
-    	if(Auth::attempt(['username' => $username, 'password' => $password])) {
+    	if(Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1])) {
     		// redirect to specific user type dashboard
     		// add activity log for audit trail
 			$action = 'Login';

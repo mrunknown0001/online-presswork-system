@@ -28,11 +28,11 @@
 									Admin
 								@elseif($l->user_type == 2)
 									Editor In Chief
-								@elseif($l->user_type == 2)
+								@elseif($l->user_type == 3)
 									Layout Editor						
-								@elseif($l->user_type == 2)
+								@elseif($l->user_type == 4)
 									Section Editor						
-								@elseif($l->user_type == 2)
+								@elseif($l->user_type == 5)
 									Correspondent
 								@else
 									Unknown
