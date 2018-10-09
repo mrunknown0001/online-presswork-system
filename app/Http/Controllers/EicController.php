@@ -361,6 +361,76 @@ class EicController extends Controller
 		if($c->user_type != 5) {
 			return redirect()->back()->with('error', 'Please Try Again Later!');
 		}
+
+		return view('eic.correspondent-update', ['c' => $c]);
+	}
+
+
+	// method use to save update in correspondent
+	public function postUpdateCorrespodent(Request $request)
+	{
+		$request->validate([
+			'firstname' => 'required',
+			'lastname' => 'required',
+			'username' => 'required'
+		]);
+
+		$firstname = $request['firstname'];
+		$lastname = $request['lastname'];
+		$username = $request['username'];
+
+		$id = $request['id'];
+
+		$c = User::findorfail($id);
+
+		if($c->user_type != 5) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		$check_username = User::where('username', $username)
+								->first();
+
+		if(count($check_username) > 0) {
+			if($c->id != $check_username->id) {
+				return redirect()->back()->with('error', 'Username already used!');
+			}
+		}
+
+		$c->firstname = $firstname;
+		$c->lastname = $lastname;
+		$c->username = $username;
+		$c->save();
+
+        $action = 'Editor In Chief Updated Correspondent  ' . ucwords($c->firstname . ' ' . $c->lastname);
+        GeneralController::activity_log($action);
+
+		// return to le management
+		return redirect()->route('eic.correspondent.management')->with('success', 'Updated Correspondent');
+
+	}
+
+
+	// method use to remove correspondent
+	public function postRemoveCorrespondent(Request $request)
+	{
+		$id = $request['id'];
+
+		$c = User::findorfail($id);
+
+		if($c->user_type != 5) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		$c->active = 0;
+		$c->save();
+
+        $action = 'Editor In Chief Removed Correspondent  ' . ucwords($c->firstname . ' ' . $c->lastname);
+        GeneralController::activity_log($action);
+
+		// return to le management
+		return redirect()->route('eic.correspondent.management')->with('success', 'Correspondent Removed');
+
+
 	}
 
 

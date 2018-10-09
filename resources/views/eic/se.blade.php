@@ -39,7 +39,7 @@
 								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeSectionEditor-{{ $s->id }}">Remove</button>
 							</td>
 						</tr>
-						@include('eic.includes.modal-section-editor-update')
+						@include('eic.includes.modal-section-editor-remove')
 					@endforeach
 				</tbody>
 			</table>
