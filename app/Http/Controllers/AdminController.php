@@ -123,7 +123,7 @@ class AdminController extends Controller
     // method use to show articles management
     public function articleManagement()
     {
-        $articles = Article::orderBy('create_at', 'asc')
+        $articles = Article::orderBy('created_at', 'asc')
                         ->paginate(15);
 
         return view('admin.article', ['articles' => $articles]);
