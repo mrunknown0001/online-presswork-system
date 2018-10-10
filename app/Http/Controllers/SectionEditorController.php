@@ -183,6 +183,9 @@ class SectionEditorController extends Controller
 
         Storage::put($filename, $article->content);
 
+        $action = 'Section Editor Downloaded Article ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
         return response()->download(storage_path("app/{$filename}"));
     }
 

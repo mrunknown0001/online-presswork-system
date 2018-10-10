@@ -211,5 +211,7 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 	Route::post('/article/update', 'CorrespondentController@postUpdateArticle')->name('correspondent.update.article.post');
 });
 
-// route to download article
-Route::get('/article/{id}/download', 'SectionEditorController@downloadArticle')->name('se.download.article');
+///////////////////////////////
+// route to download article //
+///////////////////////////////
+Route::get('/section/editor/article/{id}/download', 'SectionEditorController@downloadArticle')->name('se.download.article');
