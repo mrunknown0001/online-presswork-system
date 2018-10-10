@@ -33,6 +33,21 @@ class SectionEditorController extends Controller
     }
 
 
+    // method use to view approved articles
+    public function approvedArticles()
+    {
+        $se = Auth::user();
+
+        // find all articles se_approved
+        $articles = Article::where('se_proofread', 1)
+                        ->where('se_id', $se->id)
+                        ->paginate(10);
+
+        // send to view
+        return view('se.articles-approved', ['articles' => $articles]);
+    }
+
+
     // method use to view article
     public function viewArticle($id = null)
     {
@@ -54,7 +69,7 @@ class SectionEditorController extends Controller
         $article->viewing_by = Auth::user()->id;
         $article->save();
 
-        return view('se.article-view', ['article' => $article]);
+        return view('se.article-view-edit', ['article' => $article]);
 
     }
 
@@ -73,10 +88,51 @@ class SectionEditorController extends Controller
     // method use to approve article
     public function postApproveArticle(Request $request)
     {
-        return $request;
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $title = $request['title'];
+        $content = $request['content'];
+
+        $section_assign = Auth::user()->section_assignment->section;
+
+        $article = Article::findorfail($id);
 
         // check if section is applicable to section editor
+        if($article->section_id != $section_assign->id) {
+            return redirect()->back()->with('error', 'Please Try Again Later!');
+        }
 
-        // mark as se edited
+
+        // mark as se edited 
+        $article->se_proofread = 1;
+        $article->se_id = Auth::user()->id;
+        $article->se_proofread_date = now();
+        $article->save();
+
+        // add to activty log
+        $action = 'Section Editor Approved Article from ' . ucwords($article->user->firstname . ' ' . $article->user->lastname) . ': ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
+        // return to approved articles
+        return redirect()->route('se.approved.articles')->with('sucess', 'Article Approved!');
+    }
+
+
+    // method use to view only 
+    public function viewOnlyArticle($id = null)
+    {
+        $article = Article::findorfail($id);
+
+        $se = Auth::user();
+
+        if($article->se_id != $se->id) {
+            return redirect()->back()->with('error', 'Oops! Please Try Again Later!');
+        }
+
+        return view('se.article-view', ['article' => $article]);
     }
 }
