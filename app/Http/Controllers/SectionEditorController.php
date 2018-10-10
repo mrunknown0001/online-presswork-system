@@ -27,6 +27,7 @@ class SectionEditorController extends Controller
     	$articles = Article::where('section_id', $section_assign->id)
     						->where('active', 1)
     						->where('se_proofread', 0)
+                            ->where('se_deny', 0)
     						->paginate(10);
 
     	return view('se.articles', ['articles' => $articles, 'sa' => $section_assign]);
@@ -124,6 +125,39 @@ class SectionEditorController extends Controller
     }
 
 
+    // method use to deny article
+    public function postDenyArticle(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'comment' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $comment = $request['comment'];
+
+        $section_assign = Auth::user()->section_assignment->section;
+
+        $article = Article::findorfail($id);
+
+        // check if section is applicable to section editor
+        if($article->section_id != $section_assign->id) {
+            return redirect()->back()->with('error', 'Please Try Again Later!');
+        }
+
+        $article->se_id = Auth::user()->id;
+        $article->se_deny = 1;
+        $article->se_comment = $comment;
+        $article->se_deny_date = now();
+        $article->save();
+
+        $action = 'Section Editor Denied Article from ' . ucwords($article->user->firstname . ' ' . $article->user->lastname) . ': ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
+        return redirect()->route('se.articles')->with('success', 'Article Denied!');
+    }
+
+
     // method use to view only 
     public function viewOnlyArticle($id = null)
     {
@@ -137,4 +171,5 @@ class SectionEditorController extends Controller
 
         return view('se.article-view', ['article' => $article]);
     }
+
 }

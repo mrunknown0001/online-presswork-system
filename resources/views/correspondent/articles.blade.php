@@ -19,6 +19,7 @@
 					<tr>
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Section</th>
+						<th class="text-center">Status</th>
 						<th class="text-center">Date &amp; Time Submitted</th>
 					</tr>
 				</thead>
@@ -29,6 +30,16 @@
 							</td>
 							<td class="text-center">
 								{{ ucwords($a->section->name) }}
+							</td>
+							<td class="text-center">
+								@if($a->se_proofread == 1)
+									<span class="label label-success">Approved</span>
+								@elseif($a->se_deny == 1)
+									<span class="label label-warning">Denied</span>
+									<a href="{{ route('correspondent.edit.deny.article', ['id' => $a->id]) }}">Edit</a>
+								@else
+									<span class="label label-default">Pending</span>
+								@endif
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}

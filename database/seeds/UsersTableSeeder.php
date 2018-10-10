@@ -26,7 +26,38 @@ class UsersTableSeeder extends Seeder
         		'username' => 'eic',
         		'password' => bcrypt('password'),
         		'user_type' => 2
-        	]
+        	],
+
+            [
+                'firstname' => 'Le',
+                'lastname' => 'Layout',
+                'username' => 'le',
+                'password' => bcrypt('password'),
+                'user_type' => 3
+            ],
+
+            [
+                'firstname' => 'Se',
+                'lastname' => 'Section',
+                'username' => 'se',
+                'password' => bcrypt('password'),
+                'user_type' => 4
+            ],
+
+            [
+                'firstname' => 'Co',
+                'lastname' => 'Corr',
+                'username' => 'co',
+                'password' => bcrypt('password'),
+                'user_type' => 5
+            ]
+
+
+        ]);
+
+        DB::table('section_editor_assignments')->insert([
+            'user_id' => 4,
+            'section_id' => 2
         ]);
     }
 }

@@ -9,7 +9,7 @@
 		<h3>{{ ucwords($article->title) }}</h3>
 		@include('includes.all')
 		<div>
-			{{ $article->content }}
+			<textarea class="form-control" rows="15" readonly="">{{ $article->content }}</textarea>
 		</div>
 
 	</div>

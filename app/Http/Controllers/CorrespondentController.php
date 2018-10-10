@@ -89,4 +89,47 @@ class CorrespondentController extends Controller
 
         return view('correspondent.article-view', ['article' => $article]);
     }
+
+
+    // method use to edit denied article
+    public function editDenyArticle($id = null)
+    {
+        $article = Article::findorfail($id);
+
+        $co = Auth::user();
+
+        if($article->correspondent_id != $co->id || $article->se_deny != 1) {
+            return redirect()->back()->with('notice', 'Please Reaload This Page and Try Again!');
+        }
+
+        return view('correspondent.article-edit-deny', ['article' => $article]);
+    }
+
+
+    // method use to update denied article
+    public function postUpdateArticle(Request $request)
+    {
+        $id = $request['id'];
+
+        $article = Article::findorfail($id);
+
+        $co = Auth::user();
+
+        if($article->correspondent_id != $co->id || $article->se_deny != 1) {
+            return redirect()->back()->with('notice', 'Please Reaload This Page and Try Again!');
+        }
+
+        // save article
+        $article->se_deny = 0;
+        $article->correspondent_comply = 1;
+        $article->save();
+
+        // add activity log
+        $action = 'Correspondent Updated Article: ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
+        // return to articles
+        return redirect()->route('correspondent.articles')->with('success', 'Article Update & Submitted!');
+        
+    }
 }

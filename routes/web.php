@@ -179,6 +179,9 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 		return redirect()->route('se.approved.articles');
 	});
 
+	// route to deny article by section editor
+	Route::post('/article/deny', 'SectionEditorController@postDenyArticle')->name('se.deny.article.post');
+
 	// route to view only article
 	Route::get('/article/{id}/view', 'SectionEditorController@viewOnlyArticle')->name('se.view.only.article');
 
@@ -200,4 +203,10 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 
 	// route to view articles
 	Route::get('/article/{id}/view', 'CorrespondentController@viewArticle')->name('correspondent.view.article');
+
+	// route to edit denied article
+	Route::get('/article/{id}/deny/edit', 'CorrespondentController@editDenyArticle')->name('correspondent.edit.deny.article');
+
+	// route to save update on denied article
+	Route::post('/article/update', 'CorrespondentController@postUpdateArticle')->name('correspondent.update.article.post');
 });
