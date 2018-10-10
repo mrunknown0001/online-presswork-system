@@ -15,23 +15,28 @@
 					<tr>
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Correspondent</th>
-						<th class="text-center">Date &amp; Time</th>
+						<th class="text-center">Date &amp; Time Submitted</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($articles as $a)
 						<tr>
-							<td class="">{{ ucwords($a->title) }}</td>
+							<td class="text-center">
+								<a href="{{ route('se.view.article', ['id' => $a->id]) }}">{{ ucwords($a->title) }}</a>
+							</td>
 							<td class="text-center">
 								{{ ucwords($a->user->firstname . ' ' . $a->user->lastname) }}
 							</td>
 							<td class="text-center">
-								{{ $a->created_at }}
+								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
+			<div class="text-center">
+				{{ $articles->links() }}
+			</div>
 		@else
 			<p class="text-center"></p>
 		@endif

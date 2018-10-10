@@ -19,19 +19,19 @@
 					<tr>
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Section</th>
-						<th class="text-center">Date &amp; Time</th>
+						<th class="text-center">Date &amp; Time Submitted</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($articles as $a)
 						<tr>
-							<td><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a>
+							<td class="text-center"><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a>
 							</td>
 							<td class="text-center">
 								{{ ucwords($a->section->name) }}
 							</td>
 							<td class="text-center">
-								{{ $a->created_at }}
+								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}
 							</td>
 						</tr>
 					@endforeach

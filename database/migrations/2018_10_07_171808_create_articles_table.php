@@ -22,6 +22,8 @@ class CreateArticlesTable extends Migration
             $table->integer('section_id')->unsigned();
             $table->foreign('section_id')->references('id')->on('sections');
             $table->tinyInteger('active')->default(1);
+            $table->tinyInteger('viewing')->default(0);
+            $table->integer('viewing_by')->unsigned()->nullable();
 
             $table->tinyInteger('se_proofread')->default(0);
             $table->integer('se_id')->unsigned()->nullable();

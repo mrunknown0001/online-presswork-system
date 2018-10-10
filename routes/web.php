@@ -149,6 +149,15 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 	// route to view articles based on what artciles assigned to the section editor
 	Route::get('/articles', 'SectionEditorController@articles')->name('se.articles');
 
+	// route to view/edit articles --- open article
+	Route::get('/article/{id}/view', 'SectionEditorController@viewArticle')->name('se.view.article');
+
+	// route to clsoe viewing article
+	Route::get('/article/{id}/close', 'SectionEditorController@closeViewArticle')->name('se.close.viewing.article');
+
+	// route to approve article by section editor
+	Route::post('/article/approve', 'SectionEditorController@postApproveArticle')->name('se.approve.article.post');
+
 });
 
 
