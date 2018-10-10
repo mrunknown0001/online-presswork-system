@@ -20,6 +20,7 @@
 						<th class="text-center">Correspondent</th>
 						<th class="text-center">Approved</th>
 						<th class="text-center">Submitted</th>
+						<th class="text-center">Download</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,6 +39,9 @@
 							
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}
+							</td>
+							<td class="text-center">
+								<a href="{{ route('se.download.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-download"></i></a>
 							</td>
 						</tr>
 					@endforeach

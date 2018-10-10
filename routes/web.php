@@ -185,6 +185,9 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 	// route to view only article
 	Route::get('/article/{id}/view', 'SectionEditorController@viewOnlyArticle')->name('se.view.only.article');
 
+	// route to download article
+	Route::get('/article/{id}/download', 'SectionEditorController@downloadArticle')->name('se.download.article');
+
 });
 
 

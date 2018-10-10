@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 
 use App\Http\Controllers\GeneralController;
@@ -170,6 +171,19 @@ class SectionEditorController extends Controller
         }
 
         return view('se.article-view', ['article' => $article]);
+    }
+
+
+    // method use to download
+    public function downloadArticle($id = null)
+    {
+        $article = Article::findorfail($id);
+
+        $filename = $article->title . '.txt';
+
+        Storage::put($filename, $article->content);
+
+        
     }
 
 }
