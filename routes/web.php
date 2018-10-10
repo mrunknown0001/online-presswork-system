@@ -130,6 +130,20 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to go to article management
 	Route::get('/article/management', 'EicController@articleManagement')->name('eic.article.management');
 
+	// route to view approved articles
+	Route::get('/articles/approved', 'EicController@approvedArticles')->name('eic.approved.articles');
+
+	// route to view article
+	Route::get('/article/{id}/view', 'EicController@viewArticle')->name('eic.view.article');
+
+
+	// route to save update in article
+	Route::post('/article/approve', 'EicController@postApproveArticle')->name('eic.approve.article');
+
+	Route::get('/article/approve', function () {
+		return redirect()->route('eic.article.management');
+	});
+
 	// route to go to layout management
 	Route::get('/layout/management', 'EicController@layoutManagement')->name('eic.layout.management');
 });
@@ -160,6 +174,10 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 
 	// route to approve article by section editor
 	Route::post('/article/approve', 'SectionEditorController@postApproveArticle')->name('se.approve.article.post');
+
+	Route::get('/article/approve', function () {
+		return redirect()->route('se.approved.articles');
+	});
 
 	// route to view only article
 	Route::get('/article/{id}/view', 'SectionEditorController@viewOnlyArticle')->name('se.view.only.article');

@@ -41,6 +41,8 @@ class SectionEditorController extends Controller
         // find all articles se_approved
         $articles = Article::where('se_proofread', 1)
                         ->where('se_id', $se->id)
+                        ->where('active', 1)
+                        ->orderBy('se_proofread_date', 'desc')
                         ->paginate(10);
 
         // send to view
@@ -55,7 +57,7 @@ class SectionEditorController extends Controller
 
         $section_assign = Auth::user()->section_assignment->section;
 
-        if($article->section_id != $section_assign->id) {
+        if($article->section_id != $section_assign->id || $article->se_proofread == 1) {
             return redirect()->back()->with('error', 'Please Try Again Later!');
         }
 

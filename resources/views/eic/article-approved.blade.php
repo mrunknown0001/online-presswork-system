@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title') Article Management @endsection
+@section('title') Approved Articles @endsection
 
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<h3>Article Management</h3>
+		<h3> Approved Articles </h3>
 		<p>
-			<a href="{{ route('eic.approved.articles') }}" class="btn btn-success"><i class="fa fa-eye"></i> View Approved Articles</a>
+			<a href="{{ route('eic.article.management') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Articles</a>
 		</p>
 
 		@include('includes.all')
@@ -19,6 +19,7 @@
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Correspondent</th>
 						<th class="text-center">Section Editor</th>
+						<th class="text-center">Proofread Date</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</thead>
@@ -31,7 +32,7 @@
 							</td>
 							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname . ' : ' . $a->se->section_assignment->section->name) }}</td>
 							<td class="text-center">
-								<a href="{{ route('eic.view.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs">View</a>
+								<a href="#" class="btn btn-primary btn-xs">Action</a>
 							</td>
 						</tr>
 					@endforeach

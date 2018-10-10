@@ -15,4 +15,9 @@ class Article extends Model
     {
     	return $this->belongsTo('App\Section', 'section_id');
     }
+
+    public function se()
+    {
+    	return $this->belongsTo('App\User', 'se_id');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\GeneralController;
 use App\User;
 use App\Section;
 use App\SectionEditorAssignment;
+use App\Article;
 
 class EicController extends Controller
 {
@@ -437,7 +438,72 @@ class EicController extends Controller
 	// method use to go to article management 
 	public function articleManagement()
 	{
-		return view('eic.article');
+		// get all active article with approved by section editor
+		$articles = Article::where('se_proofread', 1)
+						->where('eic_proofread', 0)
+						->where('active', 1)
+						->orderBy('se_proofread_date', 'asc')
+						->paginate(10);
+
+		return view('eic.article', ['articles' => $articles]);
+	}
+
+
+	// method use to view approved articles
+	public function approvedArticles()
+	{
+		return 'view approved articles to be publishd by admin';
+	}
+
+
+	// method use view article
+	public function viewArticle($id = null)
+	{
+		$article = Article::findorfail($id);
+
+		// check if se_proofread 1 and eic_proofread 0
+		if($article->se_proofread == 0 || $article->eic_proofread == 1) {
+			return redirect()->back()->with('notice', 'Please Try Again Later!');
+		}
+
+		// return to view that wil edit
+		return view('eic.article-edit', ['article' => $article]);
+
+	}
+
+
+	// method use to approve article by eic
+	public function postApproveArticle(Request $request)
+	{
+		$request->validate([
+			'title' => 'required',
+			'content' => 'required'
+		]);
+
+		$id = $request['id'];
+		$title = $request['title'];
+		$content = $request['content'];
+
+		$article = Article::findorfail($id);
+
+		// check if se_proofread and eic_proofread
+		if($article->se_proofread == 0 || ($article->se_proofread == 1 && $article->eic_proofread == 1)) {
+			return redirect()->back()->with('error', 'Please Reload This Page and Try Again!');
+		}
+
+		// mark as approve by eic
+		$article->eic_proofread = 1;
+		$article->eic_id = Auth::user()->id;
+		$article->eic_proofread_date = now();
+		$article->save();
+
+		// add to activity log
+        $action = 'Editor In Chief  Approved Article Title ' . ucwords($article->title) . ' by ' . ucwords($article->user->firstname . ' ' . $article->user->lastname);
+        GeneralController::activity_log($action);
+
+		// return to approved articles in eic
+		return redirect()->route('eic.approved.articles')->with('success', 'Article approved!');
+
 	}
 
 
