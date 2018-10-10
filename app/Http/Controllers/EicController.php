@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 use App\Http\Controllers\GeneralController;
 
@@ -452,7 +454,12 @@ class EicController extends Controller
 	// method use to view approved articles
 	public function approvedArticles()
 	{
-		return 'view approved articles to be publishd by admin';
+		// get all articles with eic proofread
+		$articles = Article::where('eic_proofread', 1)
+						->where('active', 1)
+						->paginate(10);
+
+		return view('eic.article-approved', ['articles' => $articles]);
 	}
 
 

@@ -32,7 +32,10 @@
 							</td>
 							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname . ' : ' . $a->se->section_assignment->section->name) }}</td>
 							<td class="text-center">
-								<a href="#" class="btn btn-primary btn-xs">Action</a>
+								{{ date('l, F j, Y g:i:s a', strtotime($a->eic_proofread_date)) }}
+							</td>
+							<td class="text-center">
+								<a href="#" class="btn btn-primary btn-xs" onclick="alert('Ginagawa pa yung function')">View</a>
 							</td>
 						</tr>
 					@endforeach

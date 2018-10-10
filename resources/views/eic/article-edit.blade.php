@@ -7,7 +7,7 @@
 	<div class="col-md-12">
 		<h3>View Article</h3>
 		<p>
-			<a href="{{ route('eic.article.management') }}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Back to Articles</a>
+			<a href="{{ route('eic.article.management') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Articles</a>
 		</p>
 
 		<div class="content-box-header panel-heading">
