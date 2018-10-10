@@ -133,6 +133,9 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to view approved articles
 	Route::get('/articles/approved', 'EicController@approvedArticles')->name('eic.approved.articles');
 
+	// route to view dneied article
+	Route::get('/article/denied/view', 'EicController@viewDeniedArticle')->name('eic.view.denied.article');
+
 	// route to view article
 	Route::get('/article/{id}/view', 'EicController@viewArticle')->name('eic.view.article');
 
@@ -141,6 +144,16 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	Route::post('/article/approve', 'EicController@postApproveArticle')->name('eic.approve.article');
 
 	Route::get('/article/approve', function () {
+		return redirect()->route('eic.article.management');
+	});
+
+	// route to view update
+	Route::get('/article/{id}/view/update', 'EicController@viewUpdateArticle')->name('eic.view.update.article');
+
+	// route to deny articles
+	Route::post('/article/deny', 'EicController@postDenyArticle')->name('eic.deny.article.post');
+
+	Route::get('/article/deny', function () {
 		return redirect()->route('eic.article.management');
 	});
 
@@ -166,6 +179,9 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 	// rotue to view proofreaded articles by se
 	Route::get('/articles/approved', 'SectionEditorController@approvedArticles')->name('se.approved.articles');
 
+	// route to view denied
+	Route::get('/article/denied/view', 'SectionEditorController@viewDeniedArticle')->name('se.view.denied.article');
+
 	// route to view/edit articles --- open article
 	Route::get('/article/{id}/view/edit', 'SectionEditorController@viewArticle')->name('se.view.edit.article');
 
@@ -184,6 +200,16 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 
 	// route to view only article
 	Route::get('/article/{id}/view', 'SectionEditorController@viewOnlyArticle')->name('se.view.only.article');
+
+	// route to update article
+	Route::get('/article/{id}/update', 'SectionEditorController@updateArticle')->name('se.update.article');
+
+	// route to save update on aritcle edit
+	Route::post('/article/update', 'SectionEditorController@postUpdateArticle')->name('se.update.article.post');
+
+	Route::get('/article/update', function () {
+		return redirect()->route('se.view.denied.article');
+	});
 
 });
 

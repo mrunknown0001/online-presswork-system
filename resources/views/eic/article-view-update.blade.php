@@ -36,7 +36,6 @@
 				</div>
 				<div class="form-group">
 					<button class="btn btn-success">Approve Article</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#denyArticle">Deny Article</button>
 					<a href="{{ route('eic.article.management') }}" class="btn btn-danger">Cancel</a>
 				</div>
 			</form>

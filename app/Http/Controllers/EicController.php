@@ -443,6 +443,7 @@ class EicController extends Controller
 		// get all active article with approved by section editor
 		$articles = Article::where('se_proofread', 1)
 						->where('eic_proofread', 0)
+						->where('eic_deny', 0)
 						->where('active', 1)
 						->orderBy('se_proofread_date', 'asc')
 						->paginate(10);
@@ -502,6 +503,7 @@ class EicController extends Controller
 		$article->eic_proofread = 1;
 		$article->eic_id = Auth::user()->id;
 		$article->eic_proofread_date = now();
+		$article->eic_deny = 0;
 		$article->save();
 
 		// add to activity log
@@ -510,6 +512,60 @@ class EicController extends Controller
 
 		// return to approved articles in eic
 		return redirect()->route('eic.approved.articles')->with('success', 'Article approved!');
+
+	}
+
+
+	// method use to view update 
+	public function viewUpdateArticle($id = null)
+	{
+		$article = Article::findorfail($id);
+
+		return view('eic.article-view-update', ['article' => $article]);
+	}
+
+
+	// method use to deny articles
+	public function postDenyArticle(Request $request)
+	{
+		$request->validate([
+			'id' => 'required',
+			'comment' => 'required'
+		]);
+
+		$id = $request['id'];
+		$comment = $request['comment'];
+
+		$article = Article::findorfail($id);
+
+		if($article->se_proofread != 1) {
+			return redirect()->back()->with('notice', 'Please Reload This Page and Try Again!');
+		}
+
+		// mark as deny by eic
+		$article->eic_deny = 1;
+		$article->eic_comment = $comment;
+		$article->eic_deny_date = now();
+		$article->save();
+
+		// add to activyt log
+		$action = 'Editor In Chief Denied Article Title ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
+		// return to articles
+		return redirect()->route('eic.article.management')->with('success', 'Article Denied!');
+	}
+
+
+	// method use to view denied article
+	public function viewDeniedArticle()
+	{
+		// get all eic_deny  1 article
+		$articles = Article::where('eic_deny', 1)
+						->orderBy('eic_deny_date', 'asc')
+						->paginate(10);
+
+		return view('eic.article-denied', ['articles' => $articles]);
 
 	}
 

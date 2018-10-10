@@ -46,7 +46,7 @@
 				{{ $articles->links() }}
 			</div>
 		@else
-			<p class="text-center">No Articles to approve.</p>
+			<p class="text-center">No Approve Articles.</p>
 		@endif
 	
 	</div>

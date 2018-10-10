@@ -7,7 +7,8 @@
 	<div class="col-md-12">
 		<h3>Article Management</h3>
 		<p>
-			<a href="{{ route('eic.approved.articles') }}" class="btn btn-success"><i class="fa fa-eye"></i> View Approved Articles</a>
+			<a href="{{ route('eic.approved.articles') }}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> View Approved Articles</a>
+			<a href="{{ route('eic.view.denied.article') }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i> View Denied Articles</a>
 		</p>
 
 		@include('includes.all')

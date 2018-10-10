@@ -43,7 +43,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('eic_deny')->default(0);
             $table->string('eic_comment', 200)->nullable();
             $table->timestamp('eic_deny_date')->nullable();
-            $table->tinyInteger('se_comply')->nullable();
+            $table->tinyInteger('se_comply')->default(0);
 
             $table->tinyInteger('admin_proofread')->default(0);
             $table->timestamp('admin_proofread_date')->nullable();

@@ -43,6 +43,7 @@ class SectionEditorController extends Controller
         // find all articles se_approved
         $articles = Article::where('se_proofread', 1)
                         ->where('se_id', $se->id)
+                        ->where('eic_deny', 0)
                         ->where('active', 1)
                         ->orderBy('se_proofread_date', 'desc')
                         ->paginate(10);
@@ -187,6 +188,58 @@ class SectionEditorController extends Controller
         GeneralController::activity_log($action);
 
         return response()->download(storage_path("app/{$filename}"));
+    }
+
+
+    // method use to view denied articles
+    public function viewDeniedArticle()
+    {
+        $section = Auth::user()->section_assignment->section;
+
+        $articles = Article::where('section_id', $section->id)
+                            ->where('eic_deny', 1)
+                            ->where('se_comply', 0)
+                            ->where('active', 1)
+                            ->paginate(10);
+
+        return view('se.articles-denied', ['articles' => $articles]);
+    }
+
+
+    // method use to update article
+    public function updateArticle($id = null)
+    {
+        $article = Article::findorfail($id);
+
+        return view('se.article-update', ['article' => $article]);
+    }
+
+
+    // method use to save update on article
+    public function postUpdateArticle(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        $id = $request['id'];
+
+        $title = $request['title'];
+        $content = $request['content'];
+
+        $article = Article::findorfail($id);
+
+        // save article
+        $article->se_comply = 1;
+        $article->save();
+
+        // add to activity log
+        $action = 'Section Editor Resubmitted Article to EIC';
+        GeneralController::activity_log($action);
+
+        // return to articles
+        return redirect()->route('se.articles')->with('success', 'Article Resubmitted!');
     }
 
 }
