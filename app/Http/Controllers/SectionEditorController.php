@@ -183,7 +183,7 @@ class SectionEditorController extends Controller
 
         Storage::put($filename, $article->content);
 
-        
+        return response()->download(storage_path("app/{$filename}"));
     }
 
 }

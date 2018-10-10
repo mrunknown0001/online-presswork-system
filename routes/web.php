@@ -185,9 +185,6 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 	// route to view only article
 	Route::get('/article/{id}/view', 'SectionEditorController@viewOnlyArticle')->name('se.view.only.article');
 
-	// route to download article
-	Route::get('/article/{id}/download', 'SectionEditorController@downloadArticle')->name('se.download.article');
-
 });
 
 
@@ -213,3 +210,6 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 	// route to save update on denied article
 	Route::post('/article/update', 'CorrespondentController@postUpdateArticle')->name('correspondent.update.article.post');
 });
+
+// route to download article
+Route::get('/article/{id}/download', 'SectionEditorController@downloadArticle')->name('se.download.article');
