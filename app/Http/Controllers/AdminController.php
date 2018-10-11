@@ -123,10 +123,78 @@ class AdminController extends Controller
     // method use to show articles management
     public function articleManagement()
     {
-        $articles = Article::orderBy('created_at', 'asc')
+        $articles = Article::where('eic_proofread', 1)
+                        ->where('admin_proofread', 0)
+                        ->where('admin_deny', 0)
+                        ->orderBy('created_at', 'asc')
                         ->paginate(15);
 
         return view('admin.article', ['articles' => $articles]);
+    }
+
+
+    // method to view/edit article
+    public function viewEditArticle($id)
+    {
+        $article = Article::findorfail($id);
+
+        if($article->eic_proofread != 1 || $article->admin_deny != 0) {
+            return redirect()->back()->with('error', 'Please Reload This Page and Try Again!');
+        }
+
+        // return with image
+        return view('admin.article-view-edit', ['article' => $article]);
+    }
+
+
+    // method use to approve article
+    public function postApproveArticle(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $title = $request['title'];
+        $content = $request['content'];
+
+        $article = Article::findorfail($id);
+
+        // approve
+        $article->admin_proofread = 1;
+        $article->admin_proofread_date = now();
+        $article->save();
+
+        $action = 'Admin Approved Article ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
+        return redirect()->route('admin.article.management')->with('success', 'Article Approved!');
+    }
+
+
+    // method use to view approved articles
+    public function viewApprovedArticle()
+    {
+        $articles = Article::where('eic_proofread', 1)
+                        ->where('admin_proofread', 1)
+                        ->where('admin_deny', 0)
+                        ->orderBy('admin_proofread_date', 'desc')
+                        ->paginate(15);
+
+        return view('admin.article-approved', ['articles' => $articles]);
+    }
+
+
+    // method use to view denied articles
+    public function viewDeniedArticle()
+    {
+        $articles = Article::where('eic_proofread', 1)
+                        ->where('admin_deny', 1)
+                        ->orderBy('eic_proofread_date', 'desc')
+                        ->paginate(15);
+
+        return view('admin.article-denied', ['articles' => $articles]);
     }
 
 

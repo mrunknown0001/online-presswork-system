@@ -45,6 +45,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to go to article review
 	Route::get('/article/management', 'AdminController@articleManagement')->name('admin.article.management');
 
+	// route to view article and maybe proofread by admin
+	Route::get('/article/{id}/view/edit', 'AdminController@viewEditArticle')->name('admin.view.edit.article');
+
+	// route to approve article
+	Route::post('/article/approve', 'AdminController@postApproveArticle')->name('admin.approve.article.post');
+
+	// route to view approved article
+	Route::get('/article/approved/view', 'AdminController@viewApprovedArticle')->name('admin.view.approved.article');
+
+	// route to view denied articles
+	Route::get('/article/denied/view', 'AdminController@viewDeniedArticle')->name('admin.view.denied.article');
+
 	// route to go to publish management
 	Route::get('/publish', 'AdminController@publish')->name('admin.publish');
 

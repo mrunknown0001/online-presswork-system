@@ -5,11 +5,12 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<h3> Approved Articles </h3>
+		<h3>Approved Articles</h3>
 		<p>
-			<a href="{{ route('eic.article.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Articles</a>
+			<a href="{{ route('admin.article.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Articles</a>	
 		</p>
 
+		
 		@include('includes.all')
 
 		@if(count($articles) > 0)
@@ -19,7 +20,6 @@
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Correspondent</th>
 						<th class="text-center">Section Editor</th>
-						<th class="text-center">Proofread Date</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</thead>
@@ -32,10 +32,7 @@
 							</td>
 							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname . ' : ' . $a->se->section_assignment->section->name) }}</td>
 							<td class="text-center">
-								{{ date('l, F j, Y g:i:s a', strtotime($a->eic_proofread_date)) }}
-							</td>
-							<td class="text-center">
-								<a href="{{ route('eic.download.article', ['id' => $a]) }}" class="btn btn-primary btn-xs"><i class="fa fa-download"></i></a>
+								<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -46,9 +43,8 @@
 				{{ $articles->links() }}
 			</div>
 		@else
-			<p class="text-center">No Approve Articles.</p>
-		@endif
-	
+			<p class="text-center">No Approved Articles.</p>
+		@endif	
 	</div>
 
 </div>
