@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use DB;
 
@@ -461,6 +462,22 @@ class EicController extends Controller
 						->paginate(10);
 
 		return view('eic.article-approved', ['articles' => $articles]);
+	}
+
+
+	// method use to download article
+	public function downloadArticle($id)
+	{
+        $article = Article::findorfail($id);
+
+        $filename = $article->title . '.txt';
+
+        Storage::put($filename, $article->content);
+
+        $action = 'Editor In Chief Downloaded Article ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
+        return response()->download(storage_path("app/{$filename}"));
 	}
 
 
