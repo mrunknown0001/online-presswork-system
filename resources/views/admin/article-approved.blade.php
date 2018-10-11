@@ -32,7 +32,7 @@
 							</td>
 							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname . ' : ' . $a->se->section_assignment->section->name) }}</td>
 							<td class="text-center">
-								<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i></a>
+								<a href="{{ route('admin.download.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-download"></i></a>
 							</td>
 						</tr>
 					@endforeach

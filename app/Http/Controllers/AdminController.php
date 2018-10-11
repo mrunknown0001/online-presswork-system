@@ -198,6 +198,22 @@ class AdminController extends Controller
     }
 
 
+    // method use to download
+    public function downloadArticle($id = null)
+    {
+        $article = Article::findorfail($id);
+
+        $filename = $article->title . '.txt';
+
+        Storage::put($filename, $article->content);
+
+        $action = 'Editor In Chief Downloaded Article ' . ucwords($article->title);
+        GeneralController::activity_log($action);
+
+        return response()->download(storage_path("app/{$filename}"));
+    }
+
+
     // method use to publish and deny articles 
     public function publish()
     {

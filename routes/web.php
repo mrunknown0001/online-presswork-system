@@ -255,3 +255,5 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 Route::get('/section/editor/article/{id}/download', 'SectionEditorController@downloadArticle')->name('se.download.article');
 
 Route::get('/eic/article/{id}/download', 'EicController@downloadArticle')->name('eic.download.article');
+
+Route::get('/admin/article/{id}/download', 'AdminController@downloadArticle')->name('admin.download.article');
