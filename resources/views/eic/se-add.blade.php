@@ -6,10 +6,14 @@
 <div class="row">
 	<div class="col-md-12">
 		<h3>Add Section Editor</h3>
+
+		<p>
+			<a href="{{ route('eic.section.editor.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Section Editor Management</a>
+		</p>
 		
 		<div class="content-box-header">
 			<div class="panel-title">Add Section Editor Form</div>
-		
+
 			<div class="panel-options">
 				{{--<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
 				<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>--}}

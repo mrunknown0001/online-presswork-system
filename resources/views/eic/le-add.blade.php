@@ -7,6 +7,10 @@
 	<div class="col-md-12">
 		<h3>Add Layout Editor</h3>
 		
+		<p>
+			<a href="{{ route('eic.layout.editor.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Layout Editor Management</a>
+		</p>
+
 		<div class="content-box-header">
 			<div class="panel-title">Add Layout Editor Form</div>
 		

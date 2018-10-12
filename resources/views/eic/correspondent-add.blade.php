@@ -7,9 +7,13 @@
 	<div class="col-md-12">
 		<h3>Add Correspondent</h3>
 		
+		<p>
+			<a href="{{ route('eic.correspondent.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Correspondents Management</a>
+		</p>
+
 		<div class="content-box-header">
 			<div class="panel-title">Add Correspondent Form</div>
-		
+
 			<div class="panel-options">
 				{{--<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
 				<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>--}}

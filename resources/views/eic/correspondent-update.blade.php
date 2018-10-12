@@ -7,6 +7,10 @@
 	<div class="col-md-12">
 		<h3>Update Correspondent</h3>
 		
+		<p>
+			<a href="{{ route('eic.correspondent.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Correspondents Management</a>
+		</p>
+		
 		<div class="content-box-header">
 			<div class="panel-title">Update Correspondent Form</div>
 		
