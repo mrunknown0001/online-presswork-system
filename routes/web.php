@@ -192,6 +192,10 @@ Route::group(['prefix' => 'layout/editor', 'middleware' => ['layout.editor','pre
 	// route to view denied layout
 	Route::get('/layout/denied', 'LayoutEditorController@deniedLayout')->name('le.denied.layout');
 
+
+	// route to view approved articles
+	Route::get('/artciles', 'LayoutEditorController@articles')->name('le.artciles');
+
 });
 
 
@@ -271,3 +275,5 @@ Route::get('/section/editor/article/{id}/download', 'SectionEditorController@dow
 Route::get('/eic/article/{id}/download', 'EicController@downloadArticle')->name('eic.download.article');
 
 Route::get('/admin/article/{id}/download', 'AdminController@downloadArticle')->name('admin.download.article');
+
+Route::get('/layout/editor/article/{id}/download', 'LayoutEditorController@downloadArticle')->name('le.download.article');

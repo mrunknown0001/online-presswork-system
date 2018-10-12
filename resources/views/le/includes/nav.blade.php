@@ -9,6 +9,12 @@
         	</a>
         </li>
 
+        <li class="{{ route('le.artciles') == url()->current() ? 'current' : '' }}">
+            <a href="{{ route('le.artciles') }}">
+                <i class="glyphicon glyphicon-list-alt"></i> Articles
+            </a>
+        </li>
+
         <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
     </ul>
 </div>
