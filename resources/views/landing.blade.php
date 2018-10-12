@@ -8,7 +8,7 @@
         <div class="row">
            <div class="col-md-10">
               <div class="logo">
-                 <h1><a>The Work Online</a></h1>
+                 <h1><a>Online Presswork System for The Work at Tarlac State Universit</a></h1>
               </div>
            </div>
            <div class="col-md-2">
