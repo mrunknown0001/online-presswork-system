@@ -36,7 +36,7 @@
 							</td>
 							<td class="text-center">
 								<a href="{{ route('eic.update.section.editor', ['id' => $s->id]) }}" class="btn btn-info btn-xs">Update</a>
-								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeSectionEditor-{{ $s->id }}">Remove</button>
+								{{--<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeSectionEditor-{{ $s->id }}">Remove</button>--}}
 							</td>
 						</tr>
 						@include('eic.includes.modal-section-editor-remove')

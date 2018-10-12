@@ -178,6 +178,20 @@ Route::group(['prefix' => 'layout/editor', 'middleware' => ['layout.editor','pre
 
 	Route::get('/dashboard', 'LayoutEditorController@dashboard')->name('le.dashboard');
 
+	// route to layout editor
+	Route::get('/layouts/management', 'LayoutEditorController@layoutsManagement')->name('le.layouts.management');
+
+	// route to add layout
+	Route::get('/layout/add', 'LayoutEditorController@addLayout')->name('le.add.layout');
+
+	// route to save and add layout
+	Route::post('/layout/add', 'LayoutEditorController@postAddLayout')->name('le.add.layout.post');
+
+
+
+	// route to view denied layout
+	Route::get('/layout/denied', 'LayoutEditorController@deniedLayout')->name('le.denied.layout');
+
 });
 
 

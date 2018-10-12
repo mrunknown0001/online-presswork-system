@@ -6,7 +6,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h3>Layout Editor Management</h3>
-		<p><a href="{{ route('eic.add.layout.editor') }}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add Layout Editor</a></p>
+		{{--<p><a href="{{ route('eic.add.layout.editor') }}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add Layout Editor</a></p>--}}
 		
 		@include('includes.all')
 
@@ -30,7 +30,7 @@
 							</td>
 							<td class="text-center">
 								<a href="{{ route('eic.update.layout.editor', ['id' => $l->id]) }}" class="btn btn-info btn-xs">Update</a>
-								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeLayoutEditor-{{ $l->id }}">Remove</button>
+								{{--<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeLayoutEditor-{{ $l->id }}">Remove</button>--}}
 							</td>
 						</tr>
 						@include('eic.includes.modal-layout-editor-remove')

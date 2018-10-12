@@ -193,6 +193,15 @@ class EicController extends Controller
 		$username = $request['username'];
 		$section = $request['section'];
 
+		// check if there is a section editor assiged in section
+		$sect = Section::findorfail($section);
+
+		$check_section_assignment = SectionEditorAssignment::where('section_id', $section)->first();
+
+		if(count($check_section_assignment) > 0) {
+			return redirect()->back()->with('error', 'Section Already Assigned!');
+		}
+
 		// add in users table and section editor assignments
 		$user = new User();
 		$user->firstname = $firstname;
@@ -250,6 +259,7 @@ class EicController extends Controller
 		$username = $request['username'];
 		$section = $request['section'];
 
+
 		$id = $request['id'];
 
 		$se = User::findorfail($id);
@@ -267,6 +277,18 @@ class EicController extends Controller
 				return redirect()->back()->with('error', 'Username already used!');
 			}
 		}
+
+		// check if there is a section editor assiged in section
+		$sect = Section::findorfail($section);
+
+		$check_section_assignment = SectionEditorAssignment::where('section_id', $section)->first();
+
+		if(count($check_section_assignment) > 0) {
+			if($check_section_assignment->user_id != $id)
+			return redirect()->back()->with('error', 'Section Already Assigned!');
+		}
+
+		
 
 		$se->firstname = $firstname;
 		$se->lastname = $lastname;

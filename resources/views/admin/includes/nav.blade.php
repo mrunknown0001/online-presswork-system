@@ -5,7 +5,7 @@
 
         <li class="{{ route('admin.section.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.section.management') }}"><i class="glyphicon glyphicon-list"></i> Manage Sections</a></li>
 
-        <li class="{{ route('admin.article.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.article.management') }}"><i class="glyphicon glyphicon-list-alt"></i> Mange Articles</a></li>
+        {{--<li class="{{ route('admin.article.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.article.management') }}"><i class="glyphicon glyphicon-list-alt"></i> Mange Articles</a></li>--}}
 
         <li class="{{ route('admin.publish') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.publish') }}"><i class="glyphicon glyphicon-book"></i> Publish</a></li>
 
