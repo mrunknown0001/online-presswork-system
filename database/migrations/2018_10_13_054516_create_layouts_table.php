@@ -21,6 +21,8 @@ class CreateLayoutsTable extends Migration
             $table->timestamp('approved_date')->nullable();
             $table->tinyInteger('eic_denied')->default(0);
             $table->timestamp('denied_date')->nullable();
+            $table->tinyInteger('le_comply')->default(0);
+            $table->timestamp('comply_date')->nullable();
             $table->timestamps();
         });
     }
