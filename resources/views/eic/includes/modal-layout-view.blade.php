@@ -10,9 +10,12 @@
         <div class="text-center">
           <img src="{{ asset('/uploads/layouts/' . $l->filename) }}" class="img-responsvie">
           <p><strong>{{ $l->filename }}</strong></p>
+          <button class="btn btn-primary">Approve</button>
+          <button class="btn btn-warning">Deny</button>
         </div>
 
       </div>
+
 
     </div>
   </div>

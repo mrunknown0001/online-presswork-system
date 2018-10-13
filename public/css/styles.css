@@ -662,3 +662,16 @@ body {
 .centered-modal .modal-dialog {
     margin: auto;
 }
+
+.modal-dialog-img {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content-img {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
