@@ -45,6 +45,9 @@
 					@endforeach
 				</tbody>
 			</table>
+			<div class="text-center">
+				{{ $layouts->links() }}
+			</div>
 		@else
 			<p class="text-center">No Layouts Submitted!</p>
 		@endif

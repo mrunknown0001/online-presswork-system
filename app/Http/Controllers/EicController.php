@@ -13,6 +13,7 @@ use App\User;
 use App\Section;
 use App\SectionEditorAssignment;
 use App\Article;
+use App\Layout;
 
 class EicController extends Controller
 {
@@ -612,6 +613,12 @@ class EicController extends Controller
 	// method use to go to layouts management
 	public function layoutManagement()
 	{
-		return view('eic.layout');
+		// get all layout submitted
+		$layouts = Layout::where('active', 1)
+						->where('eic_approved', 0)
+						->where('eic_denied', 0)
+						->paginate(5);
+
+		return view('eic.layout', ['layouts' => $layouts]);
 	}
 }
