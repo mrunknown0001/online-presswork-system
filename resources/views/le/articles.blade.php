@@ -27,7 +27,7 @@
 							<td class="text-center">
 								{{ ucwords($a->user->firstname . ' ' . $a->user->lastname) }}
 							</td>
-							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname . ' : ' . $a->se->section_assignment->section->name) }}</td>
+							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname) }}</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->eic_proofread_date)) }}
 							</td>
