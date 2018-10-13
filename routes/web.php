@@ -62,6 +62,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 
 	// route to show audit trail/activity log in admin
 	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.log');
+
+	// route to import and back database
+	Route::get('/database/backup', 'AdminController@databaseBackup')->name('admin.backup.database');
+
 });
 
 

@@ -11,8 +11,8 @@
 
         <li class="{{ route('admin.activity.log') == url()->current() ? 'current' : '' }}"><a href="{{ route('admin.activity.log') }}"><i class="glyphicon glyphicon-time"></i> Activity Logs</a></li>
 		
-		<li class="">
-			<a href="#">
+		<li class="{{ route('admin.backup.database') == url()->current() ? 'current' : '' }}">
+			<a href="{{ route('admin.backup.database') }}">
 				<i class="fa fa-database"></i> Database
 			</a>
 		</li>

@@ -230,4 +230,11 @@ class AdminController extends Controller
 
     	return view('admin.activity-log', ['logs' => $logs]);
     }
+
+
+    // method use to backup and restore database
+    public function databaseBackup()
+    {
+        return view('admin.database');
+    }
 }
