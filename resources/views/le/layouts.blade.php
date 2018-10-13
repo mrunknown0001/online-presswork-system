@@ -38,9 +38,10 @@
 								@endif
 							</td>
 							<td class="text-center">
-								<button class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View</button>
+								<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#layout-{{ $l->id }}"><i class="fa fa-eye"></i> View</button>
 							</td>
 						</tr>
+						@include('le.includes.modal-layout-view')
 					@endforeach
 				</tbody>
 			</table>

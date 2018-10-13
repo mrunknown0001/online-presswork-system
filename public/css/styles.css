@@ -654,3 +654,11 @@ body {
       border-radius:10px;
    }  
 }
+
+
+.centered-modal.in {
+    display: flex !important;
+}
+.centered-modal .modal-dialog {
+    margin: auto;
+}
