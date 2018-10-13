@@ -20,16 +20,23 @@
 		</div>
 		<div class="content-box-large box-with-header">
 			@include('includes.all')
-			<form action="{{ route('le.add.layout.post') }}" method="POST" enctype="multipart/form-data">
-				<div class="form-group">
-					<label>Upload Layout</label>
-					<input type="file" name="layout" id="layout" class="form-control" accept="image/x-png,image/jpeg">
+
+			<div class="row">
+				<div class="col-md-6">
+					<form action="{{ route('le.add.layout.post') }}" method="POST" enctype="multipart/form-data">
+						{{ csrf_field() }}
+						<div class="form-group">
+							<label>Upload Layout</label>
+							<input type="file" name="layout" id="layout" class="form-control" accept="image/jpeg" required>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<a href="{{ route('le.layouts.management') }}" class="btn btn-danger">Cancel</a>
+						</div>
+					</form>					
 				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Submit</button>
-					<a href="{{ route('le.layouts.management') }}" class="btn btn-danger">Cancel</a>
-				</div>
-			</form>
+			</div>
+
 		</div>
 
 	</div>
