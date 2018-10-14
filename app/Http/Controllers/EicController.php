@@ -703,4 +703,11 @@ class EicController extends Controller
 
 		return view('eic.layout-denied', ['layouts' => $layouts]);
 	}
+
+
+	// method use in activities
+	public function activities()
+	{
+		return view('eic.activities');
+	}
 }

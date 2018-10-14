@@ -30,7 +30,11 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="wrapper">
-
+              @if(count($value) > 0)
+                <h3 class="text-center">Activiy Online</h3>
+              @else
+                <p class="text-center">No Activity</p>
+              @endif
             </div>
         </div>
     </div>

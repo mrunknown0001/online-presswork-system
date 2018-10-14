@@ -191,6 +191,20 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to view denied layout
 	Route::get('/layout/denied', 'EicController@deniedLayouts')->name('eic.denied.layouts');
 
+	// route to manage activities
+	Route::get('/activities', 'EicController@activities')->name('eic.activities');
+
+	// route to add new activity
+	Route::get('/activity/add', 'EicController@addActivity')->name('eic.add.activity');
+
+	// route to save new activity
+
+	// route to update activity
+
+	// route to save update activity
+
+	// route to show activity history
+
 });
 
 

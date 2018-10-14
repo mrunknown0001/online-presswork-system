@@ -20,8 +20,8 @@
 
         <li class="{{ route('eic.layout.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('eic.layout.management') }}"><i class="glyphicon glyphicon-picture"></i> Manage Layouts</a></li>
 
-        <li>
-        	<a href="#">
+        <li class="{{ route('eic.activities') == url()->current() ? 'current' : '' }}">
+        	<a href="{{ route('eic.activities') }}">
         		<i class="fa fa-file-o"></i> Activity
         	</a>
         </li>

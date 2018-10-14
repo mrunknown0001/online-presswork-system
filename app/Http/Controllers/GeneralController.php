@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\ActivityLog;
+use App\Activity;
 
 class GeneralController extends Controller
 {
 	public function landing()
 	{
-		return $this->check_auth('landing');
+		$activities = Activity::where('active', 1)
+							->orderBy('created_at', 'asc')
+							->get();
+
+		return $this->check_auth('landing', $activities);
 	}
 
 	public function login()
@@ -19,7 +24,7 @@ class GeneralController extends Controller
 		return $this->check_auth('login');
 	}
     
-	public function check_auth($view)
+	public function check_auth($view, $value = null)
 	{
 		if(Auth::check()) {
 			if(Auth::user()->user_type == 1) {
@@ -39,7 +44,7 @@ class GeneralController extends Controller
 			}
 		}
 
-		return view($view);
+		return view($view, ['value' => $value]);
 	}
 
 
