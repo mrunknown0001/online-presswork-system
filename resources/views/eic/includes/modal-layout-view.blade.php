@@ -13,7 +13,7 @@
           <p><strong>{{ $l->filename }}</strong></p>
           @if($l->eic_approved != 1)
             <a href="{{ route('eic.approve.layout', ['id' => $l->id]) }}" class="btn btn-primary">Approve</a>
-            <a class="btn btn-warning">Deny</a>
+            <a href="{{ route('eic.deny.layout', ['id' => $l->id]) }}" class="btn btn-warning">Deny</a>
           @endif
         </div>
 

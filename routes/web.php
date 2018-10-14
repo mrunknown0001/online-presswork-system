@@ -181,6 +181,13 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 
 	// route to view approved layouts
 	Route::get('/layouts/approved', 'EicController@viewApprovedLayouts')->name('eic.view.approved.layouts');
+
+	// route to deny layout
+	Route::get('/layout/{id}/deny', 'EicController@denyLayout')->name('eic.deny.layout');
+
+	// route to view denied layout
+	Route::get('/layout/denied', 'EicController@deniedLayouts')->name('eic.denied.layouts');
+	
 });
 
 

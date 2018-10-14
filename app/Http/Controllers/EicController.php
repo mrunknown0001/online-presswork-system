@@ -653,4 +653,35 @@ class EicController extends Controller
 
 		return view('eic.layout-approved', ['layouts' => $layouts]);
 	}
+
+
+	// method use to deny layout
+	public function denyLayout($id = null)
+	{
+		$layout = Layout::findorfail($id);
+
+		$layout->eic_denied = 1;
+		$layout->denied_date = now();
+		$layout->save();
+
+		// add to activity log
+		$action = 'Editor In Chief denied Layout';
+        GeneralController::activity_log($action);
+
+		// return to layouts management
+		return redirect()->route('eic.layout.management')->with('success', 'Layout Denied');
+
+	}
+
+
+	// method use to view denied layout
+	public function deniedLayouts()
+	{
+		$layouts = Layout::where('active', 1)
+						->where('eic_denied', 1)
+						->orderBy('denied_date', 'asc')
+						->paginate(5);
+
+		return view('eic.layout-denied', ['layouts' => $layouts]);
+	}
 }

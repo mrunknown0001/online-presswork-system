@@ -8,8 +8,8 @@
 		<h3>Layout Management</h3>
 
 		<p>
-			<a href="{{ route('eic.view.approved.layouts') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Approved Layouts</a>
-			<a href="#" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i> Denied Layouts</a>
+			<a href="{{ route('eic.view.approved.layouts') }}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> Approved Layouts</a>
+			<a href="{{ route('eic.denied.layouts') }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i> Denied Layouts</a>
 		</p>
 
 		@include('includes.all')

@@ -24,6 +24,8 @@ class LayoutEditorController extends Controller
         // get all submitted layouts
         $layouts = Layout::where('active', 1)
                     ->where('eic_denied', 0)
+                    ->orderBy('eic_approved', 'asc')
+                    ->orderBy('created_at', 'desc')
                     ->paginate(5);
 
     	return view('le.layouts', ['layouts' => $layouts]);

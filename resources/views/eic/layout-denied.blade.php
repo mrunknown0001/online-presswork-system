@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title') Approved Layout @endsection
+@section('title') Denied Layout @endsection
 
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<h3>Approved Layout</h3>
+		<h3>Denied Layout</h3>
 
 		<p>
 			<a href="{{ route('eic.layout.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Layouts</a>
@@ -20,7 +20,8 @@
 					<tr>
 						<th class="text-center">Filename</th>
 						<th class="text-center">Date Submitted</th>
-						<th class="text-center">Date Approved</th>
+						<th class="text-center">Date Denied</th>
+						<th class="text-center">Status</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</thead>
@@ -35,7 +36,14 @@
 								{{ date('l, F j, Y g:i:s a', strtotime($l->approved_date)) }}
 							</td>
 							<td class="text-center">
-								<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#layout-{{ $l->id }}"><i class="fa fa-eye"></i> View</button>
+								@if($l->le_comply == 0)
+									<span class="label label-default">Pending</span>
+								@else
+									<span class="label label-success">Complied</span>
+								@endif
+							</td>
+							<td class="text-center">
+								<button class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View</button>
 							</td>
 						</tr>
 						@include('eic.includes.modal-layout-view')

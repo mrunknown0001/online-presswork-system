@@ -32,7 +32,7 @@
 							</td>
 							<td class="text-center">
 								@if($l->eic_approved == 1)
-									<span class="label label-primary">Approved</span>
+									<span class="label label-success">Approved</span>
 								@else
 									<span class="label label-default">Pending</span>
 								@endif
