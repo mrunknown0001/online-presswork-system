@@ -632,6 +632,7 @@ class EicController extends Controller
 
 		// make layout approve
 		$layout->eic_approved = 1;
+		$layout->eic_denied = 0;
 		$layout->approved_date = now();
 		$layout->save();
 
