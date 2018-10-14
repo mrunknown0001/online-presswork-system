@@ -33,7 +33,7 @@
 								{{ date('l, F j, Y g:i:s a', strtotime($l->denied_date)) }}
 							</td>
 							<td class="text-center">
-								<button class="btn btn-primary btn-xs">Action</button>
+								<a href="{{ route('le.resubmit.layout', ['id' => $l->id]) }}" class="btn btn-primary btn-xs">Re-Submit</a>
 							</td>
 						</tr>
 					@endforeach

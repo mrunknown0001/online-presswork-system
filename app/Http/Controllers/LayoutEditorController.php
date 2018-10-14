@@ -82,6 +82,51 @@ class LayoutEditorController extends Controller
     }
 
 
+    // method use to resubmit denied layout
+    public function resubmitLayout($id = null)
+    {
+        $layout = Layout::findorfail($id);
+
+        // check here
+        if($layout->eic_denied != 1) {
+            return redirect()->back()->with('error', 'Please Try Again Later!');
+        }
+
+        return view('le.layout-resubmit', ['layout' => $layout]);
+    }
+
+
+    // method use to save resubmit 
+    public function postResubmitLayout(Request $request)
+    {
+        $request->validate([
+            'layout' => 'required|file|image|mimes:jpeg|max:5120',
+            'id' => 'required'
+        ]);
+
+        $id = $request['id'];
+
+        $layout = Layout::findorfail($id);
+
+        $request->layout->move(public_path('uploads/layouts'), $layout->filename);
+
+        // add to layout
+        $layout->filename = $layout->filename;
+        $layout->le_comply = 1;
+        $layout->comply_date = now();
+        $layout->save();
+
+        // add to activity log
+        $action = 'Layout Editor Re-Submitted Layout';
+        GeneralController::activity_log($action);
+
+        // return to layouts management
+        return redirect()->route('le.layouts.management')->with('success', 'Layout Re-Submitted!');
+
+
+    }
+
+
     // method use shwo approved articles
     public function articles()
     {

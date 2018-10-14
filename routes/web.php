@@ -213,7 +213,10 @@ Route::group(['prefix' => 'layout/editor', 'middleware' => ['layout.editor','pre
 
 	// route to comply with denied layout
 	// reupload revised
+	Route::get('/layout/{id}/denied/re-submit', 'LayoutEditorController@resubmitLayout')->name('le.resubmit.layout');
 
+	// route to save resubmit layout
+	Route::post('/layout/denied/re-submit', 'LayoutEditorController@postResubmitLayout')->name('le.resubmit.layout.post');
 
 
 	// route to view approved articles
