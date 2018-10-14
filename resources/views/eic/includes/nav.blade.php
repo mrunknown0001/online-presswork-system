@@ -20,6 +20,12 @@
 
         <li class="{{ route('eic.layout.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('eic.layout.management') }}"><i class="glyphicon glyphicon-picture"></i> Manage Layouts</a></li>
 
+        <li>
+        	<a href="#">
+        		<i class="fa fa-file-o"></i> Activity
+        	</a>
+        </li>
+
         <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
     </ul>
 </div>
