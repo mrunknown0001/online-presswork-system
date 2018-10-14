@@ -185,9 +185,12 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to deny layout
 	Route::get('/layout/{id}/deny', 'EicController@denyLayout')->name('eic.deny.layout');
 
+	// route to submit deny
+	Route::post('/layout/deny', 'EicController@postDenyLayout')->name('eic.deny.layout.post');
+
 	// route to view denied layout
 	Route::get('/layout/denied', 'EicController@deniedLayouts')->name('eic.denied.layouts');
-	
+
 });
 
 
@@ -205,9 +208,12 @@ Route::group(['prefix' => 'layout/editor', 'middleware' => ['layout.editor','pre
 	Route::post('/layout/add', 'LayoutEditorController@postAddLayout')->name('le.add.layout.post');
 
 
-
 	// route to view denied layout
 	Route::get('/layout/denied', 'LayoutEditorController@deniedLayout')->name('le.denied.layout');
+
+	// route to comply with denied layout
+	// reupload revised
+
 
 
 	// route to view approved articles

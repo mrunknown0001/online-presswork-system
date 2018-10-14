@@ -655,13 +655,31 @@ class EicController extends Controller
 	}
 
 
-	// method use to deny layout
+	// method to deny layout 
 	public function denyLayout($id = null)
 	{
 		$layout = Layout::findorfail($id);
 
+		return view('eic.layout-deny', ['layout' => $layout]);
+	}
+
+
+	// method use to deny layout
+	public function postDenyLayout(Request $request)
+	{
+		$request->validate([
+			'id' => 'required',
+			'comment' => 'required'
+		]);
+
+		$id = $request['id'];
+		$comment = $request['comment'];
+
+		$layout = Layout::findorfail($id);
+
 		$layout->eic_denied = 1;
 		$layout->denied_date = now();
+		$layout->comment = $comment;
 		$layout->save();
 
 		// add to activity log
