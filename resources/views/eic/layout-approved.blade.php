@@ -8,8 +8,8 @@
 		<h3>Layout Management</h3>
 
 		<p>
-			<a href="{{ route('eic.view.approved.layouts') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Approved Layouts</a>
-			<a href="#" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i> Denied Layouts</a>
+			<a href="{{ route('eic.layout.management') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Layouts</a>
+
 		</p>
 
 		@include('includes.all')
@@ -20,6 +20,7 @@
 					<tr>
 						<th class="text-center">Filename</th>
 						<th class="text-center">Date Submitted</th>
+						<th class="text-center">Date Approved</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</thead>
@@ -29,6 +30,9 @@
 							<td class="text-center">{{ $l->filename }}</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($l->created_at)) }}
+							</td>
+							<td class="text-center">
+								{{ date('l, F j, Y g:i:s a', strtotime($l->approved_date)) }}
 							</td>
 							<td class="text-center">
 								<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#layout-{{ $l->id }}"><i class="fa fa-eye"></i> View</button>

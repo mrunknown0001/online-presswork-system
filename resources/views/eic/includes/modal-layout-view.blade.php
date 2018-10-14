@@ -6,12 +6,15 @@
           {{-- <span aria-hidden="true">&times;</span> --}}
           X
         </button>
+        
 
         <div class="text-center">
           <img src="{{ asset('/uploads/layouts/' . $l->filename) }}" class="img-responsvie">
           <p><strong>{{ $l->filename }}</strong></p>
-          <button class="btn btn-primary">Approve</button>
-          <button class="btn btn-warning">Deny</button>
+          @if($l->eic_approved != 1)
+            <a href="{{ route('eic.approve.layout', ['id' => $l->id]) }}" class="btn btn-primary">Approve</a>
+            <a class="btn btn-warning">Deny</a>
+          @endif
         </div>
 
       </div>

@@ -175,6 +175,12 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 
 	// route to go to layout management
 	Route::get('/layout/management', 'EicController@layoutManagement')->name('eic.layout.management');
+
+	// route to approve layout
+	Route::get('/layout/{id}/approve', 'EicController@approveLayout')->name('eic.approve.layout');
+
+	// route to view approved layouts
+	Route::get('/layouts/approved', 'EicController@viewApprovedLayouts')->name('eic.view.approved.layouts');
 });
 
 

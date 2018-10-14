@@ -621,4 +621,36 @@ class EicController extends Controller
 
 		return view('eic.layout', ['layouts' => $layouts]);
 	}
+
+
+	// method use to approve a layout
+	public function approveLayout($id = null)
+	{
+		$layout = Layout::findorfail($id);
+
+		// check here
+
+		// make layout approve
+		$layout->eic_approved = 1;
+		$layout->approved_date = now();
+		$layout->save();
+
+		// add to activity log
+		$action = 'Editor In Chief approved Layout';
+        GeneralController::activity_log($action);
+
+		// return to layouts management
+		return redirect()->route('eic.layout.management')->with('success', 'Layout Approved');
+	}
+
+
+	// method use to view approved layouts
+	public function viewApprovedLayouts()
+	{
+		$layouts = Layout::where('active', 1)
+						->where('eic_approved', 1)
+						->paginate(5);
+
+		return view('eic.layout-approved', ['layouts' => $layouts]);
+	}
 }
