@@ -589,7 +589,7 @@ class EicController extends Controller
 		$article->eic_deny_date = now();
 		$article->save();
 
-		// add to activyt log
+		// add to activity log
 		$action = 'Editor In Chief Denied Article Title ' . ucwords($article->title);
         GeneralController::activity_log($action);
 
@@ -764,6 +764,23 @@ class EicController extends Controller
         // return to activities with success message
         return redirect()->route('eic.activities')->with('success', 'Activity Added!');
 
+	}
+
+
+	// method use to deactivate activity
+	public function postDeactivateActivity(Request $request)
+	{
+		$id = $request['id'];
+
+		$activity = Activity::findorfail($id);
+		$activity->active = 0;
+		$activity->save();
+
+		$action = 'Editor In Chief Deactivated Activity';
+        GeneralController::activity_log($action);
+
+        // return to activities with success message
+        return redirect()->route('eic.activities')->with('success', 'Activity Deactivated!');
 	}
 
 

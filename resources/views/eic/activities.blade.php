@@ -37,9 +37,10 @@
 								{{ date('F j, Y', strtotime($a->end_date)) }}
 							</td>
 							<td class="text-center">
-								<button class="btn btn-danger btn-xs">Deactivate</button>
+								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deactivateActivity-{{ $a->id }}">Deactivate</button>
 							</td>
 						</tr>
+						@include('eic.includes.modal-activity-deactivate')
 					@endforeach
 				</tbody>
 			</table>

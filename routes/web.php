@@ -200,6 +200,9 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to save new activity
 	Route::post('/activity/add', 'EicController@postAddActivity')->name('eic.add.activity.post');
 
+	// route to deactivate activity
+	Route::post('/activity/deactivate', 'EicController@postDeactivateActivity')->name('eic.deactivate.activity.post');
+
 	// route to update activity
 
 	// route to save update activity

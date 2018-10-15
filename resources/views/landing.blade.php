@@ -33,7 +33,7 @@
                 @foreach($value as $v)
                   <h3 class="text-center">{{ ucwords($v->title) }}</h3>
                   <div class="text-center">
-                    <img src="{{ asset('/uploads/banners/' . $v->banner) }}" width="90%" class="img-responsvie">
+                    <img src="{{ asset('/uploads/banners/' . $v->banner) }}" width="90%" class="img-responsvie img-thumbnail">
                   </div>
                   <hr>
                   <div class="justify">
@@ -41,14 +41,14 @@
                   </div>
                   <hr>
                   <div class="text-center">
-                    <a href="#">Submit Entry</a>
+                    <a href="#" class="btn btn-primary">Submit Entry</a>
                   </div>
                   <hr>
                 @endforeach
               @else
                 <h3 class="text-center">No Activity</h3>
                 <div class="text-center">
-                  <img src="{{ asset('/uploads/logo/logo.jpg') }}" width="90%" class="img-responsvie">
+                  <img src="{{ asset('/uploads/logo/logo.jpg') }}" width="90%" class="img-responsvie img-thumbnail">
                 </div>
               @endif
       </div>
