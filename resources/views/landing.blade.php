@@ -48,7 +48,7 @@
               <hr>
             @endforeach
           @else
-            <h3 class="text-center">No Activity</h3>
+            <h3 class="text-center"></h3>
             <div class="text-center">
               <img src="{{ asset('/uploads/logo/logo.jpg') }}" width="90%" class="img-responsvie img-thumbnail">
             </div>

@@ -24,6 +24,12 @@ class CreateLayoutsTable extends Migration
             $table->string('comment', 200)->nullable();
             $table->tinyInteger('le_comply')->default(0);
             $table->timestamp('comply_date')->nullable();
+            $table->tinyInteger('admin_approved')->default(0);
+            $table->timestamp('admin_approved_date')->nullable();
+            $table->tinyInteger('admin_deny')->default(0);
+            $table->timestamp('admin_deny_date')->nullable();
+            $table->string('admin_comment', 200)->nullable();
+            $table->tinyInteger('eic_comply')->default(0);
             $table->timestamps();
         });
     }

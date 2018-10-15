@@ -11,6 +11,7 @@ use App\Http\Controllers\GeneralController;
 use App\ActivityLog;
 use App\Section;
 use App\Article;
+use App\Layout;
 
 class AdminController extends Controller
 {
@@ -257,7 +258,13 @@ class AdminController extends Controller
     // method use to publish and deny articles 
     public function publish()
     {
-        return view('admin.publish');
+        // get all layouts approved by eic
+        $layouts = Layout::where('active', 1)
+                    ->where('eic_approved', 1)
+                    ->paginate(5);
+
+
+        return view('admin.publish', ['layouts' => $layouts]);
     }
 
 
