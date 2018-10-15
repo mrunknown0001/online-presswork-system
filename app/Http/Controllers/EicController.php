@@ -14,6 +14,7 @@ use App\Section;
 use App\SectionEditorAssignment;
 use App\Article;
 use App\Layout;
+use App\Activity;
 
 class EicController extends Controller
 {
@@ -708,6 +709,69 @@ class EicController extends Controller
 	// method use in activities
 	public function activities()
 	{
-		return view('eic.activities');
+		$activities = Activity::where('active', 1)
+							->orderBy('created_at', 'desc')
+							->paginate(10);
+
+		return view('eic.activities', ['activities' => $activities]);
+	}
+
+
+	// method use to add activity
+	public function addActivity()
+	{
+		return view('eic.activity-add');
+	}
+
+
+	// method use to save activities
+	public function postAddActivity(Request $request)
+	{
+		$request->validate([
+			'title' => 'required',
+			'rules' => 'required',
+			'start_date' => 'required|date',
+			'end_date' => 'required|date',
+			'banner' => 'required|file|image|mimes:jpeg|max:5120'
+		]);
+
+		$title = $request['title'];
+		$rules = $request['rules'];
+		$start_date = $request['start_date'];
+		$end_date = $request['end_date'];
+
+        $photoname = 'FILE_' . time().'.'.$request->banner->getClientOriginalExtension();
+
+        /*
+        talk the select file and move it public directory and make avatars
+        folder if doesn't exsit then give it that unique name.
+        */
+        $request->banner->move(public_path('uploads/banners'), $photoname);
+
+        // add new activity
+        $act = new Activity();
+        $act->title = $title;
+        $act->rules = $rules;
+        $act->start_date = $start_date;
+        $act->end_date = $end_date;
+        $act->banner = $photoname;
+        $act->save();
+
+        // add to activity logs
+		$action = 'Editor In Chief Added Activity';
+        GeneralController::activity_log($action);
+
+        // return to activities with success message
+        return redirect()->route('eic.activities')->with('success', 'Activity Added!');
+
+	}
+
+
+
+
+	// method use to show activity history
+	public function activityHistory()
+	{
+		return view('eic.activity-history');
 	}
 }

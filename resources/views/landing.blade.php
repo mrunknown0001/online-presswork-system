@@ -28,15 +28,22 @@
 
 <div class="page-content container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="wrapper">
+      <div class="col-md-12">
               @if(count($value) > 0)
-                <h3 class="text-center">Activiy Online</h3>
+                @foreach($value as $v)
+                  <h3 class="text-center">{{ ucwords($v->title) }}</h3>
+                  <div class="text-center">
+                    <img src="{{ asset('/uploads/banners/' . $v->banner) }}" class="img-responsvie">
+                  </div>
+                  <hr>
+                  <div class="justify">
+                    {{ $v->rules }}
+                  </div>
+                @endforeach
               @else
-                <p class="text-center">No Activity</p>
+                <h3 class="text-center">No Activity</h3>
               @endif
-            </div>
-        </div>
+      </div>
     </div>
 </div>
 @endsection

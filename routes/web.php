@@ -198,12 +198,14 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	Route::get('/activity/add', 'EicController@addActivity')->name('eic.add.activity');
 
 	// route to save new activity
+	Route::post('/activity/add', 'EicController@postAddActivity')->name('eic.add.activity.post');
 
 	// route to update activity
 
 	// route to save update activity
 
 	// route to show activity history
+	Route::get('/activity/history', 'EicController@activityHistory')->name('eic.history.activity');
 
 });
 
