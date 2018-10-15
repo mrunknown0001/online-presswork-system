@@ -29,28 +29,31 @@
 <div class="page-content container">
     <div class="row">
       <div class="col-md-12">
-              @if(count($value) > 0)
-                @foreach($value as $v)
-                  <h3 class="text-center">{{ ucwords($v->title) }}</h3>
-                  <div class="text-center">
-                    <img src="{{ asset('/uploads/banners/' . $v->banner) }}" width="90%" class="img-responsvie img-thumbnail">
-                  </div>
-                  <hr>
-                  <div class="justify">
-                    {{ $v->rules }}
-                  </div>
-                  <hr>
-                  <div class="text-center">
-                    <a href="#" class="btn btn-primary">Submit Entry</a>
-                  </div>
-                  <hr>
-                @endforeach
-              @else
-                <h3 class="text-center">No Activity</h3>
-                <div class="text-center">
-                  <img src="{{ asset('/uploads/logo/logo.jpg') }}" width="90%" class="img-responsvie img-thumbnail">
-                </div>
-              @endif
+        @include('includes.all')
+
+          @if(count($value) > 0)
+            @foreach($value as $v)
+              <h3 class="text-center">{{ ucwords($v->title) }}</h3>
+              <div class="text-center">
+                <img src="{{ asset('/uploads/banners/' . $v->banner) }}" width="90%" class="img-responsvie img-thumbnail">
+              </div>
+              <hr>
+              <div class="justify">
+                {{ $v->rules }}
+              </div>
+              <hr>
+              <div class="text-center">
+                <a href="{{ route('submit.entry', ['id' => $v->id]) }}" class="btn btn-primary">Submit Entry</a>
+              </div>
+              <hr>
+            @endforeach
+          @else
+            <h3 class="text-center">No Activity</h3>
+            <div class="text-center">
+              <img src="{{ asset('/uploads/logo/logo.jpg') }}" width="90%" class="img-responsvie img-thumbnail">
+            </div>
+          @endif
+          
       </div>
     </div>
 </div>

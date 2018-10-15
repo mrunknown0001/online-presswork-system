@@ -15,6 +15,7 @@ use App\SectionEditorAssignment;
 use App\Article;
 use App\Layout;
 use App\Activity;
+use App\ActivityEntry;
 
 class EicController extends Controller
 {
@@ -781,6 +782,46 @@ class EicController extends Controller
 
         // return to activities with success message
         return redirect()->route('eic.activities')->with('success', 'Activity Deactivated!');
+	}
+
+
+
+	// method use to view entries in an activity
+	public function viewActivityEntries($id = null)
+	{
+		$activity = Activity::findorfail($id);
+
+		$entries = ActivityEntry::where('activity_id', $activity->id)
+							->orderBy('created_at', 'asc')
+							->orderBy('downloaded', 'asc')
+							->paginate('10');
+
+		return view('eic.activity-entry', ['activity' => $activity, 'entries' => $entries]);
+	}
+
+
+	// method use to download pdf entry file
+	public function downloadActivityEntry($a_id = null, $e_id = null)
+	{
+		$activity = Activity::findorfail($a_id);
+
+		$entry = ActivityEntry::findorfail($e_id);
+
+		if($activity->id != $entry->activity_id) {
+			return redirect()->back()->with('error', 'Please Try Again Later!');
+		}
+
+		// add to activity log
+		$action = 'Editor In Chief Downloaded Activity Entry';
+        GeneralController::activity_log($action);
+
+		// mark entry as downloaded
+		$entry->downloaded = 1;
+		$entry->save();
+
+		// download 
+		return response()->download(public_path("uploads/entry/{$entry->filename}"));
+
 	}
 
 

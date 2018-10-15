@@ -12,6 +12,13 @@ Route::post('/login', 'LoginController@postLogin')->name('login.post');
 Route::get('/logout', 'GeneralController@logout')->name('logout');
 
 
+// route to submit layout of student
+Route::get('/activity/{id}/submit/entry', 'GeneralController@submitEntry')->name('submit.entry');
+
+// route to save submitted entry
+Route::post('/activity/submit/entry', 'GeneralController@postSubmitEntry')->name('submit.entry.post');
+
+
 Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-history']], function () {
 
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
@@ -207,6 +214,9 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 
 	// route to save update activity
 
+	// route to view entries in activity
+	Route::get('/activity/{id}/entries/view', 'EicController@viewActivityEntries')->name('eic.view.activity.entries');
+
 	// route to show activity history
 	Route::get('/activity/history', 'EicController@activityHistory')->name('eic.history.activity');
 
@@ -322,3 +332,8 @@ Route::get('/eic/article/{id}/download', 'EicController@downloadArticle')->name(
 Route::get('/admin/article/{id}/download', 'AdminController@downloadArticle')->name('admin.download.article');
 
 Route::get('/layout/editor/article/{id}/download', 'LayoutEditorController@downloadArticle')->name('le.download.article');
+
+
+// route to download entry
+// route to download entry of an activity
+Route::get('/eic/activity/{a_id}/entry/{e_id}/download', 'EicController@downloadActivityEntry')->name('eic.download.activity.entry');

@@ -21,6 +21,7 @@
 						<th class="text-center">Title</th>
 						<th class="text-center">Start Date</th>
 						<th class="text-center">End Date</th>
+						<th class="text-center">Entries</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</thead>
@@ -35,6 +36,9 @@
 							</td>
 							<td class="text-center">
 								{{ date('F j, Y', strtotime($a->end_date)) }}
+							</td>
+							<td class="text-center">
+								<a href="{{ route('eic.view.activity.entries', ['id' => $a->id]) }}" class="btn btn-primary btn-xs">View</a>
 							</td>
 							<td class="text-center">
 								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deactivateActivity-{{ $a->id }}">Deactivate</button>

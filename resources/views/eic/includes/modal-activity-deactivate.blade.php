@@ -10,6 +10,8 @@
       <div class="modal-body">
        
        <p>Activity Title: <strong>{{ ucwords($a->title) }}</strong></p>
+       <hr>
+       <p>Are you sure you want to deactivate this activity?</p>
 
        <form action="{{ route('eic.deactivate.activity.post') }}" method="POST">
           {{ csrf_field() }}

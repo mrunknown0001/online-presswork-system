@@ -7,6 +7,7 @@ use Auth;
 
 use App\ActivityLog;
 use App\Activity;
+use App\ActivityEntry;
 
 class GeneralController extends Controller
 {
@@ -71,5 +72,50 @@ class GeneralController extends Controller
     	$a->user_type = Auth::user()->user_type;
     	$a->action = $action;
     	$a->save();
+    }
+
+
+    // method use to submit entry in activity
+    public function submitEntry($id = null)
+    {
+    	// return view to submit entry
+    	$activity = Activity::findorfail($id);
+
+    	if($activity->active == 0) {
+    		return redirect()->back()->with('error', 'Please Try Again Later!');
+    	}
+
+    	return view('activity-entry', ['activity' => $activity]);
+    }
+
+
+    // method use to save submitte entry
+    public function postSubmitEntry(Request $request)
+    {
+    	$request->validate([
+    		'entry' => 'required|file|mimes:pdf|max:20480'
+    	]);
+
+    	$id = $request['id'];
+    	$name = $request['name'];
+
+    	// move to entry folder
+        $entry_file = 'FILE_' . time().'.'.$request->entry->getClientOriginalExtension();
+
+        /*
+        talk the select file and move it public directory and make avatars
+        folder if doesn't exsit then give it that unique name.
+        */
+        $request->entry->move(public_path('uploads/entry'), $entry_file);
+
+    	// add to entry
+    	$entry = new ActivityEntry();
+    	$entry->activity_id = $id;
+    	$entry->fullname = $name;
+    	$entry->filename = $entry_file;
+    	$entry->save();
+
+    	// return back with success message
+    	return redirect()->route('landing')->with('success', 'Entry Submitted. Thank you!');
     }
 }
