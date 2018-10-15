@@ -22,6 +22,46 @@ class CorrespondentController extends Controller
     }
 
 
+    // method use to change password
+    public function changePassword()
+    {
+        return view('correspondent.password-change');
+    }
+
+
+    // method use to save new password
+    public function postChangePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $current_password = $request['current_password'];
+
+        $password = $request['password'];
+
+        $user = Auth::user();
+
+        // check old password
+        if(password_verify($current_password, $user->password)) {
+
+            // save new password
+            $user->password = bcrypt($password);
+            $user->save();
+
+            // add to activity log
+            $action = 'Correspondent Changed Password';
+            GeneralController::activity_log($action);
+
+            // return to dashboard
+            return redirect()->route('correspondent.dashboard')->with('success', 'Password Changed!');
+        }
+
+        return redirect()->back()->with('error', 'Incorrect Password!');
+    }
+
+
     // method use to show articles 
     public function articles()
     {

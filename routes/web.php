@@ -279,6 +279,12 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 
 	Route::get('/dashboard', 'SectionEditorController@dashboard')->name('se.dashboard');
 
+	// route to change password
+	Route::get('/password/change', 'SectionEditorController@changePassword')->name('se.change.password');
+
+	// route to save new password
+	Route::post('/password/change', 'SectionEditorController@postChangePassword')->name('se.change.password.post');
+
 	// route to view articles based on what artciles assigned to the section editor
 	Route::get('/articles', 'SectionEditorController@articles')->name('se.articles');
 
@@ -323,6 +329,12 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','prevent-back-history']], function () {
 
 	Route::get('/dashboard', 'CorrespondentController@dashboard')->name('correspondent.dashboard');
+
+	// route to change password
+	Route::get('/change/password', 'CorrespondentController@changePassword')->name('correspondent.change.password');
+
+	// route to save new password
+	Route::post('/change/password', 'CorrespondentController@postChangePassword')->name('correspondent.change.password.post');
 
 	// route to view articles
 	Route::get('/articles', 'CorrespondentController@articles')->name('correspondent.articles');
