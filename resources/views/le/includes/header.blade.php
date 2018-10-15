@@ -16,7 +16,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
                         <ul class="dropdown-menu animated fadeInUp">
-                          <li><a href="#">Change Password</a></li>
+                          <li><a href="{{ route('le.change.password') }}">Change Password</a></li>
                           <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>
                       </li>

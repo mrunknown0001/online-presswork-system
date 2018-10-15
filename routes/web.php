@@ -21,7 +21,14 @@ Route::post('/activity/submit/entry', 'GeneralController@postSubmitEntry')->name
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-history']], function () {
 
+
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+
+	// route to change password
+	Route::get('/password/change', 'AdminController@changePassword')->name('admin.change.password');
+
+	// route to save new password
+	Route::post('/password/change', 'AdminController@postChangePassword')->name('admin.change.password.post');
 
 	// route to go to section management
 	Route::get('/section/management', 'AdminController@sectionManagement')->name('admin.section.management');
@@ -79,6 +86,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']], function () {
 
 	Route::get('/dashboard', 'EicController@dashboard')->name('eic.dashboard');
+
+	// route to change password
+	Route::get('/password/change', 'EicController@changePassword')->name('eic.change.password');
+
+	// route to save new password
+	Route::post('/password/change', 'EicController@postChangePassword')->name('eic.change.password.post');
 
 	// route to go to layout editor management
 	Route::get('/layout-editor/management', 'EicController@layoutEditorManagement')->name('eic.layout.editor.management');
@@ -228,6 +241,12 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 Route::group(['prefix' => 'layout/editor', 'middleware' => ['layout.editor','prevent-back-history']], function () {
 
 	Route::get('/dashboard', 'LayoutEditorController@dashboard')->name('le.dashboard');
+
+	// route to change password
+	Route::get('/password/change', 'LayoutEditorController@changePassword')->name('le.change.password');
+
+	// route to save new password
+	Route::post('/password/change', 'LayoutEditorController@postChangePassword')->name('le.change.password.post');
 
 	// route to layout editor
 	Route::get('/layouts/management', 'LayoutEditorController@layoutsManagement')->name('le.layouts.management');
