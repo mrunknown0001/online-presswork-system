@@ -8,8 +8,16 @@
         </button>
 
         <div class="text-center">
-          <img src="{{ asset('/uploads/layouts/' . $l->filename) }}" class="img-responsvie">
+
+
+          @if(pathinfo($l->filename, PATHINFO_EXTENSION) == 'jpg' || pathinfo($l->filename, PATHINFO_EXTENSION) == 'jpeg')
+            <img src="{{ asset('/uploads/layouts/' . $l->filename) }}" class="img-responsvie">
+          @else
+            <a href="{{ asset('/uploads/layouts/'. $l->filename) }}" target="_blank" class="btn btn-success btn-lg">View PDF: {{ $l->filename }}</a>
+          @endif
+          
           <p><strong>{{ $l->filename }}</strong></p>
+
         </div>
 
       </div>

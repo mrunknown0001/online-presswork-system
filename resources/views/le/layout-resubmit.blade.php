@@ -29,7 +29,7 @@
 						<input type="hidden" name="id" value="{{ $layout->id }}">
 						<div class="form-group">
 							<label>Upload Layout New</label>
-							<input type="file" name="layout" id="layout" class="form-control" accept="image/jpeg" required>
+							<input type="file" name="layout" id="layout" class="form-control" accept="image/jpeg,application/pdf" required>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Re-Submit</button>

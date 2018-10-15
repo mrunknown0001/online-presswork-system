@@ -27,7 +27,7 @@
 						{{ csrf_field() }}
 						<div class="form-group">
 							<label>Upload Layout</label>
-							<input type="file" name="layout" id="layout" class="form-control" accept="image/jpeg" required>
+							<input type="file" name="layout" id="layout" class="form-control" accept="image/jpeg,application/pdf" required>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Submit</button>

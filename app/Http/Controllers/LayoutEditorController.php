@@ -43,7 +43,7 @@ class LayoutEditorController extends Controller
     public function postAddLayout(Request $request)
     {
         $request->validate([
-            'layout' => 'required|file|image|mimes:jpeg|max:5120'
+            'layout' => 'required|file|mimes:jpeg,jpg,pdf|max:5120'
         ]);
 
         // get current time and append the upload file extension to it,
@@ -85,6 +85,7 @@ class LayoutEditorController extends Controller
     // method use to resubmit denied layout
     public function resubmitLayout($id = null)
     {
+
         $layout = Layout::findorfail($id);
 
         // check here
@@ -100,7 +101,7 @@ class LayoutEditorController extends Controller
     public function postResubmitLayout(Request $request)
     {
         $request->validate([
-            'layout' => 'required|file|image|mimes:jpeg|max:5120',
+            'layout' => 'required|file|mimes:jpeg,jpg,pdf|max:5120',
             'id' => 'required'
         ]);
 

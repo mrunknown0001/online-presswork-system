@@ -198,6 +198,8 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to view denied layout
 	Route::get('/layout/denied', 'EicController@deniedLayouts')->name('eic.denied.layouts');
 
+
+
 	// route to manage activities
 	Route::get('/activities', 'EicController@activities')->name('eic.activities');
 
@@ -332,6 +334,7 @@ Route::get('/eic/article/{id}/download', 'EicController@downloadArticle')->name(
 Route::get('/admin/article/{id}/download', 'AdminController@downloadArticle')->name('admin.download.article');
 
 Route::get('/layout/editor/article/{id}/download', 'LayoutEditorController@downloadArticle')->name('le.download.article');
+
 
 
 // route to download entry
