@@ -357,7 +357,7 @@ class AdminController extends Controller
     public function postDatabaseBackup(Request $request)
     {
         // run command to backup whole database
-        exec('mysqldump -u root -p{Openroot} presswork > /var/www/laravel/public/uploads/database/presswork.sql');
+        exec('mysqldump -u root -pOpenroot presswork > /var/www/laravel/public/uploads/database/presswork.sql');
 
         // download database
 
