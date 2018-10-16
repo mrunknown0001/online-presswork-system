@@ -92,9 +92,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to import and back database
 	Route::get('/database/backup', 'AdminController@databaseBackup')->name('admin.backup.database');
 
-	// route to backup database and download applicable only in server
-	Route::get('/database/backup', 'AdminController@downloadDatabaseBackup')->name('admin.download.backup.database');
-
 });
 
 
@@ -386,3 +383,8 @@ Route::get('/layout/editor/article/{id}/download', 'LayoutEditorController@downl
 // route to download entry
 // route to download entry of an activity
 Route::get('/eic/activity/{a_id}/entry/{e_id}/download', 'EicController@downloadActivityEntry')->name('eic.download.activity.entry');
+
+
+// database backup download
+// route to backup database and download applicable only in server
+Route::get('/admin/database/backup/download', 'AdminController@downloadDatabaseBackup')->name('admin.download.backup.database');
