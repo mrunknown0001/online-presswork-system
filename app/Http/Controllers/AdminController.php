@@ -354,13 +354,13 @@ class AdminController extends Controller
 
 
     // method use to backup database
-    public function postDatabaseBackup(Request $request)
+    public function downloadDatabaseBackup()
     {
         // run command to backup whole database
         exec('mysqldump -u root -pOpenroot presswork > /var/www/laravel/public/uploads/database/presswork.sql');
 
         // download database
+        return response()->download('/var/www/laravel/public/uploads/database/presswork.sql');
 
-        // add to activity log
     }
 }

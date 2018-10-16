@@ -8,12 +8,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ route('admin.backup.database.post') }}" method="POST">
-          {{ csrf_field() }}
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Backup Database</button>
-          </div>
-        </form>
+
+        <a href="{{ route('admin.download.backup.database') }}" class="btn btn-primary">Backup Database</button>
+
       </div>
       <div class="modal-footer">
 
