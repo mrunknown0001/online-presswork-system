@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
 
-        <a href="{{ route('admin.download.backup.database') }}" class="btn btn-primary">Backup Database</button>
+        <a href="{{ route('admin.download.backup.database') }}" class="btn btn-primary">Backup Database</a>
 
       </div>
       <div class="modal-footer">
