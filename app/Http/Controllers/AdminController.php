@@ -248,7 +248,7 @@ class AdminController extends Controller
 
         Storage::put($filename, $article->content);
 
-        $action = 'Editor In Chief Downloaded Article ' . ucwords($article->title);
+        $action = 'Admin Downloaded Article ' . ucwords($article->title);
         GeneralController::activity_log($action);
 
         return response()->download(storage_path("app/{$filename}"));
@@ -283,7 +283,7 @@ class AdminController extends Controller
         $layout->save();
 
         // add to activity log
-        $action = 'Editor In Chief Aproved Layout to Publish ' . ucwords($layout->title);
+        $action = 'Admin Aproved Layout to Publish ' . ucwords($layout->title);
         GeneralController::activity_log($action);
 
         // return to publish
@@ -315,7 +315,7 @@ class AdminController extends Controller
         $layout->save();
 
         // add to activity log
-        $action = 'Editor In Chief Denied Layout to Publish ' . ucwords($layout->title);
+        $action = 'Admin Denied Layout to Publish ' . ucwords($layout->title);
         GeneralController::activity_log($action);
 
         // return to publish
@@ -358,6 +358,9 @@ class AdminController extends Controller
     {
         // run command to backup whole database
         exec('mysqldump -u root -pOpenroot presswork > /var/www/laravel/public/uploads/database/presswork.sql');
+
+        $action = 'Admin perform backup database';
+        GeneralController::activity_log($action);
 
         // download database
         return response()->download('/var/www/laravel/public/uploads/database/presswork.sql');
