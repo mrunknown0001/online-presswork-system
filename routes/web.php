@@ -92,6 +92,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to import and back database
 	Route::get('/database/backup', 'AdminController@databaseBackup')->name('admin.backup.database');
 
+	// route to backup database and download applicable only in server
+	Route::post('/database/backup', 'AdminController@postDatabaseBackup')->name('admin.backup.database.post');
+
 });
 
 
