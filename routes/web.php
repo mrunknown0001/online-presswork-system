@@ -74,6 +74,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to go to publish management
 	Route::get('/publish', 'AdminController@publish')->name('admin.publish');
 
+	// route to approve layout in publish
+	Route::get('/publish/layout/{id}/approve', 'AdminController@approveLayoutPublish')->name('admin.approve.layout.publish');
+
+	// route to view approved layout to publish
+	Route::get('/publish/layout/approved', 'AdminController@approvedLayoutPublish')->name('admin.approved.layout.publish');
+
+	// route to deny layout to publish
+	Route::get('/publish/layout/{id}/deny', 'AdminController@denyLayoutPublish')->name('admin.deny.layout.publish');
+
+	// route to view denied layout
+	Route::get('/publish/denied/layout', 'AdminController@deniedLayoutPublish')->name('admin.denied.layout.publish');
+
 	// route to show audit trail/activity log in admin
 	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.log');
 

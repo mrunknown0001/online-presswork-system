@@ -261,10 +261,77 @@ class AdminController extends Controller
         // get all layouts approved by eic
         $layouts = Layout::where('active', 1)
                     ->where('eic_approved', 1)
+                    ->where('admin_approved', 0)
+                    ->where('admin_deny', 0)
                     ->paginate(5);
 
 
         return view('admin.publish', ['layouts' => $layouts]);
+    }
+
+
+    // method use to approve layout publish
+    public function approveLayoutPublish($id = null)
+    {
+        $layout = Layout::findorfail($id);
+
+        // check if layout is approved by eic
+
+        // mark layout as approved by admin
+        $layout->admin_approved = 1;
+        $layout->admin_approved_date = now();
+        $layout->save();
+
+        // add to activity log
+        $action = 'Editor In Chief Aproved Layout to Publish ' . ucwords($layout->title);
+        GeneralController::activity_log($action);
+
+        // return to publish
+        return redirect()->route('admin.publish')->with('success', 'Layout Approved to Publish!');
+
+    }
+
+
+    // method use to view approved layout to publish
+    public function approvedLayoutPublish()
+    {
+        $layouts = Layout::where('admin_approved', 1)
+                        ->orderBy('admin_approved_date', 'desc')
+                        ->paginate(5);
+
+        return view('admin.publish-approved', ['layouts' => $layouts]);
+
+    }
+
+
+    // method use to deny layout
+    public function denyLayoutPublish($id = null)
+    {
+        $layout = Layout::findorfail($id);
+
+        // mark as denied 
+        $layout->admin_deny = 1;
+        $layout->admin_deny_date = now();
+        $layout->save();
+
+        // add to activity log
+        $action = 'Editor In Chief Denied Layout to Publish ' . ucwords($layout->title);
+        GeneralController::activity_log($action);
+
+        // return to publish
+        return redirect()->route('admin.publish')->with('success', 'Layout Denied!');
+
+    }
+
+
+    // method use to view denied layout 
+    public function deniedLayoutPublish()
+    {
+        $layouts = Layout::where('admin_deny', 1)
+                        ->orderBy('admin_deny_date', 'desc')
+                        ->paginate(5);
+
+        return view('admin.publish-denied', ['layouts' => $layouts]);
     }
 
 
