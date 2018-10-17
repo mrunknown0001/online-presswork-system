@@ -393,7 +393,8 @@ class AdminController extends Controller
         // mysql -u root -pOpenroot presswork < /[directory]
         exec('mysql -u root -pOpenroot presswork < /var/www/laravel/public/uploads/database/presswork.sql');
 
-        // mysql exit
+        $action = 'Admin perform restored database';
+        GeneralController::activity_log($action);
 
         // return 
         return redirect()->back()->with('success', 'Database Restored!');
