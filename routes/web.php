@@ -92,6 +92,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to import and back database
 	Route::get('/database/backup', 'AdminController@databaseBackup')->name('admin.backup.database');
 
+
+	// back up operation in end of the routes
+
+
+	// route to restore database
+	Route::post('/database/restore', 'AdminController@postDatabaseRestore')->name('admin.restore.database.post');
+
 });
 
 

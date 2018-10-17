@@ -8,7 +8,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.restore.database.post') }}" method="POST" enctype="multipart/form-data">
+          {{ csrf_field() }}
           <div class="form-group">
             <label>Upload SQL File to Restore</label>
             <input type="file" name="database" id="database" class="form-control" placeholder="Upload File" accept=".sql">

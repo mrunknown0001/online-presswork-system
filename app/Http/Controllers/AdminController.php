@@ -366,4 +366,36 @@ class AdminController extends Controller
         return response()->download('/var/www/laravel/public/uploads/database/presswork.sql');
 
     }
+
+
+    // method use to restore database
+    public function postDatabaseRestore(Request $request)
+    {
+        $request->validate([
+            'database' => 'required'
+        ]);
+
+        if(pathinfo($request->database->getClientOriginalName(), PATHINFO_EXTENSION)!=='sql'){
+            return redirect()->back()->with('error', 'Invalid File!');
+        }
+
+        // upload sql file
+        $filename = 'presswork' . '.' . $request->database->getClientOriginalExtension();
+
+        $request->database->move(public_path('uploads/database'), $filename);
+
+        // mysqladmin -u root -pOpenroot drop presswork
+        exec('mysqladmin -u root -pOpenroot drop presswork');
+
+        // msyqladmin -u root -pOpenroot create presswork
+        exec('mysqladmin -u root -pOpenroot create presswork');
+
+        // mysql -u root -pOpenroot presswork < /[directory]
+        exec('mysql -u root -pOpenroot presswork < /var/www/laravel/public/uploads/database/presswork.sql');
+
+        // mysql exit
+
+        // return 
+        return redirect()->back()->with('success', 'Database Restored!');
+    }
 }
