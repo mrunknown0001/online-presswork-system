@@ -112,6 +112,9 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to save new password
 	Route::post('/password/change', 'EicController@postChangePassword')->name('eic.change.password.post');
 
+	// route to reset password of users to password
+	Route::get('/users/{id}/password/reset', 'EicController@resetPasswordReset')->name('eic.reset.user.password');
+
 	// route to go to layout editor management
 	Route::get('/layout-editor/management', 'EicController@layoutEditorManagement')->name('eic.layout.editor.management');
 

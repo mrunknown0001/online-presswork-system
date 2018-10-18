@@ -33,6 +33,7 @@
 							<td class="text-center">
 								<a href="{{ route('eic.update.correspondent', ['id' => $c->id]) }}" class="btn btn-info btn-xs">Update</a>
 								<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeCorrespondent-{{ $c->id }}">Remove</button>
+								<a href="{{ route('eic.reset.user.password', ['id' => $c->id]) }}" class="btn btn-warning btn-xs">Reset Password</a>
 							</td>
 						</tr>
 						@include('eic.includes.modal-correspondent-remove')

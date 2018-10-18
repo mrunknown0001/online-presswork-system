@@ -31,6 +31,7 @@
 							<td class="text-center">
 								<a href="{{ route('eic.update.layout.editor', ['id' => $l->id]) }}" class="btn btn-info btn-xs">Update</a>
 								{{--<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeLayoutEditor-{{ $l->id }}">Remove</button>--}}
+								<a href="{{ route('eic.reset.user.password', ['id' => $l->id]) }}" class="btn btn-warning btn-xs">Reset Password</a>
 							</td>
 						</tr>
 						@include('eic.includes.modal-layout-editor-remove')

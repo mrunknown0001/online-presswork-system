@@ -65,6 +65,25 @@ class EicController extends Controller
     }
 
 
+    // method use to reset password of user
+    public function resetPasswordReset($id = null)
+    {
+    	if($id == 1 || $id == 2) {
+    		return redirect()->back()->with('error', 'Please Try Again Later!');
+    	}
+
+    	$user = User::findorfail($id);
+    	$user->password = bcrypt('password');
+    	$user->save();
+
+        $action = 'Editor In Chief reset password of  ' . ucwords($user->firstname . ' ' . $user->lastname);
+        GeneralController::activity_log($action);
+
+        return redirect()->back()->with('success', 'Password for ' . ucwords($user->firstname . ' ' . $user->lastname) . ' has been successfully reset to "password"');
+
+    }
+
+
 	// method use to go to layout editor management
 	public function layoutEditorManagement()
 	{

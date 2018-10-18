@@ -37,6 +37,7 @@
 							<td class="text-center">
 								<a href="{{ route('eic.update.section.editor', ['id' => $s->id]) }}" class="btn btn-info btn-xs">Update</a>
 								{{--<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#removeSectionEditor-{{ $s->id }}">Remove</button>--}}
+								<a href="{{ route('eic.reset.user.password', ['id' => $s->id]) }}" class="btn btn-warning btn-xs">Reset Password</a>
 							</td>
 						</tr>
 						@include('eic.includes.modal-section-editor-remove')
