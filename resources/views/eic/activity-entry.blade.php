@@ -32,6 +32,7 @@
 							<td class="text-center">{{ $e->downloaded == 1 ? 'Yes' : 'No' }}</td>
 							<td class="text-center">
 								<a href="{{ route('eic.download.activity.entry', ['a_id' => $activity->id, 'e_id' => $e->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-download"></i></a>
+								<a href="{{ route('eic.send.mail.activity.entry', ['id' => $activity->id, 'eic' => $e->id]) }}" class="btn btn-success btn-xs"><i class="fa fa-send"></i></a>
 							</td>
 						</tr>
 					@endforeach

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\NotifyActivityWinner;
 
 use App\Http\Controllers\GeneralController;
 
@@ -855,6 +858,45 @@ class EicController extends Controller
 							->paginate('10');
 
 		return view('eic.activity-entry', ['activity' => $activity, 'entries' => $entries]);
+	}
+
+
+	// method use to send email in activity entry
+	public function sendMailActivityEntry($id = null, $eid = null)
+	{
+		$activity = Activity::findorfail($id);
+		$entry = ActivityEntry::findorfail($eid);
+
+		return view('eic.activity-entry-send-mail', ['activity' => $activity, 'entry' => $entry]);
+	}
+
+
+	// method use to send email
+	public function postSendMailActivityEntry(Request $request)
+	{
+		$request->validate([
+			'subject' => 'required',
+			'content' => 'required'
+		]);
+
+		$id = $request['id'];
+		$eid = $request['eid'];
+
+		$activity = Activity::findorfail($id);
+		$entry = ActivityEntry::findorfail($eid);
+
+		$subject = $request['subject'];
+		$content = $request['content'];
+
+		// send email message
+		Mail::to($entry->email)->send(new NotifyActivityWinner($subject, $content));
+
+		// save to activity log
+		$action = 'Editor In Chief Send Email to Activity Entry Winner';
+        GeneralController::activity_log($action);
+
+		// return to activities
+		return redirect()->route('eic.activities')->with('success', 'Email Sent Successfully!');
 	}
 
 

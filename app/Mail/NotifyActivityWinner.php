@@ -16,9 +16,13 @@ class NotifyActivityWinner extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $subject;
+    public $content;
+
+    public function __construct($subject, $content)
     {
-        //
+        $this->subject = $subject;
+        $this->content = $content;
     }
 
     /**
@@ -28,6 +32,6 @@ class NotifyActivityWinner extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mails.notify-activity-winner');
     }
 }

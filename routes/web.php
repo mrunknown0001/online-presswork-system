@@ -254,6 +254,12 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	// route to view entries in activity
 	Route::get('/activity/{id}/entries/view', 'EicController@viewActivityEntries')->name('eic.view.activity.entries');
 
+	// route to send email in entry email
+	Route::get('/activity/{id}/entry/{eid}/send-mail', 'EicController@sendMailActivityEntry')->name('eic.send.mail.activity.entry');
+
+	// route to save send
+	Route::post('/activity/entry/send-email', 'EicController@postSendMailActivityEntry')->name('eic.send.mail.activity.entry.post');
+
 	// route to show activity history
 	Route::get('/activity/history', 'EicController@activityHistory')->name('eic.history.activity');
 
