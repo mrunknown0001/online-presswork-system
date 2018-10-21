@@ -38,6 +38,10 @@
               <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name">
             </div>
             <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email Address" required>
+            </div>
+            <div class="form-group">
               <label>Upload Entry (in pdf format)</label>
               <input type="file" name="entry" id="entry" class="form-control" accept="application/pdf">
             </div>

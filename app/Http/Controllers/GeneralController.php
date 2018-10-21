@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\NotifyActivitySubmit;
 
 use App\ActivityLog;
 use App\Activity;
@@ -93,11 +96,15 @@ class GeneralController extends Controller
     public function postSubmitEntry(Request $request)
     {
     	$request->validate([
-    		'entry' => 'required|file|mimes:pdf|max:20480'
+    		'entry' => 'required|file|mimes:pdf|max:20480',
+            'email' => 'required|email'
     	]);
 
     	$id = $request['id'];
     	$name = $request['name'];
+        $email = $request['email'];
+
+        $activity = Activity::findorfail($id);
 
     	// move to entry folder
         $entry_file = 'FILE_' . time().'.'.$request->entry->getClientOriginalExtension();
@@ -113,7 +120,11 @@ class GeneralController extends Controller
     	$entry->activity_id = $id;
     	$entry->fullname = $name;
     	$entry->filename = $entry_file;
+        $entry->email = $email;
     	$entry->save();
+
+        // send email
+        Mail::to($email)->send(new NotifyActivitySubmit($activity));
 
     	// return back with success message
     	return redirect()->route('landing')->with('success', 'Entry Submitted. Thank you!');

@@ -19,6 +19,7 @@ class CreateActivityEntriesTable extends Migration
             $table->foreign('activity_id')->references('id')->on('activities');
             $table->string('fullname', 200)->nullable();
             $table->string('filename', 200);
+            $table->string('email', 100);
             $table->tinyInteger('active')->default(1);
             $table->tinyInteger('downloaded')->default(0);
             $table->timestamps();

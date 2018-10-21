@@ -1,0 +1,1 @@
+<p>Activity Entry submitted!</p>
