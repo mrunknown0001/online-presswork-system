@@ -101,7 +101,8 @@ class GeneralController extends Controller
     	]);
 
     	$id = $request['id'];
-    	$name = $request['name'];
+    	$firstname = $request['firstname'];
+        $lastname = $request['lastname'];
         $email = $request['email'];
 
         $activity = Activity::findorfail($id);
@@ -118,7 +119,8 @@ class GeneralController extends Controller
     	// add to entry
     	$entry = new ActivityEntry();
     	$entry->activity_id = $id;
-    	$entry->fullname = $name;
+    	$entry->firstname = $firstname;
+        $entry->lastname = $lastname;
     	$entry->filename = $entry_file;
         $entry->email = $email;
     	$entry->save();
