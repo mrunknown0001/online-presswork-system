@@ -17,7 +17,9 @@ class CreateActivityEntriesTable extends Migration
             $table->increments('id');
             $table->integer('activity_id')->unsigned();
             $table->foreign('activity_id')->references('id')->on('activities');
-            $table->string('fullname', 200)->nullable();
+            $table->string('firstname', 100)->nullable();
+            $table->string('middlename', 100)->nullable();
+            $table->string('lastname', 100)->nullable();
             $table->string('filename', 200);
             $table->string('email', 100);
             $table->tinyInteger('active')->default(1);

@@ -802,6 +802,14 @@ class EicController extends Controller
 		$start_date = $request['start_date'];
 		$end_date = $request['end_date'];
 
+		if($start_date > $end_date) {
+			return redirect()->back()->with('error', 'Start Date must Not Later than End Date');
+		}
+
+		if(date('m-d-Y',strtotime($start_date)) < date('m-d-Y', strtotime(now()))) {
+			return redirect()->back()->with('error', 'Start Date must Not Earlier than Today');
+		}
+
         $photoname = 'FILE_' . time().'.'.$request->banner->getClientOriginalExtension();
 
         /*

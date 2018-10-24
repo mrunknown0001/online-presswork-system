@@ -31,6 +31,11 @@
               <div class="justify">
                 {{ $v->rules }}
               </div>
+              <div class="text-center">
+                Activity Period: 
+                <strong>{{ date('F j, Y', strtotime($v->start_date)) }} -
+                {{ date('F j, Y', strtotime($v->end_date)) }}</strong>
+              </div>
               <hr>
               <div class="text-center">
                 <a href="{{ route('submit.entry', ['id' => $v->id]) }}" class="btn btn-primary">Submit Entry</a>
