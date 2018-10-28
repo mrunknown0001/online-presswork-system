@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->integer('correspondent_id')->unsigned();
             $table->foreign('correspondent_id')->references('id')->on('users');
-            $table->string('title', 250);
+            $table->string('title', 50);
             $table->longtext('content');
             $table->integer('section_id')->unsigned();
             $table->foreign('section_id')->references('id')->on('sections');

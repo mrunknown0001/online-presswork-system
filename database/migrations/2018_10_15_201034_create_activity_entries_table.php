@@ -17,11 +17,11 @@ class CreateActivityEntriesTable extends Migration
             $table->increments('id');
             $table->integer('activity_id')->unsigned();
             $table->foreign('activity_id')->references('id')->on('activities');
-            $table->string('firstname', 100)->nullable();
-            $table->string('middlename', 100)->nullable();
-            $table->string('lastname', 100)->nullable();
-            $table->string('filename', 200);
-            $table->string('email', 100);
+            $table->string('firstname', 30)->nullable();
+            $table->string('middlename', 30)->nullable();
+            $table->string('lastname', 30)->nullable();
+            $table->string('filename', 20);
+            $table->string('email', 30);
             $table->tinyInteger('active')->default(1);
             $table->tinyInteger('downloaded')->default(0);
             $table->timestamps();

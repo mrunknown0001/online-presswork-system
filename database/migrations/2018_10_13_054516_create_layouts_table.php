@@ -17,7 +17,7 @@ class CreateLayoutsTable extends Migration
             $table->increments('id');
             $table->integer('layout_editor_id')->unsigned()->nullable();
             $table->foreign('layout_editor_id')->references('id')->on('users');
-            $table->string('filename', 200);
+            $table->string('filename', 50);
             $table->tinyInteger('active')->default(1);
             $table->tinyInteger('eic_approved')->default(0);
             $table->timestamp('approved_date')->nullable();
