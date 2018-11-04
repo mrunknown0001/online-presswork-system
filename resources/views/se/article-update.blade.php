@@ -28,7 +28,7 @@
 				</div>
 				<div class="form-group">
 					<label>Article Content</label>
-					<textarea name="content" id="content" class="form-control" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
+					<textarea name="content" id="summernote" class="form-control" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
 				</div>
 				<div class="form-group">
 					<button class="btn btn-success">Update &amp; Submit Article</button>
@@ -43,4 +43,11 @@
 	</div>
 </div>
 @include('se.includes.modal-deny-article')
+<script>
+$(document).ready(function() {
+  $('#summernote').summernote();
+});
+
+$('#summernote').summernote('disable');
+</script>
 @endsection

@@ -9,7 +9,7 @@
 		<h3>View Article: {{ ucwords($article->title) }}</h3>
 
 		<div class="content-box-header panel-heading">
-			<div class="panel-title">View Article</div>
+			<div class="panel-title">View Article </div>
 		
 			<div class="panel-options">
 				{{--<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
@@ -26,7 +26,7 @@
 			<p>Section: <strong>{{ ucwords($article->section->name) }}</strong></p>
 
 			<div>
-				<textarea readonly rows="10" class="form-control">{{ $article->content }}</textarea>
+				<textarea class="form-control" id="summernote" rows="15" readonly="">{{ $article->content }}</textarea>
 			</div>
 			
 		</div>
@@ -35,4 +35,11 @@
 
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+  $('#summernote').summernote();
+});
+
+$('#summernote').summernote('disable');
+</script>
 @endsection
