@@ -30,31 +30,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin','prevent-back-histor
 	// route to save new password
 	Route::post('/password/change', 'AdminController@postChangePassword')->name('admin.change.password.post');
 
-	// route to go to section management
-	Route::get('/section/management', 'AdminController@sectionManagement')->name('admin.section.management');
-
-	// route to add section
-	Route::get('/section/add', 'AdminController@addSection')->name('admin.add.section');
-
-	// route to save new section
-	Route::post('/section/add', 'AdminController@postAddSection')->name('admin.add.section.post');
-
-	// route to update section
-	Route::get('/section/{id}/update', 'AdminController@updateSection')->name('admin.update.section');
-
-	// route to save update on section
-	Route::post('/section/update', 'AdminController@postUpdateSection')->name('admin.update.section.post');
-
-	Route::get('/section/update', function () {
-		return redirect()->route('admin.section.management');
-	});
-
-	// route to remove section
-	Route::post('/section/remove', 'AdminController@postRemoveSection')->name('admin.remove.section.post');
-
-	Route::get('/section/remove', function () {
-		return redirect()->route('admin.section.management');
-	});
 
 	// route to go to article review
 	Route::get('/article/management', 'AdminController@articleManagement')->name('admin.article.management');
@@ -184,6 +159,43 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 
 	// route to remove correspondent
 	Route::post('/correspondent/management/remove', 'EicController@postRemoveCorrespondent')->name('eic.remove.correspondent.post');
+
+
+
+
+	// route to go to section management
+	Route::get('/section/management', 'EicController@sectionManagement')->name('eic.section.management');
+
+	// route to add section
+	Route::get('/section/add', 'EicController@addSection')->name('eic.add.section');
+
+	// route to save new section
+	Route::post('/section/add', 'EicController@postAddSection')->name('eic.add.section.post');
+
+	// route to update section
+	Route::get('/section/{id}/update', 'EicController@updateSection')->name('eic.update.section');
+
+	// route to save update on section
+	Route::post('/section/update', 'EicController@postUpdateSection')->name('eic.update.section.post');
+
+	Route::get('/section/update', function () {
+		return redirect()->route('eic.section.management');
+	});
+
+	// route to remove section
+	Route::post('/section/remove', 'EicController@postRemoveSection')->name('eic.remove.section.post');
+
+	Route::get('/section/remove', function () {
+		return redirect()->route('eic.section.management');
+	});
+
+
+
+
+
+
+
+	
 
 	// route to go to article management
 	Route::get('/article/management', 'EicController@articleManagement')->name('eic.article.management');

@@ -16,6 +16,8 @@
 	        </ul>
         </li>
 
+        <li class="{{ route('eic.section.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('eic.section.management') }}"><i class="glyphicon glyphicon-list"></i> Manage Sections</a></li>
+
         <li class="{{ route('eic.article.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('eic.article.management') }}"><i class="glyphicon glyphicon-list-alt"></i> Manage Articles</a></li>
 
         <li class="{{ route('eic.layout.management') == url()->current() ? 'current' : '' }}"><a href="{{ route('eic.layout.management') }}"><i class="glyphicon glyphicon-picture"></i> Manage Layouts</a></li>
