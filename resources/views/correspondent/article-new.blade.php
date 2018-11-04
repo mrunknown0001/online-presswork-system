@@ -8,7 +8,7 @@
 		<h3>New Article</h3>
 
 		<div class="content-box-header panel-heading">
-			<div class="panel-title">Add New Article Form with summer note</div>
+			<div class="panel-title">Add New Article Form </div>
 		
 			<div class="panel-options">
 				{{--<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
@@ -58,7 +58,19 @@ $(document).ready(function() {
   $('#summernote').summernote({
     placeholder: 'Enter Article Content',
     tabsize: 2,
-    height: 100
+    height: 100,
+    disableDragAndDrop: true,
+   	toolbar: [
+	    // [groupName, [list of button]]
+	    ['style', ['bold', 'italic', 'underline', 'clear']],
+	    ['font', ['strikethrough', 'superscript', 'subscript']],
+	    ['fontsize', ['fontsize']],
+	    ['color', ['color']],
+	    ['para', ['ul', 'ol', 'paragraph']],
+	    ['height', ['height']],
+	    ['fullscreen']
+	],
+	fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
   });
 </script>
 @endsection
