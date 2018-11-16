@@ -19,6 +19,7 @@ use App\Article;
 use App\Layout;
 use App\Activity;
 use App\ActivityEntry;
+use App\Publication;
 
 class EicController extends Controller
 {
@@ -880,6 +881,16 @@ class EicController extends Controller
 						->paginate(5);
 
 		return view('eic.layout-denied', ['layouts' => $layouts]);
+	}
+
+
+
+	// method use to access publications
+	public function publications()
+	{
+		$publications = Publication::orderBy('name', 'asc')->get();
+
+		return view('eic.publications', ['publications' => $publications]);
 	}
 
 

@@ -15,6 +15,11 @@ class CreateLayoutVersionsTable extends Migration
     {
         Schema::create('layout_versions', function (Blueprint $table) {
             $table->increments('id');
+            $table->float('version', 2,2)->default(0);
+            $table->integer('layout_id')->unsigned();
+            $table->foreign('layout_id')->references('id')->on('layouts');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
