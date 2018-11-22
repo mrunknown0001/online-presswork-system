@@ -14,7 +14,7 @@
 
 		@if(count($publications) > 0)
 			@foreach($publications as $p)
-				<p><a href="#" class="btn btn-primary btn-block" >{{ $p->name }}</a></p>
+				<p><a href="{{ route('eic.open.publication', ['id' => encrypt($p->id)]) }}" class="btn btn-primary btn-block" >{{ $p->name }}</a></p>
 			@endforeach
 		@else
 			<p class="text-center">No Publications</p>

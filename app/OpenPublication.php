@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OpenPublication extends Model
 {
-    //
+    public function publication()
+    {
+    	return $this->belongsTo('App\Publication', 'publication_id');
+    }
 }

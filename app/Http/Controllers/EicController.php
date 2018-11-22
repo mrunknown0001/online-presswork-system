@@ -20,6 +20,7 @@ use App\Layout;
 use App\Activity;
 use App\ActivityEntry;
 use App\Publication;
+use App\OpenPublication;
 
 class EicController extends Controller
 {
@@ -891,6 +892,76 @@ class EicController extends Controller
 		$publications = Publication::orderBy('name', 'asc')->get();
 
 		return view('eic.publications', ['publications' => $publications]);
+	}
+
+
+	// method use to open publciation
+	public function openPublication($id = null)
+	{
+		$id = decrypt($id);
+
+		$publication = Publication::findorfail($id);
+
+		// all section
+		$sections = Section::orderBy('name', 'asc')->get();
+
+		$open = OpenPublication::where('publication_id', $publication->id)->get(['section_id']);
+
+		if(count($open) > 0) {
+
+			return view('eic.publication-update-delete-open', ['publication' => $publication, 'open' => $open, 'sections' => $sections]);
+		}
+
+		return view('eic.publication-select', ['publication' => $publication, 'sections' => $sections]);
+		
+	}
+
+
+	// method use save open publication
+	public function postOpenPublication(Request $request)
+	{
+		$request->validate([
+			'section' => 'required'
+		]);
+
+		$section_ids = $request['section'];
+		$publication_id = $request['publication_id'];
+
+		$publication = Publication::findorfail($publication_id);
+
+		DB::table('open_publications')->where('publication_id', $publication->id)->delete();
+
+		$open = [];
+
+		foreach($section_ids as $s) {
+			// add array to add to database
+			$open[] = [
+				'publication_id' => $publication->id,
+				'section_id' => $s
+			];
+		}
+
+		// add to databse using databse query builder
+		DB::table('open_publications')->insert($open);
+
+		$action = 'Editor in Chief Opened Publication';
+        GeneralController::activity_log($action);
+
+		return redirect()->route('eic.publications')->with('success', 'Publication Successfully Selected Sections');
+	}
+
+
+	// method use to close open publication
+	public function closePublication($id)
+	{
+		$id = decrypt($id);
+
+		DB::table('open_publications')->where('publication_id', $id)->delete();
+
+		$action = 'Editor in Chief Closed Publication';
+        GeneralController::activity_log($action);
+
+		return redirect()->route('eic.publications')->with('success', 'Publication Successfully Closed!');
 	}
 
 

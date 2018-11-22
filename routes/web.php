@@ -246,9 +246,22 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	Route::get('/layout/denied', 'EicController@deniedLayouts')->name('eic.denied.layouts');
 
 
+
+
 	Route::get('/publications', 'EicController@publications')->name('eic.publications');
 
+	// route to open publication and select
+	Route::get('/publication/{id}/open', 'EicController@openPublication')->name('eic.open.publication');
 
+	// route to save selected section on open publication
+	Route::post('/publication/open', 'EicController@postOpenPublication')->name('eic.open.publication.post');
+
+	Route::get('/publication/open', function () {
+		return redirect()->route('eic.publications');
+	});
+
+	// route to close publication
+	Route::get('/publication/delete/{id}', 'EicController@closePublication')->name('eic.close.publication');
 
 	// route to manage activities
 	Route::get('/activities', 'EicController@activities')->name('eic.activities');
