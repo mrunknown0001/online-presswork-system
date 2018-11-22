@@ -15,4 +15,9 @@ class Layout extends Model
     {
     	return $this->belongsTo('App\Section', 'section_id');
     }
+
+    public function version()
+    {
+    	return $this->hasOne('App\LayoutVersion', 'layout_id');
+    }
 }

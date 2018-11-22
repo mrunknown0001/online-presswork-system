@@ -8,6 +8,7 @@ use App\Article;
 use App\Layout;
 use App\Publication;
 use App\Section;
+use App\LayoutVersion;
 
 use Illuminate\Http\Request;
 
@@ -130,6 +131,13 @@ class LayoutEditorController extends Controller
         $layout->publication_id = $publication_id;
         $layout->section_id = $section_id;
         $layout->save();
+
+        // add to layout version
+        $lv = new LayoutVersion();
+        $lv->version = 1.0;
+        $lv->layout_id = $layout->id;
+        $lv->user_id = Auth::user()->id;
+        $lv->save();
 
         // add to activity log
         $action = 'Layout Editor Uploaded new Layout';

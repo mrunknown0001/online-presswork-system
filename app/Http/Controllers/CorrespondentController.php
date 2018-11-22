@@ -11,7 +11,7 @@ use App\Http\Controllers\GeneralController;
 use App\User;
 use App\Section;
 use App\Article;
-use App\ArticleAttrib;
+use App\ArticleVersion;
 
 class CorrespondentController extends Controller
 {
@@ -106,6 +106,12 @@ class CorrespondentController extends Controller
     	$article->content = $content;
     	$article->section_id = $section;
     	$article->save();
+
+        $av = new ArticleVersion();
+        $av->version = 1.0;
+        $av->article_id = $article->id;
+        $av->user_id = Auth::user()->id;
+        $av->save();
 
     	// add to activity log
     	$action = 'Correspondent Submitted New Article: ' . ucwords($article->title);
