@@ -26,6 +26,21 @@
 					<form action="{{ route('le.add.layout.post') }}" method="POST" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="form-group">
+							<label>Select Publication</label>
+							<select class="form-control" name="publication" id="publication" required>
+								<option>Select Publication</option>
+								@foreach($publications as $p)
+									<option value="{{ $p->id }}">{{ ucwords($p->name) }}</option>
+								@endforeach
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Select Section</label>
+							<select class="form-control" name="section" id="section" required>
+								<option>Select Section</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label>Upload Layout</label>
 							<input type="file" name="layout" id="layout" class="form-control" accept="image/jpeg,application/pdf" required>
 						</div>
@@ -41,4 +56,27 @@
 
 	</div>
 </div>
+
+<script>
+	$("#publication").change(function () {
+
+		var publicationId = $("#publication").val();
+
+		$('#section')
+		    .empty()
+		    .append('<option selected="selected" value=""></option>')
+		;
+
+		$.ajax({url: "/layout/editor/publication/get/" + publicationId, success: function(result){
+	        Object.keys(result).forEach(function(key) {
+
+			  $('#section').append('<option value="' + result[key].id + '">' + result[key].name + '</option>');
+			  
+			});
+	    }});
+
+	});
+
+</script>
+
 @endsection

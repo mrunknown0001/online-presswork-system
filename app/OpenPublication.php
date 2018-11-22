@@ -10,4 +10,6 @@ class OpenPublication extends Model
     {
     	return $this->belongsTo('App\Publication', 'publication_id');
     }
+
+    
 }

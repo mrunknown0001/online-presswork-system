@@ -307,6 +307,9 @@ Route::group(['prefix' => 'layout/editor', 'middleware' => ['layout.editor','pre
 	// route to layout editor
 	Route::get('/layouts/management', 'LayoutEditorController@layoutsManagement')->name('le.layouts.management');
 
+
+	Route::get('/publication/get/{publicationId}', 'LayoutEditorController@getPublication');
+
 	// route to add layout
 	Route::get('/layout/add', 'LayoutEditorController@addLayout')->name('le.add.layout');
 

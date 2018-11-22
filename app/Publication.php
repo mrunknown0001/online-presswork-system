@@ -10,4 +10,5 @@ class Publication extends Model
     {
     	return $this->hasMany('App\OpenPublication', 'publication_id');
     }
+    
 }

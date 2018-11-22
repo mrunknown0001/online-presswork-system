@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Article;
 use App\Layout;
+use App\Publication;
+use App\Section;
 
 use Illuminate\Http\Request;
 
@@ -72,10 +74,31 @@ class LayoutEditorController extends Controller
     }
 
 
+    // method use to get publication
+    public function getPublication($publicationId)
+    {
+        $publication = Publication::findorfail($publicationId);
+
+
+        if(count($publication->open_publication) > 0) {
+            $ids = [];
+
+            foreach($publication->open_publication as $op) {
+                $ids[] = ['id' => $op->section_id];
+            }
+
+            return $sections = Section::find($ids);
+        }
+    }
+
+
     // method use to add layout
     public function addLayout()
     {
-    	return view('le.layout-add');
+        // publication
+        $publications = Publication::orderBy('name', 'asc')->get();
+
+    	return view('le.layout-add', ['publications' => $publications]);
     }
 
 
@@ -83,8 +106,13 @@ class LayoutEditorController extends Controller
     public function postAddLayout(Request $request)
     {
         $request->validate([
-            'layout' => 'required|file|mimes:jpeg,jpg,pdf|max:5120'
+            'layout' => 'required|file|mimes:jpeg,jpg,pdf|max:5120',
+            'publication' => 'required',
+            'section' => 'required'
         ]);
+
+        $publication_id = $request['publication'];
+        $section_id = $request['section'];
 
         // get current time and append the upload file extension to it,
         // then put that name to $photoName variable.
@@ -99,6 +127,8 @@ class LayoutEditorController extends Controller
         // add to layout
         $layout = new Layout();
         $layout->filename = $photoname;
+        $layout->publication_id = $publication_id;
+        $layout->section_id = $section_id;
         $layout->save();
 
         // add to activity log
