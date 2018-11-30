@@ -21,16 +21,18 @@
 			<form action="{{ route('correspondent.new.article.post') }}" method="POST" autocomplete="off">
 				{{ csrf_field() }}
 				<div class="form-group">
+					<label>Select Publication</label>
+					<select name="publication" id="publication" class="form-control">
+						<option value="">Select Publication</option>
+						@foreach($publications as $p)
+							<option value="{{ $p->id }}">{{ $p->name }}</option>
+						@endforeach
+					</select>
+				</div>
+				<div class="form-group">
 					<label>Select Section</label>
 					<select name="section" id="section" class="form-control" required>
 						<option>Select Section</option>
-						@if(count($sections) > 0)
-							@foreach($sections as $s)
-							<option value="{{ $s->id }}">{{ ucwords($s->name) }}</option>
-							@endforeach
-						@else
-						<option value="">No Section Found</option>
-						@endif
 					</select>
 				</div>
 				<div class="form-group">
@@ -52,9 +54,10 @@
 	</div>
 </div>
 <script>
-$(document).ready(function() {
-  $('#summernote').summernote();
-});
+	$(document).ready(function() {
+	  $('#summernote').summernote();
+	});
+
   $('#summernote').summernote({
     placeholder: 'Enter Article Content',
     tabsize: 2,
@@ -72,5 +75,26 @@ $(document).ready(function() {
 	],
 	fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
   });
+
+  // get open publication section 
+	$("#publication").change(function () {
+
+		var publicationId = $("#publication").val();
+
+		$('#section')
+		    .empty()
+		    .append('<option selected="selected" value="">Select Section</option>')
+		;
+
+		$.ajax({url: "/correspondent/publication/" + publicationId, success: function(result){
+	     Object.keys(result).forEach(function(key) {
+
+			  $('#section').append('<option value="' + result[key].id + '">' + result[key].name + '</option>');
+			  
+			});
+	  }});
+
+	});
+
 </script>
 @endsection

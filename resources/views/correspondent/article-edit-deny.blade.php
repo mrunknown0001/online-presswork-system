@@ -32,7 +32,7 @@
 				</div>
 				<div class="form-group">
 					<label>Article Content</label>
-					<textarea name="content" id="content" class="form-control" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
+					<textarea name="content" id="summernote" class="form-control" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
 				</div>
 				<div class="form-group">
 					<button class="btn btn-success">Update &amp; Submit Article</button>
@@ -44,4 +44,29 @@
 		
 	</div>
 </div>
+
+<script>
+	$(document).ready(function() {
+	  $('#summernote').summernote();
+	});
+
+  $('#summernote').summernote({
+    placeholder: 'Enter Article Content',
+    tabsize: 2,
+    height: 100,
+    disableDragAndDrop: true,
+   	toolbar: [
+	    // [groupName, [list of button]]
+	    ['style', ['bold', 'italic', 'underline', 'clear']],
+	    ['font', ['strikethrough', 'superscript', 'subscript']],
+	    ['fontsize', ['fontsize']],
+	    ['color', ['color']],
+	    ['para', ['ul', 'ol', 'paragraph']],
+	    ['height', ['height']],
+	    ['fullscreen']
+	],
+	fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
+  });
+
+  </script>
 @endsection

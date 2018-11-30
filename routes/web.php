@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/publication/{id}', 'CorrespondentController@subjectsInPublication');
+
 Route::get('/', 'GeneralController@landing')->name('landing');
 
 
@@ -400,6 +402,10 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 
 	// route to add article
 	Route::get('/article/new', 'CorrespondentController@newArticle')->name('correspondent.new.article');
+
+
+	// route to get section under open publication
+	Route::get('/publication/{id}', 'CorrespondentController@subjectsInPublication');
 
 	// route to add new article
 	Route::post('/article/new', 'CorrespondentController@postNewArticle')->name('correspondent.new.article.post');

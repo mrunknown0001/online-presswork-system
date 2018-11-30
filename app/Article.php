@@ -11,6 +11,11 @@ class Article extends Model
     	return $this->belongsTo('App\User', 'correspondent_id');
     }
 
+    public function publication()
+    {
+        return $this->belongsTo('App\Publication', 'publication_id');
+    }
+
     public function section()
     {
     	return $this->belongsTo('App\Section', 'section_id');
@@ -19,5 +24,10 @@ class Article extends Model
     public function se()
     {
     	return $this->belongsTo('App\User', 'se_id');
+    }
+
+    public function version()
+    {
+        return $this->hasOne('App\ArticleVersion', 'article_id');
     }
 }

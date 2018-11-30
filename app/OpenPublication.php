@@ -11,5 +11,10 @@ class OpenPublication extends Model
     	return $this->belongsTo('App\Publication', 'publication_id');
     }
 
+    public function section()
+    {
+    	return $this->belongsTo('App\Section', 'section_id');
+    }
+
     
 }

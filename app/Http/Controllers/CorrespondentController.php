@@ -12,6 +12,8 @@ use App\User;
 use App\Section;
 use App\Article;
 use App\ArticleVersion;
+use App\Publication;
+use App\OpenPublication;
 
 class CorrespondentController extends Controller
 {
@@ -77,12 +79,38 @@ class CorrespondentController extends Controller
     // method use to add new article
     public function newArticle()
     {
+        $publications = Publication::orderBy('name', 'asc')->get();
+
     	// get all active sections
     	$sections = Section::where('active', 1)
     					->orderBy('name', 'asc')
     					->get();
 
-    	return view('correspondent.article-new', ['sections' => $sections]);
+    	return view('correspondent.article-new', ['publications' => $publications, 'sections' => $sections]);
+    }
+
+
+    // method use to get sections in open publication
+    public function subjectsInPublication($id)
+    {
+        $publication = Publication::find($id);
+
+        if(!empty($publication)) {
+            $open = OpenPublication::where('publication_id', $id)->get();
+
+            if(count($open) > 0) {
+                $section = array();
+                foreach($open as $p) {
+                    $section[] = [
+                        'id' => $p->section_id,
+                        'name' => $p->section->name
+                    ];
+                }
+
+                return $section;
+            }
+        }
+
     }
 
 
@@ -90,11 +118,13 @@ class CorrespondentController extends Controller
     public function postNewArticle(Request $request)
     {
     	$request->validate([
+            'publication' => 'required',
     		'section' => 'required',
     		'title' => 'required',
     		'content' => 'required'
     	]);
 
+        $publication = $request['publication'];
     	$section = $request['section'];
     	$title = $request['title'];
     	$content = $request['content'];
@@ -104,6 +134,7 @@ class CorrespondentController extends Controller
     	$article->correspondent_id = Auth::user()->id;
     	$article->title = $title;
     	$article->content = $content;
+        $article->publication_id = $publication;
     	$article->section_id = $section;
     	$article->save();
 
@@ -169,6 +200,10 @@ class CorrespondentController extends Controller
         $article->se_deny = 0;
         $article->correspondent_comply = 1;
         $article->save();
+
+        // updaate version
+        $article->version->version += 0.1;
+        $article->version->save();
 
         // add activity log
         $action = 'Correspondent Updated Article: ' . ucwords($article->title);
