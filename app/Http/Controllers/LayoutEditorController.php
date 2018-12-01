@@ -228,7 +228,7 @@ class LayoutEditorController extends Controller
             return redirect()->back()->with('error', 'Please Try Again Later!');
         }
 
-        $filename = $article->title . '.txt';
+        $filename = $article->title . '.html';
 
         Storage::put($filename, $article->content);
 

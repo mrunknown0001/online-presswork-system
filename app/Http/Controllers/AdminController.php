@@ -145,7 +145,7 @@ class AdminController extends Controller
     {
         $article = Article::findorfail($id);
 
-        $filename = $article->title . '.txt';
+        $filename = $article->title . '.html';
 
         Storage::put($filename, $article->content);
 
