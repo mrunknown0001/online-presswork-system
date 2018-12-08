@@ -18,6 +18,7 @@
 					<tr>
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Correspondent</th>
+						<th class="text-center">Version</th>
 						<th class="text-center">Approved</th>
 						<th class="text-center">Submitted</th>
 						<th class="text-center">Download</th>
@@ -32,7 +33,9 @@
 							<td class="text-center">
 								{{ ucwords($a->user->firstname . ' ' . $a->user->lastname) }}
 							</td>
-							
+							<td class="text-center">
+								{{  number_format((float)$a->version->version, 1, '.', '') }}
+							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->se_proofread_date)) }}
 							</td>

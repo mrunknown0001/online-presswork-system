@@ -20,6 +20,9 @@
 					<tr>
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Correspondent</th>
+						<th class="text-center">Publication</th>
+						<th class="text-center">Section</th>
+						<th class="text-center">Version</th>
 						<th class="text-center">Date &amp; Time Submitted</th>
 					</tr>
 				</thead>
@@ -31,6 +34,15 @@
 							</td>
 							<td class="text-center">
 								{{ ucwords($a->user->firstname . ' ' . $a->user->lastname) }}
+							</td>
+							<td class="text-center">
+								{{ $a->publication->name }}
+							</td>
+							<td class="text-center">
+								{{ $a->section->name }}
+							</td>
+							<td class="text-center">
+								{{  number_format((float)$a->version->version, 1, '.', '') }}
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}

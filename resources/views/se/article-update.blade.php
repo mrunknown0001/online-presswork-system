@@ -48,6 +48,6 @@ $(document).ready(function() {
   $('#summernote').summernote();
 });
 
-$('#summernote').summernote('disable');
+// $('#summernote').summernote('disable');
 </script>
 @endsection

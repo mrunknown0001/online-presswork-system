@@ -11,7 +11,7 @@
 		</p>
 
 		<div class="content-box-header panel-heading">
-			<div class="panel-title">Edit Article</div>
+			<div class="panel-title">View Article</div>
 		
 			<div class="panel-options">
 				{{--<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
@@ -53,6 +53,6 @@ $(document).ready(function() {
   $('#summernote').summernote();
 });
 
-$('#summernote').summernote('disable');
+// $('#summernote').summernote('disable');
 </script>
 @endsection

@@ -158,6 +158,9 @@ class SectionEditorController extends Controller
         $article->se_proofread_date = now();
         $article->save();
 
+        $article->version->version += 1;
+        $article->version->save();
+
         // add to activty log
         $action = 'Section Editor Approved Article from ' . ucwords($article->user->firstname . ' ' . $article->user->lastname) . ': ' . ucwords($article->title);
         GeneralController::activity_log($action);
@@ -272,7 +275,11 @@ class SectionEditorController extends Controller
 
         // save article
         $article->se_comply = 1;
+        $article->eic_deny = 0;
         $article->save();
+
+        $article->version->version += 0.1;
+        $article->version->save();
 
         // add to activity log
         $action = 'Section Editor Resubmitted Article to EIC';

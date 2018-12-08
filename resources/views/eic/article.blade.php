@@ -19,6 +19,7 @@
 					<tr>
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Correspondent</th>
+						<th class="text-center">Version</th>
 						<th class="text-center">Section Editor</th>
 						<th class="text-center">Action</th>
 					</tr>
@@ -29,6 +30,9 @@
 							<td class="text-center">{{ ucwords($a->title) }}</td>
 							<td class="text-center">
 								{{ ucwords($a->user->firstname . ' ' . $a->user->lastname) }}
+							</td>
+							<td class="text-center">
+								{{  number_format((float)$a->version->version, 1, '.', '') }}
 							</td>
 							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname . ' : ' . $a->se->section_assignment->section->name) }}</td>
 							<td class="text-center">

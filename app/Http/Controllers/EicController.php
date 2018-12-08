@@ -264,7 +264,7 @@ class EicController extends Controller
 
 		$check_section_assignment = SectionEditorAssignment::where('section_id', $section)->first();
 
-		if(count($check_section_assignment) > 0) {
+		if(!empty($check_section_assignment)) {
 			return redirect()->back()->with('error', 'Section Already Assigned!');
 		}
 
@@ -726,6 +726,10 @@ class EicController extends Controller
 		$article->eic_deny = 0;
 		$article->save();
 
+
+		$article->version->version += 1;
+		$article->version->save();
+
 		// add to activity log
         $action = 'Editor In Chief  Approved Article Title ' . ucwords($article->title) . ' by ' . ucwords($article->user->firstname . ' ' . $article->user->lastname);
         GeneralController::activity_log($action);
@@ -767,6 +771,9 @@ class EicController extends Controller
 		$article->eic_comment = $comment;
 		$article->eic_deny_date = now();
 		$article->save();
+
+		$article->version->version += 0.1;
+		$article->version->save();
 
 		// add to activity log
 		$action = 'Editor In Chief Denied Article Title ' . ucwords($article->title);

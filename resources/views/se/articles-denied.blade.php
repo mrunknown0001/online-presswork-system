@@ -17,6 +17,7 @@
 				<thead>
 					<tr>
 						<th class="text-center">Article Title</th>
+						<th class="text-center">Version</th>
 						<th class="text-center">Comment</th>
 						<th class="text-center">Denied Date</th>
 						<th class="text-center">Action</th>
@@ -27,6 +28,9 @@
 						<tr>
 							<td class="text-center">
 								{{ ucwords($a->title) }}
+							</td>
+							<td class="text-center">
+								{{  number_format((float)$a->version->version, 1, '.', '') }}
 							</td>
 							<td>
 								{{ ucwords($a->eic_comment) }}
