@@ -14,6 +14,10 @@ Route::post('/login', 'LoginController@postLogin')->name('login.post');
 Route::get('/logout', 'GeneralController@logout')->name('logout');
 
 
+Route::get('/about-us', 'GeneralController@aboutUs')->name('about.us');
+
+Route::get('/contact-us', 'GeneralController@contactUs')->name('contact.us');
+
 // route to submit layout of student
 Route::get('/activity/{id}/submit/entry', 'GeneralController@submitEntry')->name('submit.entry');
 

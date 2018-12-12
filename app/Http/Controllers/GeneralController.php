@@ -131,4 +131,22 @@ class GeneralController extends Controller
     	// return back with success message
     	return redirect()->route('landing')->with('success', 'Entry Submitted. Thank you!');
     }
+
+
+    /**
+     * about us
+     */
+    public function aboutUs()
+    {
+        return view('about');
+    }
+
+
+    /**
+     * contact us
+     */
+    public function contactUs()
+    {
+        return view('contact');
+    }
 }

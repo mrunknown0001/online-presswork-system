@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Online Presswork System for The Work at Tarlac State University</title>
+    <title>Contact Us - Online Presswork System for The Work at Tarlac State University</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -47,34 +47,7 @@
           <div class="col-md-12">
             @include('includes.all')
 
-            @if(count($value) > 0)
-              @foreach($value as $v)
-                <h3 class="text-center">{{ ucwords($v->title) }}</h3>
-                <div class="text-center">
-                  <img src="{{ asset('/uploads/banners/' . $v->banner) }}" width="90%" class="img-responsvie img-thumbnail">
-                </div>
-                <hr>
-                <div class="justify">
-                  {{ $v->rules }}
-                </div>
-                <div class="text-center">
-                  Activity Period: 
-                  <strong>{{ date('F j, Y', strtotime($v->start_date)) }} -
-                  {{ date('F j, Y', strtotime($v->end_date)) }}</strong>
-                </div>
-                <hr>
-                <div class="text-center">
-                  <a href="{{ route('submit.entry', ['id' => $v->id]) }}" class="btn btn-primary">Submit Entry</a>
-                </div>
-                <hr>
-              @endforeach
-            @else
-              <br>
-              <h3 class="text-center">No Activity</h3>
-              <div class="text-center" style="min-height: 500px;">
-                <img src="{{ asset('/uploads/logo/logo.jpg') }}" width="90%" class="img-responsvie img-thumbnail">
-              </div>
-            @endif
+
 
           </div>
         </div>
