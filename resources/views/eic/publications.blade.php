@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<h3>Publications</h3>
+		<h3>Manage Publications</h3>
 		<p>
 			
 		</p>

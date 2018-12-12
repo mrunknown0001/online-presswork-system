@@ -51,6 +51,7 @@
             @include('includes.all')
 
             @if(count($value) > 0)
+              <br>
               @foreach($value as $v)
                 <h3 class="text-center">{{ ucwords($v->title) }}</h3>
                 <div class="text-center">

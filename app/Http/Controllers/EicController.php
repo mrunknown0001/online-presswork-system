@@ -1024,6 +1024,7 @@ class EicController extends Controller
 
         // add new activity
         $act = new Activity();
+        $act->eic_id = Auth::user()->id;
         $act->title = $title;
         $act->rules = $rules;
         $act->start_date = $start_date;
