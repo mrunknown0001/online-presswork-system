@@ -13,6 +13,8 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/font-awesome.css') }}">
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
 
@@ -30,6 +32,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link" href="{{ route('landing') }}">Home</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
             </li>
             <li class="nav-item">
@@ -44,10 +49,14 @@
       <!-- Page Content -->
       <section class="py-5">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12" style="min-height: 500px;">
+            <br>
+            <h1>About Us</h1>
+
             @include('includes.all')
 
-
+            <p><i class="fa fa-info-circle"></i> The official student publication of Tarlac State University Member. College Editors Guild of the Philippines</p>
+            <p><i class="fa fa-info-circle"></i> Products: Magazine, Broadsheet, Tabloid, Newsletter, Literary, Folio</p>
 
           </div>
         </div>

@@ -13,6 +13,8 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/font-awesome.css') }}">
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
 
@@ -30,6 +32,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link" href="{{ route('landing') }}">Home</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
             </li>
             <li class="nav-item">
@@ -44,9 +49,21 @@
       <!-- Page Content -->
       <section class="py-5">
         <div class="row">
-          <div class="col-md-12">
-            @include('includes.all')
+          <div class="col-md-12" style="min-height: 500px;">
+            <br>
+            <h1>Contact Us</h1>
 
+            @include('includes.all')
+            
+            <p><i class="fa fa-phone-square"></i> Call: 0949 609 6261</p>
+
+            <p><i class="fa fa-envelope-o"></i> Email: <a href="mailto:tsu.thework@gmail.com"> tsu.thework@gmail.com</a></p>
+
+            <p><i class="fa fa-facebook-square"></i> <a href="https://fb.com/TheWork">The Work</a></p>
+
+            <p><i class="fa fa-twitter-square"></i> <a href="https://twitter.com/theworktsu">The Work TSU</a></p>
+
+            <p><i class="fa fa-instagram"></i> <a href="https://instagram.com/thework.pub">The Work Publication</a></p>
 
 
           </div>
