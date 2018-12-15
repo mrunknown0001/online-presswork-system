@@ -43,7 +43,7 @@
       </div>
     </nav>
     
-    <div class="container">
+    <div class="container-fluid">
       <!-- Page Content -->
       <section class="py-5">
         <div class="row">
@@ -73,11 +73,18 @@
                 <hr>
               @endforeach
             @else
-              <br>
-              <h3 class="text-center">No Activity</h3>
-              <div class="text-center" style="min-height: 500px;">
-                <img src="{{ asset('/uploads/logo/logo.jpg') }}" width="90%" class="img-responsvie img-thumbnail">
-              </div>
+
+              <header>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  
+                  <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" style="background-image: url('{{ asset('uploads/logo/logo.jpg') }}')">
+                    </div>
+
+                  </div>
+                </div>
+              </header>
+
             @endif
 
           </div>
