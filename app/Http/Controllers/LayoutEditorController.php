@@ -67,6 +67,7 @@ class LayoutEditorController extends Controller
         // get all submitted layouts
         $layouts = Layout::where('active', 1)
                     ->where('eic_denied', 0)
+                    ->where('le_comply', 1)
                     ->orderBy('eic_approved', 'asc')
                     ->orderBy('created_at', 'desc')
                     ->paginate(5);
@@ -194,6 +195,10 @@ class LayoutEditorController extends Controller
         $layout->le_comply = 1;
         $layout->comply_date = now();
         $layout->save();
+
+
+        $layout->version->version += 0.1;
+        $layout->version->save();
 
         // add to activity log
         $action = 'Layout Editor Re-Submitted Layout';

@@ -19,6 +19,7 @@
 				<thead>
 					<tr>
 						<th class="text-center">Filename</th>
+						<th class="text-center">Version</th>
 						<th class="text-center">Date Submitted</th>
 						<th class="text-center">Action</th>
 					</tr>
@@ -27,6 +28,7 @@
 					@foreach($layouts as $l)
 						<tr>
 							<td class="text-center">{{ $l->filename }}</td>
+							<td class="text-center">{{  number_format((float)$l->version->version, 1, '.', '') }}</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($l->created_at)) }}
 							</td>

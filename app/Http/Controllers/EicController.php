@@ -823,6 +823,9 @@ class EicController extends Controller
 		$layout->approved_date = now();
 		$layout->save();
 
+		$layout->version->version = 2;
+		$layout->version->save();
+
 		// add to activity log
 		$action = 'Editor In Chief approved Layout';
         GeneralController::activity_log($action);

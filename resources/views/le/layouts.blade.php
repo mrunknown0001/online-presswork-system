@@ -19,6 +19,7 @@
 					<tr><th class="text-center">Publication</th>
 						<th class="text-center">Section</th>
 						<th class="text-center">Filename</th>
+						<th class="text-center">Version</th>
 						<th class="text-center">Date Submitted</th>
 						<th class="text-center">Status</th>
 						<th class="text-center">Action</th>
@@ -30,6 +31,7 @@
 							<td class="text-center">{{ ucwords($l->publication->name) }}</td>
 							<td class="text-center">{{ ucwords($l->section->name) }}</td>
 							<td class="text-center">{{ $l->filename }}</td>
+							<td class="text-center">{{  number_format((float)$l->version->version, 1, '.', '') }}</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($l->created_at)) }}
 							</td>

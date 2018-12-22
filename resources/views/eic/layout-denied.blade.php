@@ -33,7 +33,7 @@
 								{{ date('l, F j, Y g:i:s a', strtotime($l->created_at)) }}
 							</td>
 							<td class="text-center">
-								{{ date('l, F j, Y g:i:s a', strtotime($l->approved_date)) }}
+								{{ date('l, F j, Y g:i:s a', strtotime($l->denied_date)) }}
 							</td>
 							<td class="text-center">
 								@if($l->le_comply == 0)
