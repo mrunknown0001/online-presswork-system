@@ -12,6 +12,7 @@ use App\User;
 use App\Section;
 use App\Article;
 use App\ArticleVersion;
+use App\ArticleVersionContent;
 use App\Publication;
 use App\OpenPublication;
 
@@ -144,6 +145,13 @@ class CorrespondentController extends Controller
         $av->user_id = Auth::user()->id;
         $av->save();
 
+        // new article version content
+        $avc = new ArticleVersionContent();
+        $avc->article_id = $article->id;
+        $avc->version = $av->version;
+        $avc->content = $article->content;
+        $avc->save();
+
     	// add to activity log
     	$action = 'Correspondent Submitted New Article: ' . ucwords($article->title);
         GeneralController::activity_log($action);
@@ -224,5 +232,16 @@ class CorrespondentController extends Controller
         if($article->correspondent_id != Auth::user()->id) {
             return abort(404);
         }
+
+        return view('correspondent.article-versions', ['article' => $article]);
+    }
+
+
+    // method use to view article version content
+    public function viewArticleVersionContent($id)
+    {
+        $avc = ArticleVersionContent::findorfail($id);
+
+        return view('correspondent.article-view-content', ['avc' => $avc]);
     }
 }

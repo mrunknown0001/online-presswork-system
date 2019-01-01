@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
-@section('title') Articles @endsection
+@section('title') Article Versions @endsection
 
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<h3>Articles</h3>
+		<h3>Article Versions</h3>
 		<p>
-			<a href="{{ route('correspondent.new.article') }}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-asterisk"></i> New Article</a>
+			<a href="{{ route('correspondent.articles') }}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-arrow-left"></i> Articles</a>
 			
 		</p>
 
 		@include('includes.all')
 		
-		@if(count($articles) > 0)
+		@if(count($article->versionContents) > 0)
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
@@ -27,15 +27,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($articles as $a)
+					@foreach($article->versionContents as $a)
 						<tr>
-							<td class="text-center"><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a>
+							<td class="text-center">
+								{{ ucwords(substr($article->title, 0, 50)) }}
 							</td>
 							<td class="text-center">
-								{{ $a->publication->name }}
+								{{ $article->publication->name }}
 							</td>
 							<td class="text-center">
-								{{ ucwords($a->section->name) }}
+								{{ ucwords($article->section->name) }}
 							</td>
 							<td class="text-center">
 								@if($a->se_proofread == 1)
@@ -48,23 +49,20 @@
 								@endif
 							</td>
 							<td class="text-center">
-								{{  number_format((float)$a->version->version, 1, '.', '') }}
+								{{  number_format((float)$a->version, 1, '.', '') }}
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}
 							</td>
 							<td class="text-center">
-								<a href="{{ route('correspondent.article.versions', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Verisons</a>
+								<a href="{{ route('correspondent.article.version.content.view', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Content</a>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-			<div class="text-center">
-				{{ $articles->links() }}
-			</div>
 		@else
-			<p class="text-center">You have not yet submitted any article.</p>
+			<p class="text-center">No Version For This Article</p>
 		@endif
 
 	</div>

@@ -31,7 +31,7 @@ class Article extends Model
         return $this->hasOne('App\ArticleVersion', 'article_id');
     }
 
-    public function versionContent()
+    public function versionContents()
     {
         return $this->hasMany('App\ArticleVersionContent', 'article_id');
     }

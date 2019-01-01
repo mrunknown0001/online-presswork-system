@@ -24,6 +24,7 @@
 						<th class="text-center">Section</th>
 						<th class="text-center">Version</th>
 						<th class="text-center">Date &amp; Time Submitted</th>
+						<th class="text-center">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,6 +47,9 @@
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}
+							</td>
+							<td class="text-center">
+								<a href="{{ route('se.article.versions', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>View Versions</a>
 							</td>
 						</tr>
 					@endforeach

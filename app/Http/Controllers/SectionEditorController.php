@@ -9,6 +9,7 @@ use Auth;
 use App\Http\Controllers\GeneralController;
 
 use App\Article;
+use App\ArticleVersionContent;
 
 class SectionEditorController extends Controller
 {
@@ -287,6 +288,25 @@ class SectionEditorController extends Controller
 
         // return to articles
         return redirect()->route('se.articles')->with('success', 'Article Resubmitted!');
+    }
+
+
+
+    // method use to view all versions of articles
+    public function articleVersions($id)
+    {
+        $article = Article::findorfail($id);
+
+        return view('se.article-versions', ['article' => $article]);
+    }
+
+
+    // method use to view content of article version
+    public function viewArticleVersionContent($id)
+    {
+        $avc = ArticleVersionContent::findorfail($id);
+
+        return view('se.article-version-content', ['avc' => $avc]);
     }
 
 }

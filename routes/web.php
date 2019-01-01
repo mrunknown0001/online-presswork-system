@@ -388,6 +388,12 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 		return redirect()->route('se.view.denied.article');
 	});
 
+	// route to view versions of article
+	Route::get('/article/{id}/versions', 'SectionEditorController@articleVersions')->name('se.article.versions');
+
+	// route to view content of article version
+	Route::get('/article/version/{id}/version/view', 'SectionEditorController@viewArticleVersionContent')->name('se.article.version.content');
+
 });
 
 
@@ -426,6 +432,9 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 
 	// route to view article version
 	Route::get('/aritcle/{id}/versions', 'CorrespondentController@articleVersions')->name('correspondent.article.versions');
+
+	// view article version content
+	Route::get('/article/version/content/{id}/view', 'CorrespondentController@viewArticleVersionContent')->name('correspondent.article.version.content.view');
 });
 
 ///////////////////////////////
