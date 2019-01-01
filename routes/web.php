@@ -422,6 +422,10 @@ Route::group(['prefix' => 'correspondent', 'middleware' => ['correspondent','pre
 
 	// route to save update on denied article
 	Route::post('/article/update', 'CorrespondentController@postUpdateArticle')->name('correspondent.update.article.post');
+
+
+	// route to view article version
+	Route::get('/aritcle/{id}/versions', 'CorrespondentController@articleVersions')->name('correspondent.article.versions');
 });
 
 ///////////////////////////////

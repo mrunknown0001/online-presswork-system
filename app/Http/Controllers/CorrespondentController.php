@@ -213,4 +213,16 @@ class CorrespondentController extends Controller
         return redirect()->route('correspondent.articles')->with('success', 'Article Update & Submitted!');
         
     }
+
+
+
+    // method use to view article versions
+    public function articleVersions($id)
+    {
+        $article = Article::findorfail($id);
+
+        if($article->correspondent_id != Auth::user()->id) {
+            return abort(404);
+        }
+    }
 }
