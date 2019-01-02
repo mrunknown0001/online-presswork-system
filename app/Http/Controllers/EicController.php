@@ -727,7 +727,12 @@ class EicController extends Controller
 		$article->save();
 
 
-		$article->version->version += 1;
+        if($article->version->version >= 3) {
+            $article->version->version += 0.1;
+        }
+        else {
+            $article->version->version = 3;
+        }
 		$article->version->save();
 
 		// add to activity log

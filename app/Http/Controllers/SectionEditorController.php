@@ -159,7 +159,13 @@ class SectionEditorController extends Controller
         $article->se_proofread_date = now();
         $article->save();
 
-        $article->version->version += 1;
+        if($article->version->version >= 2) {
+            $article->version->version += 0.1;
+        }
+        else {
+            $article->version->version = 2;
+        }
+
         $article->version->save();
 
         // add to activty log
@@ -281,6 +287,13 @@ class SectionEditorController extends Controller
 
         $article->version->version += 0.1;
         $article->version->save();
+
+        // new article version content
+        $avc = new ArticleVersionContent();
+        $avc->article_id = $article->id;
+        $avc->version = $article->version->version;
+        $avc->content = $article->content;
+        $avc->save();
 
         // add to activity log
         $action = 'Section Editor Resubmitted Article to EIC';

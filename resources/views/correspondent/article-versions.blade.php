@@ -20,7 +20,6 @@
 						<th class="text-center">Article Title</th>
 						<th class="text-center">Publication</th>
 						<th class="text-center">Section</th>
-						<th class="text-center">Status</th>
 						<th class="text-center">Version</th>
 						<th class="text-center">Date &amp; Time Submitted</th>
 						<th class="text-center">Action</th>
@@ -37,16 +36,6 @@
 							</td>
 							<td class="text-center">
 								{{ ucwords($article->section->name) }}
-							</td>
-							<td class="text-center">
-								@if($a->se_proofread == 1)
-									<span class="label label-success">Approved</span>
-								@elseif($a->se_deny == 1)
-									<span class="label label-warning">Denied</span>
-									<a href="{{ route('correspondent.edit.deny.article', ['id' => $a->id]) }}">Edit</a>
-								@else
-									<span class="label label-default">Pending</span>
-								@endif
 							</td>
 							<td class="text-center">
 								{{  number_format((float)$a->version, 1, '.', '') }}

@@ -196,6 +196,14 @@ class CorrespondentController extends Controller
     {
         $id = $request['id'];
 
+        $request->validate([
+            'content' => 'required',
+            'title' => 'required'
+        ]);
+
+        $content = $request['content'];
+        $title = $request['title'];
+
         $article = Article::findorfail($id);
 
         $co = Auth::user();
@@ -205,6 +213,8 @@ class CorrespondentController extends Controller
         }
 
         // save article
+        $article->title = $title;
+        $article->content = $content;
         $article->se_deny = 0;
         $article->correspondent_comply = 1;
         $article->save();
@@ -212,6 +222,13 @@ class CorrespondentController extends Controller
         // updaate version
         $article->version->version += 0.1;
         $article->version->save();
+
+        // add record content to the version content
+        $avc = new ArticleVersionContent();
+        $avc->article_id = $article->id;
+        $avc->version = $article->version->version;
+        $avc->content = $article->content;
+        $avc->save();
 
         // add activity log
         $action = 'Correspondent Updated Article: ' . ucwords($article->title);
