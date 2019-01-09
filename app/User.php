@@ -31,4 +31,16 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\SectionEditorAssignment', 'user_id');
     }
+
+
+    public function articles()
+    {
+        return $this->hasMany('App\Article', 'correspondent_id');
+    }
+
+
+    public function layouts()
+    {
+        return $this->hasMany('App\Layout', 'layout_editor_id');
+    }
 }
