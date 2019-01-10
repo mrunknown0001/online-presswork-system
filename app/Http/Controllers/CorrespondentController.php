@@ -21,8 +21,9 @@ class CorrespondentController extends Controller
     //
     public function dashboard()
     {
+        $approved_articles = Article::where('correspondent_id', Auth::user()->id)->where('se_proofread', 1)->get();
 
-    	return view('correspondent.dashboard');
+    	return view('correspondent.dashboard', ['approved_articles' => $approved_articles]);
     }
 
 
