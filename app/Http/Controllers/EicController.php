@@ -27,7 +27,10 @@ class EicController extends Controller
     // method use to go to dashboard
 	public function dashboard()
 	{
-		return view('eic.dashboard');
+		$approved_layouts = Layout::where('eic_approved', 1)->get();
+		$approved_articles = Article::where('eic_proofread', 1)->get();
+
+		return view('eic.dashboard', ['approved_layouts' => $approved_layouts, 'approved_articles' => $approved_articles]);
 	}
 
 

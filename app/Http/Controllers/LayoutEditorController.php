@@ -17,7 +17,9 @@ class LayoutEditorController extends Controller
     // method use to show dashboard 
     public function dashboard()
     {
-    	return view('le.dashboard');
+        $approved_layouts = Layout::where('layout_editor_id', Auth::user()->id)->where('eic_approved')->get();
+
+    	return view('le.dashboard', ['approved_layouts' => $approved_layouts]);
     }
 
 

@@ -11,6 +11,8 @@
 		</p>
 
 		@include('includes.all')
+	</div>
+	<div class="col-md-6 col-md-offset-3" 
 
 		@if(count($publications) > 0)
 			@foreach($publications as $p)
@@ -19,6 +21,7 @@
 		@else
 			<p class="text-center">No Publications</p>
 		@endif
+
 	
 	</div>
 
