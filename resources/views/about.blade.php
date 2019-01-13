@@ -58,6 +58,10 @@
             <p><i class="fa fa-info-circle"></i> The official student publication of Tarlac State University Member. College Editors Guild of the Philippines</p>
             <p><i class="fa fa-info-circle"></i> Products: Magazine, Broadsheet, Tabloid, Newsletter, Literary, Folio</p>
 
+            <p>
+              The Work, a student-run newspaper and the official student publication of the university. For over 70 years, it provided TSU with responsible campus journalism, determined advocacies, and truthful inquiry. It has become one of the leading student publications in the region with numerous awards from different journalism competitions, bringing honor and integrity to Tarlac State University. The Work is a member of the College Editors Guild of the Philippines (CEGP), an organization that provides legal support and assistance to student publications.
+            </p>
+
           </div>
         </div>
       </section>

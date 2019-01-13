@@ -23,7 +23,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="javascript:void(0)">Online Presswork System for The Work at Tarlac State University</a>
+        <a class="navbar-brand" href="javascript:void(0)">The Work</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,6 +48,17 @@
       <section class="py-5">
         <div class="row">
           <div class="col-md-12">
+            <header>
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                
+                <div class="carousel-inner" role="listbox">
+                  <div class="carousel-item active" style="background-image: url('{{ asset('uploads/logo/logo4.jpg') }}')">
+                  </div>
+
+                </div>
+              </div>
+            </header>
+
             @include('includes.all')
 
             @if(count($value) > 0)
@@ -73,17 +84,6 @@
                 <hr>
               @endforeach
             @else
-
-              <header>
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                  
-                  <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active" style="background-image: url('{{ asset('uploads/logo/logo.jpg') }}')">
-                    </div>
-
-                  </div>
-                </div>
-              </header>
 
             @endif
 
