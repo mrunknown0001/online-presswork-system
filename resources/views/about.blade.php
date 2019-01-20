@@ -55,12 +55,16 @@
 
             @include('includes.all')
 
-            <p><i class="fa fa-info-circle"></i> The official student publication of Tarlac State University Member. College Editors Guild of the Philippines</p>
-            <p><i class="fa fa-info-circle"></i> Products: Magazine, Broadsheet, Tabloid, Newsletter, Literary, Folio</p>
+            <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;The Work is the official student publication of Tarlac State University (TSU) in Tarlac City, Philippines founded in 1948., it is a student-run newspaper and the official student publication of the university. For over 70 years, it provided TSU with responsible campus journalism, determined advocacies, and truthful inquiry. It is a member of the College Editors Guild of the Philippines (CEGP), the oldest existing alliance of student publications in the country committed to uphold students' rights and press freedom. It has become one of the leading student publications in the region with numerous awards from different journalism competitions, bringing honor and integrity to Tarlac State University. The Work is a member of the College Editors Guild of the Philippines (CEGP), an organization that provides legal support and assistance to student publications.
+            </p>
 
             <p>
-              The Work, a student-run newspaper and the official student publication of the university. For over 70 years, it provided TSU with responsible campus journalism, determined advocacies, and truthful inquiry. It has become one of the leading student publications in the region with numerous awards from different journalism competitions, bringing honor and integrity to Tarlac State University. The Work is a member of the College Editors Guild of the Philippines (CEGP), an organization that provides legal support and assistance to student publications.
+              &nbsp;&nbsp;&nbsp;&nbsp;The Work circulates its regular issue at least four times in an academic year and its literary folio, Obra, once in a year. It also releases special issues for the university intramurals and student elections and a mid-year issue after the regular semesters. Apart from its published issues, The Work also holds LAAB, a seminar and workshop for student journalists on campus, and Lathala, an annual literary and arts competition where winning works are published in Obra.
             </p>
+
+            <p>The official student publication of Tarlac State University Member. College Editors Guild of the Philippines</p>
+            <p>Products: Magazine, Broadsheet, Tabloid, Newsletter, Literary, Folio</p>
 
           </div>
         </div>
