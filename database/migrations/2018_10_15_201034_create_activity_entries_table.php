@@ -20,8 +20,9 @@ class CreateActivityEntriesTable extends Migration
             $table->string('firstname', 30)->nullable();
             $table->string('middlename', 30)->nullable();
             $table->string('lastname', 30)->nullable();
-            $table->string('filename', 20);
-            $table->string('email', 30);
+            $table->string('student_number', 15)->nullable();
+            $table->string('filename', 40);
+            $table->string('email', 50);
             $table->tinyInteger('active')->default(1);
             $table->tinyInteger('downloaded')->default(0);
             $table->timestamps();

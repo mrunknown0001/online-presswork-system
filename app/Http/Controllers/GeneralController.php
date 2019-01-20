@@ -97,13 +97,15 @@ class GeneralController extends Controller
     {
     	$request->validate([
     		'entry' => 'required|file|mimes:pdf,jpg,jpeg|max:20480',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'student_number' => 'required'
     	]);
 
     	$id = $request['id'];
     	$firstname = $request['firstname'];
         $lastname = $request['lastname'];
         $email = $request['email'];
+        $student_number = $request['student_number'];
 
         $activity = Activity::findorfail($id);
 
@@ -123,6 +125,7 @@ class GeneralController extends Controller
         $entry->lastname = $lastname;
     	$entry->filename = $entry_file;
         $entry->email = $email;
+        $entry->student_number = $student_number;
     	$entry->save();
 
         // send email

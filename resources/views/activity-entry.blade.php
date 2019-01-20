@@ -33,15 +33,19 @@
 
             {{ csrf_field() }}
             <input type="hidden" name="id" value="{{ $activity->id }}">
-            <div class="form-group">
+            <div class="">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 form-group">
                   <label>Firstame (optional)</label>
                   <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter Firstname">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 form-group">
                   <label>Lastname (optional)</label>
                   <input type="text" name="lastname" id="firstname" class="form-control" placeholder="Enter Lastname">
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Student Number</label>
+                  <input type="text" name="student_number" id="student_number" class="form-control" placeholder="Enter Student Number" required>
                 </div>
               </div>
               

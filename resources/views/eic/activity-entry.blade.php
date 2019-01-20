@@ -26,7 +26,7 @@
 				<tbody>
 					@foreach($entries as $e)
 						<tr>
-							<td class="text-center">{{ $e->firstname != null || $e->lastname != null ? ucwords($e->firstname . ' ' . $e->lastname) : 'Anonymous' }}</td>
+							<td class="text-center">{{ $e->firstname != null || $e->lastname != null ? ucwords($e->firstname . ' ' . $e->lastname . ' ' . $e->student_number) : 'Anonymous' }}</td>
 							<td class="text-center">{{ $e->filename }}</td>
 							<td class="text-center">{{ date('l, F j, Y g:i:s a', strtotime($e->created_at)) }}</td>
 							<td class="text-center">{{ $e->downloaded == 1 ? 'Yes' : 'No' }}</td>
