@@ -96,7 +96,7 @@ class GeneralController extends Controller
     public function postSubmitEntry(Request $request)
     {
     	$request->validate([
-    		'entry' => 'required|file|mimes:pdf|max:20480',
+    		'entry' => 'required|file|mimes:pdf,jpg,jpeg|max:20480',
             'email' => 'required|email'
     	]);
 

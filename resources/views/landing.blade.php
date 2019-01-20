@@ -58,7 +58,7 @@
                 </div>
               </div>
             </header>
-
+            <p></p>
             @include('includes.all')
 
             @if(count($value) > 0)

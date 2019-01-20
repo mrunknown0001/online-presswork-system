@@ -51,8 +51,8 @@
               <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email Address" required>
             </div>
             <div class="form-group">
-              <label>Upload Entry (in pdf format)</label>
-              <input type="file" name="entry" id="entry" class="form-control" accept="application/pdf">
+              <label>Upload Entry (pdf/jpeg files)</label>
+              <input type="file" name="entry" id="entry" class="form-control" accept="application/pdf,image/jpeg">
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Submit Entry</button>
