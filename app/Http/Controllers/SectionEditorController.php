@@ -9,7 +9,9 @@ use Auth;
 use App\Http\Controllers\GeneralController;
 
 use App\Article;
+use App\ArticleVersion;
 use App\ArticleVersionContent;
+use App\ProofreadArticle;
 
 class SectionEditorController extends Controller
 {
@@ -123,15 +125,29 @@ class SectionEditorController extends Controller
     public function saveImageCanvas(Request $request)
     {
         $img = $request['imgBase64'];
-
+        $article_id = $request['article_id'];
         
         $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
-        $file = "uploads/canvas/" . uniqid() . '.png';
+        $filename = uniqid() . '.png';
+        $file = "uploads/canvas/" . $filename;
         $success = file_put_contents($file, $data);
 
+        // check if there is proofread in the article
+        $check = ProofreadArticle::where('article_id', $article_id)->whereActive(1)->first();
+
+        if(!empty($check)) {
+            $check->active = 0;
+            $check->save();
+        }
+
         // add record here attaching document to the article
+        $proofread = new ProofreadArticle();
+        $proofread->filename = $filename;
+        $proofread->article_id = $article_id;
+        $proofread->section_editor_id = Auth::user()->id;
+        $proofread->save();
     }
 
 
@@ -183,6 +199,19 @@ class SectionEditorController extends Controller
         }
 
         $article->version->save();
+
+        $av = new ArticleVersion();
+        $av->version = $article->version->version;
+        $av->article_id = $article->id;
+        $av->user_id = Auth::user()->id;
+        $av->save();
+
+        // new article version content
+        $avc = new ArticleVersionContent();
+        $avc->article_id = $article->id;
+        $avc->version = $av->version;
+        $avc->content = $article->content;
+        $avc->save();
 
         // add to activty log
         $action = 'Section Editor Approved Article from ' . ucwords($article->user->firstname . ' ' . $article->user->lastname) . ': ' . ucwords($article->title);

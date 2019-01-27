@@ -35,4 +35,9 @@ class Article extends Model
     {
         return $this->hasMany('App\ArticleVersionContent', 'article_id');
     }
+
+    public function proofread()
+    {
+        return $this->hasOne('App\ProofreadArticle', 'article_id')->whereActive(1);
+    }
 }

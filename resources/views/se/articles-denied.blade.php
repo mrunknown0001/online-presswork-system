@@ -39,7 +39,7 @@
 								{{ date('l, F j, Y g:i:s a', strtotime($a->eic_deny_date)) }}
 							</td>
 							<td class="text-center">
-								<a href="{{ route('se.update.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+								<a href="{{ route('se.update.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a> <a href="{{ route('se.article.versions', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Versions</a>
 							</td>
 						</tr>
 					@endforeach

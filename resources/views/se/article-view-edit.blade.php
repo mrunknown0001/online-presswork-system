@@ -10,10 +10,28 @@
 	</div>
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-md-2">
+			<div class="col-md-5">
 		    <div class="buttons">
-		      <button id="clear" type="button" class="btn btn-info" style="display: none;"></button>
-		      <button id="save" type="button" class="btn btn-success">Save</button>
+
+					<form action="{{ route('se.approve.article.post') }}" method="POST" autocomplete="off">
+						{{ csrf_field() }}
+						<input type="hidden" name="id" value="{{ $article->id }}">
+						
+							<input type="hidden" name="title" id="title" value="{{ $article->title }}" class="form-control" placeholder="Article Title" required>
+						
+						
+						<textarea name="content" id="" class="form-control" style="display: none;" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
+						
+						
+						<button id="clear" type="button" class="btn btn-info" style="display: none;"></button>
+			      <button id="save" type="button" class="btn btn-primary">Save</button>
+						
+						<button class="btn btn-success">Approve Article</button>
+						{{-- <button class="btn btn-warning" data-toggle="modal" data-target="#denyArticle">Deny Article</button> --}}
+						<a href="{{ route('se.close.viewing.article', ['id' => $article->id]) }}" class="btn btn-danger">Cancel</a>
+					</form>
+
+
 		    </div>
 				<div class="brushes"></div>				
 			</div>
@@ -33,40 +51,7 @@
     <div style="max-height: 800px;overflow: scroll;">
      <canvas id="drawing" width="1250" height="800" style="cursor: crosshair;"></canvas>
 		</div>   
-  </div>
-
-		{{-- <div class="content-box-header panel-heading">
-			<div class="panel-title">Edit Article</div>
-		
-			<div class="panel-options">
-				
-			</div>
-		</div>
-		<div class="content-box-large box-with-header">
-			@include('includes.all')
-			<p>Correspondent: <strong>{{ ucwords($article->user->firstname . ' ' . $article->user->lastname) }}</strong> - {{ date('l, F j, Y g:i:s a', strtotime($article->created_at)) }}</p>
-			<form action="{{ route('se.approve.article.post') }}" method="POST" autocomplete="off">
-				{{ csrf_field() }}
-				<input type="hidden" name="id" value="{{ $article->id }}">
-				<div class="form-group">
-					<label>Article Title</label>
-					<input type="text" name="title" id="title" value="{{ $article->title }}" class="form-control" placeholder="Article Title" required>
-				</div>
-				<div class="form-group">
-					<label>Article Content</label>
-					<textarea name="content" id="summernote" class="form-control" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
-				</div>
-				<div class="form-group">
-					<button class="btn btn-success">Approve Article</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#denyArticle">Deny Article</button>
-					<a href="{{ route('se.close.viewing.article', ['id' => $article->id]) }}" class="btn btn-danger">Cancel</a>
-				</div>
-			</form>
 			
-		</div> --}}
-			
-
-
 	</div>
 </div>
 @include('se.includes.modal-deny-article')
@@ -190,6 +175,7 @@ $(document).ready(function() {
 					  url: "{{ route('se.save.image.canvas') }}",
 					  data: {
 					     "_token": "{{ csrf_token() }}",
+					     "article_id": "{{ $article->id }}",
 					     imgBase64: dataURL
 					  }
 					}).done(function(o) {

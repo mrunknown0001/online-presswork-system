@@ -44,7 +44,7 @@
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}
 							</td>
 							<td class="text-center">
-								<a href="{{ route('se.download.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a> <a href="" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Versions</a>
+								<a href="{{ route('se.download.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a> <a href="{{ route('se.article.versions', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Versions</a>
 							</td>
 						</tr>
 					@endforeach
