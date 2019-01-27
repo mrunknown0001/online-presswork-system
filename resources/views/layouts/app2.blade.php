@@ -25,36 +25,11 @@
     <script src="{{ asset('clipboardjs/clipboard.min.js') }}"></script>
   </head>
   <body>
-  	@if(Auth::user()->user_type == 1)
-  		@include('admin.includes.header')
-  	@elseif(Auth::user()->user_type == 2)
-      @include('eic.includes.header')
-    @elseif(Auth::user()->user_type == 3)
-      @include('le.includes.header')
-    @elseif(Auth::user()->user_type == 4)
-      @include('se.includes.header')
-    @elseif(Auth::user()->user_type == 5)
-      @include('correspondent.includes.header')
-  	@endif
 
     <div class="page-content">
     	<div class="row">
-		  <div class="col-md-3">
 
-		  	@if(Auth::user()->user_type == 1)
-		  		@include('admin.includes.nav')
-		  	@elseif(Auth::user()->user_type == 2)
-          @include('eic.includes.nav')
-        @elseif(Auth::user()->user_type == 3)
-          @include('le.includes.nav')
-        @elseif(Auth::user()->user_type == 4)
-          @include('se.includes.nav')
-        @elseif(Auth::user()->user_type == 5)
-          @include('correspondent.includes.nav')
-        @endif
-		  </div>
-
-		  <div class="col-md-9">
+		  <div class="col-md-12">
 		  	@yield('content')
 		  </div>
 
