@@ -362,6 +362,8 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 	// route to view/edit articles --- open article
 	Route::get('/article/{id}/view/edit', 'SectionEditorController@viewArticle')->name('se.view.edit.article');
 
+	Route::post('/article/view/edit/save/canvas', 'SectionEditorController@saveImageCanvas')->name('se.save.image.canvas');
+
 	// route to clsoe viewing article
 	Route::get('/article/{id}/close', 'SectionEditorController@closeViewArticle')->name('se.close.viewing.article');
 

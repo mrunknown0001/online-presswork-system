@@ -119,6 +119,22 @@ class SectionEditorController extends Controller
 
     }
 
+    // method to save proofread article to image
+    public function saveImageCanvas(Request $request)
+    {
+        $img = $request['imgBase64'];
+
+        
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = "uploads/canvas/" . uniqid() . '.png';
+        $success = file_put_contents($file, $data);
+
+        // add record here attaching document to the article
+    }
+
+
     // method use to close viewing article
     public function closeViewArticle($id = null)
     {

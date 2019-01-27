@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-md-2">
 		    <div class="buttons">
-		      <button id="clear" type="button" class="btn btn-info">Clear</button>
+		      <button id="clear" type="button" class="btn btn-info" style="display: none;"></button>
 		      <button id="save" type="button" class="btn btn-success">Save</button>
 		    </div>
 				<div class="brushes"></div>				
@@ -171,6 +171,32 @@ $(document).ready(function() {
 
 			  clearButton.addEventListener('click', function() {
 			    context.clearRect(0, 0, canvas.width, canvas.height);
+			  });
+
+			var saveButton = document.getElementById('save');
+
+			  saveButton.addEventListener('click', function() {
+			    // var imageName = prompt('Please enter image name');
+			    // var canvasDataURL = canvas.toDataURL();
+			    // var a = document.createElement('a');
+			    // a.href = canvasDataURL;
+			    // a.download = imageName || 'drawing';
+			    // a.click();
+			    var dataURL = canvas.toDataURL();
+			    //console.log(dataURL);
+
+					$.ajax({
+					  type: "POST",
+					  url: "{{ route('se.save.image.canvas') }}",
+					  data: {
+					     "_token": "{{ csrf_token() }}",
+					     imgBase64: dataURL
+					  }
+					}).done(function(o) {
+					  console.log('saved'); 
+					  alert('Proofread Article Saved!');
+					  window.location.href = "{{ route('se.articles') }}";
+					});
 			  });
 
 
