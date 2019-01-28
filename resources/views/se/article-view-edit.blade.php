@@ -59,7 +59,9 @@
 $(document).ready(function() {
   $('#summernote').summernote();
 
-  var article = "{{ $article->content }}";
+  var article = "{!! $article->content !!}";
+
+  // article = $.parseHTML(article);
 
   		function wrapText(context, text, x, y, maxWidth, lineHeight) {
         var words = text.split(' ');

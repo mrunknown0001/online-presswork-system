@@ -117,6 +117,8 @@ class SectionEditorController extends Controller
         $article->viewing_by = Auth::user()->id;
         $article->save();
 
+        // return $article->content;
+
         return view('se.article-view-edit', ['article' => $article]);
 
     }
