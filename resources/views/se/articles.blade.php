@@ -10,6 +10,7 @@
 		<p>
 			<a href="{{ route('se.approved.articles') }}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> View Approved Articles</a>
 			<a href="{{ route('se.view.denied.article') }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i> View Denied Articles</a>
+			<a href="{{ route('se.article.proofreaded') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> View Proofreaded Articles</a>
 		</p>
 		
 		@include('includes.all')

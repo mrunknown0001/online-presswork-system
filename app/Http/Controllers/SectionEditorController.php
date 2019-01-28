@@ -369,4 +369,11 @@ class SectionEditorController extends Controller
         return view('se.article-version-content', ['avc' => $avc]);
     }
 
+
+    // method use to view proofreaded articles
+    public function proofreadedArticles()
+    {
+        return view('se.articles-proofreaded');
+    }
+
 }

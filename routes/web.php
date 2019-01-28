@@ -396,6 +396,9 @@ Route::group(['prefix' => 'section/editor', 'middleware' => ['section.editor','p
 	// route to view content of article version
 	Route::get('/article/version/{id}/version/view', 'SectionEditorController@viewArticleVersionContent')->name('se.article.version.content');
 
+	// route to view proofreaded articles
+	Route::get('/article/proofreaded', 'SectionEditorController@proofreadedArticles')->name('se.article.proofreaded');
+
 });
 
 

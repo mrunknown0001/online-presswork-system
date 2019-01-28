@@ -59,7 +59,7 @@
 $(document).ready(function() {
   $('#summernote').summernote();
 
-  var article = "{!! html_entity_decode($article->content) !!}";
+  var article = "{!! $article->content !!}";
 
   
 
