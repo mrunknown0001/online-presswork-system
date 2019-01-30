@@ -373,7 +373,21 @@ class SectionEditorController extends Controller
     // method use to view proofreaded articles
     public function proofreadedArticles()
     {
-        return view('se.articles-proofreaded');
+        // get all proofreaded article
+        $proofreaded = Auth::user()->se_proofreaded;
+
+        return view('se.articles-proofreaded', ['proofreaded' => $proofreaded]);
+    }
+
+
+    // method use to download proofreaded file
+    public function downloadProofreaded($id)
+    {
+        $proof = ProofreadArticle::find($id);
+
+        $pathToFile = public_path('/uploads/canvas/') . $proof->filename;
+
+        return response()->download($pathToFile);
     }
 
 }

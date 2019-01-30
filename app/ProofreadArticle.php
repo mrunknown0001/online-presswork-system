@@ -10,4 +10,9 @@ class ProofreadArticle extends Model
     {
     	return $this->belongsTo('App\Article', 'article_id');
     }
+
+    public function se()
+    {
+    	return $this->belongsTo('App\User', 'section_editor_id');
+    }
 }

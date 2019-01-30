@@ -463,3 +463,7 @@ Route::get('/eic/activity/{a_id}/entry/{e_id}/download', 'EicController@download
 // database backup download
 // route to backup database and download applicable only in server
 Route::get('/admin/database/backup/download', 'AdminController@downloadDatabaseBackup')->name('admin.download.backup.database');
+
+
+// route to download proofreaded aritcle
+Route::get('/section-editor/article/download/proofreaded/{id}', 'SectionEditorController@downloadProofreaded')->name('se.article.download.proofreade');

@@ -43,4 +43,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Layout', 'layout_editor_id');
     }
+
+
+    public function se_proofreaded()
+    {
+        return $this->hasMany('App\ProofreadArticle', 'section_editor_id')->whereActive(1);
+    }
 }
