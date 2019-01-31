@@ -29,7 +29,7 @@
 				<tbody>
 					@foreach($articles as $a)
 						<tr>
-							<td class="text-center"><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a>
+							<td class="text-center"><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a> {{ !empty($a->proofread) ? '*' : '' }}
 							</td>
 							<td class="text-center">
 								{{ $a->publication->name }}

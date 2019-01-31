@@ -141,7 +141,7 @@ class SectionEditorController extends Controller
 
         if(!empty($check)) {
             $check->active = 0;
-            $check->save();
+            $check->delete();
         }
 
         // add record here attaching document to the article
