@@ -136,7 +136,6 @@ class CorrespondentController extends Controller
     	$article = new Article();
     	$article->correspondent_id = Auth::user()->id;
     	$article->title = $title;
-        $article->version = 1;
     	$article->content = $content;
         $article->publication_id = $publication;
     	$article->section_id = $section;

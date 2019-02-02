@@ -48,7 +48,7 @@
 								@endif
 							</td>
 							<td class="text-center">
-								{{  number_format((float)$a->version, 1, '.', '') }}
+								{{  number_format((float)$a->version->version, 1, '.', '') }}
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}

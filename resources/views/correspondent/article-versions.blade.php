@@ -13,7 +13,7 @@
 
 		@include('includes.all')
 		
-		@if(count($article->versions) > 0)
+		@if(!empty($article->version))
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
@@ -26,7 +26,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($article->versions as $a)
+					@foreach($article->versionContents as $a)
 						<tr>
 							<td class="text-center">
 								{{ ucwords(substr($article->title, 0, 50)) }}

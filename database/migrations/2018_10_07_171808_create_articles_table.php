@@ -20,8 +20,6 @@ class CreateArticlesTable extends Migration
             $table->string('title', 50);
             $table->longtext('content');
 
-            $table->float('version', 3,2)->nullable();
-
             $table->integer('publication_id')->unsigned();
             $table->foreign('publication_id')->references('id')->on('publications');
             $table->integer('section_id')->unsigned();

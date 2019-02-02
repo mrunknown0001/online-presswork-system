@@ -157,6 +157,9 @@ class SectionEditorController extends Controller
         $article->se_deny = 1;
         $article->se_deny_date = now();
         $article->save();
+
+        // add article version content
+        
     }
 
 

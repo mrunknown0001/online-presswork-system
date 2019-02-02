@@ -26,9 +26,9 @@ class Article extends Model
     	return $this->belongsTo('App\User', 'se_id');
     }
 
-    public function versions()
+    public function version()
     {
-        return $this->hasMany('App\ArticleVersion', 'article_id');
+        return $this->hasOne('App\ArticleVersion', 'article_id');
     }
 
     public function versionContents()
