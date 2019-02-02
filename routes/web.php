@@ -453,6 +453,9 @@ Route::get('/admin/article/{id}/download', 'AdminController@downloadArticle')->n
 
 Route::get('/layout/editor/article/{id}/download', 'LayoutEditorController@downloadArticle')->name('le.download.article');
 
+// route to download proofreaded aritcle
+Route::get('/section-editor/article/download/proofreaded/{id}', 'SectionEditorController@downloadProofreaded')->name('se.article.download.proofreade');
+
 
 
 // route to download entry
@@ -465,5 +468,3 @@ Route::get('/eic/activity/{a_id}/entry/{e_id}/download', 'EicController@download
 Route::get('/admin/database/backup/download', 'AdminController@downloadDatabaseBackup')->name('admin.download.backup.database');
 
 
-// route to download proofreaded aritcle
-Route::get('/section-editor/article/download/proofreaded/{id}', 'SectionEditorController@downloadProofreaded')->name('se.article.download.proofreade');

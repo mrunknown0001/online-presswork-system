@@ -29,7 +29,7 @@
 				<tbody>
 					@foreach($articles as $a)
 						<tr>
-							<td class="text-center"><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a> {{ !empty($a->proofread) ? '*' : '' }}
+							<td class="text-center"><a href="{{ route('correspondent.view.article', ['id' => $a->id]) }}">{{ ucwords(substr($a->title, 0, 50)) }}</a>
 							</td>
 							<td class="text-center">
 								{{ $a->publication->name }}
@@ -48,7 +48,7 @@
 								@endif
 							</td>
 							<td class="text-center">
-								{{  number_format((float)$a->version->version, 1, '.', '') }}
+								{{  number_format((float)$a->version, 1, '.', '') }}
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}

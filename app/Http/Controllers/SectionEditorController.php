@@ -128,6 +128,8 @@ class SectionEditorController extends Controller
     {
         $img = $request['imgBase64'];
         $article_id = $request['article_id'];
+
+        $article = Article::findorfail($article_id);
         
         $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
@@ -150,6 +152,11 @@ class SectionEditorController extends Controller
         $proofread->article_id = $article_id;
         $proofread->section_editor_id = Auth::user()->id;
         $proofread->save();
+
+        // mark se deny
+        $article->se_deny = 1;
+        $article->se_deny_date = now();
+        $article->save();
     }
 
 

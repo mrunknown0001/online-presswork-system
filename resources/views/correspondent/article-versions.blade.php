@@ -13,7 +13,7 @@
 
 		@include('includes.all')
 		
-		@if(count($article->versionContents) > 0)
+		@if(count($article->versions) > 0)
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
@@ -26,7 +26,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($article->versionContents as $a)
+					@foreach($article->versions as $a)
 						<tr>
 							<td class="text-center">
 								{{ ucwords(substr($article->title, 0, 50)) }}
@@ -39,6 +39,7 @@
 							</td>
 							<td class="text-center">
 								{{  number_format((float)$a->version, 1, '.', '') }}
+
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}

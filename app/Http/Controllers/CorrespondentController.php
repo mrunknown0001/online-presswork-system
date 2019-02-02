@@ -136,6 +136,7 @@ class CorrespondentController extends Controller
     	$article = new Article();
     	$article->correspondent_id = Auth::user()->id;
     	$article->title = $title;
+        $article->version = 1;
     	$article->content = $content;
         $article->publication_id = $publication;
     	$article->section_id = $section;
@@ -231,6 +232,10 @@ class CorrespondentController extends Controller
         $avc->version = $article->version->version;
         $avc->content = $article->content;
         $avc->save();
+
+        // remove the proofreaded in the article
+        $article->proofread->active = 0;
+        $article->proofread->save();
 
         // add activity log
         $action = 'Correspondent Updated Article: ' . ucwords($article->title);
