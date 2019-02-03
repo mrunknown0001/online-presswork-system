@@ -15,7 +15,7 @@ class CreateArticleVersionsTable extends Migration
     {
         Schema::create('article_versions', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('version', 3,2)->default(0);
+            $table->float('version', 4,2)->default(0);
             $table->integer('article_id')->unsigned();
             $table->foreign('article_id')->references('id')->on('articles');
             $table->integer('user_id')->unsigned();

@@ -239,6 +239,8 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 
 	Route::get('/article/{id}/versions', 'EicController@aritcleVersions')->name('eic.article.versions');
 
+	Route::get('/article/version/{id}/content', 'EicController@viewArticleVersionContent')->name('eic.view.article.version.content');
+
 
 	// route to go to layout management
 	Route::get('/layout/management', 'EicController@layoutManagement')->name('eic.layout.management');

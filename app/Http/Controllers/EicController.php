@@ -871,7 +871,16 @@ class EicController extends Controller
 	{
 		$article = Article::findorfail($id);
 
-		return $article;
+		return view('eic.article-versions', ['article' => $article]);
+	}
+
+
+	// method use to view article versions content
+	public function viewArticleVersionContent($id)
+	{
+		$article = ArticleVersionContent::findorfail($id);
+
+		return view('eic.article-view', ['article' => $article]);
 	}
 
 
