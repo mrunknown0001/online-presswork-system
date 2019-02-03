@@ -20,7 +20,7 @@
 							<input type="hidden" name="title" id="title" value="{{ $article->title }}" class="form-control" placeholder="Article Title" required>
 						
 						
-						<textarea name="content" id="" class="form-control" style="display: none;" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
+						<textarea name="content" id="" class="form-control" style="display: none !important;" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
 						
 						
 						<button id="clear" type="button" class="btn btn-info" style="display: none;"></button>
@@ -60,7 +60,9 @@ $(document).ready(function() {
   $('#summernote').summernote();
 
   var article = "{!! $article->content !!}";
+  var parsedArticle = $($.parseHTML(article)).html();
 
+  console.log(parsedArticle);
   
 
   		function wrapText(context, text, x, y, maxWidth, lineHeight) {
@@ -94,7 +96,7 @@ $(document).ready(function() {
       context.font = '15pt Calibri';
       context.fillStyle = '#333';
 
-      wrapText(context, article, x, y, maxWidth, lineHeight);
+      wrapText(context, parsedArticle, x, y, maxWidth, lineHeight);
 
 
 			  var boundings = canvas.getBoundingClientRect();
