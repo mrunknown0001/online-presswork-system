@@ -216,6 +216,10 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	Route::get('/article/{id}/view', 'EicController@viewArticle')->name('eic.view.article');
 
 
+	// route to proofread the article for section editor
+	Route::post('/article/view/edit/save/canvas', 'EicController@saveImageCanvas')->name('eic.save.image.canvas');
+
+
 	// route to save update in article
 	Route::post('/article/approve', 'EicController@postApproveArticle')->name('eic.approve.article');
 
@@ -232,6 +236,9 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	Route::get('/article/deny', function () {
 		return redirect()->route('eic.article.management');
 	});
+
+	Route::get('/article/{id}/versions', 'EicController@aritcleVersions')->name('eic.article.versions');
+
 
 	// route to go to layout management
 	Route::get('/layout/management', 'EicController@layoutManagement')->name('eic.layout.management');

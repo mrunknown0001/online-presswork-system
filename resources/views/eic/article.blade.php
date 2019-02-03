@@ -36,7 +36,8 @@
 							</td>
 							<td class="text-center">{{ ucwords($a->se->firstname . ' ' . $a->se->lastname . ' : ' . $a->se->section_assignment->section->name) }}</td>
 							<td class="text-center">
-								<a href="{{ route('eic.view.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs">View</a>
+								<a href="{{ route('eic.view.article', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View</a>
+								<a href="{{ route('eic.article.versions', ['id' => $a->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Versions</a>
 							</td>
 						</tr>
 					@endforeach

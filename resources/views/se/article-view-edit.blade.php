@@ -5,8 +5,8 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<p><a href="{{ route('se.close.viewing.article', ['id' => $article->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to Articles</a></p>
-		<h3>View Article: {{ ucwords($article->title) }}</h3>
+		<p><a href="{{ route('se.close.viewing.article', ['id' => $article->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-arrow-left"></i> Back to Articles</a></p>
+		<p>Article: {{ ucwords($article->title) }}</p>
 	</div>
 	<div class="col-md-12">
 		<div class="row">
@@ -23,12 +23,12 @@
 						<textarea name="content" id="" class="form-control" style="display: none !important;" placeholder="Enter Article Conent" rows="10" required>{{ $article->content }}</textarea>
 						
 						
-						<button id="clear" type="button" class="btn btn-info" style="display: none;"></button>
-			      <button id="save" type="button" class="btn btn-primary">Save</button>
+						<button id="clear" type="button" class="btn btn-info btn-xs" style="display: none;"></button>
+			      <button id="save" type="button" class="btn btn-primary btn-xs">Save</button>
 						
-						<button class="btn btn-success">Approve Article</button>
+						<button class="btn btn-success btn-xs">Approve Article</button>
 						{{-- <button class="btn btn-warning" data-toggle="modal" data-target="#denyArticle">Deny Article</button> --}}
-						<a href="{{ route('se.close.viewing.article', ['id' => $article->id]) }}" class="btn btn-danger">Cancel</a>
+						<a href="{{ route('se.close.viewing.article', ['id' => $article->id]) }}" class="btn btn-danger btn-xs">Cancel</a>
 					</form>
 
 
@@ -53,6 +53,7 @@
 		</div>   
 			
 	</div>
+	<div id="parsedArticle"></div>
 </div>
 @include('se.includes.modal-deny-article')
 <script>
@@ -60,9 +61,7 @@ $(document).ready(function() {
   $('#summernote').summernote();
 
   var article = "{!! $article->content !!}";
-  var parsedArticle = $($.parseHTML(article)).html();
-
-  console.log(parsedArticle);
+  // var parsedArticle = $($.parseHTML(article)).html();
   
 
   		function wrapText(context, text, x, y, maxWidth, lineHeight) {
@@ -96,7 +95,7 @@ $(document).ready(function() {
       context.font = '15pt Calibri';
       context.fillStyle = '#333';
 
-      wrapText(context, parsedArticle, x, y, maxWidth, lineHeight);
+      wrapText(context, article, x, y, maxWidth, lineHeight);
 
 
 			  var boundings = canvas.getBoundingClientRect();

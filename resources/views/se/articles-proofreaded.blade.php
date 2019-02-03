@@ -36,6 +36,8 @@
 					@endforeach
 				</tbody>
 			</table>
+		@else
+			<p class="text-center">No Parsed Article</p>
 		@endif
 
 	</div>
