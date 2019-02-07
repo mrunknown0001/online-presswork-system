@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                   <label>Student Number</label>
-                  <input type="text" name="student_number" id="student_number" class="form-control" placeholder="Enter Student Number" required>
+                  <input type="number" name="student_number" id="student_number" class="form-control" placeholder="Enter Student Number" required>
                 </div>
               </div>
               
@@ -56,10 +56,10 @@
             </div>
             <div class="form-group">
               <label>Upload Entry (pdf/jpeg files)</label>
-              <input type="file" name="entry" id="entry" class="form-control" accept="application/pdf,image/jpeg">
+              <input type="file" name="entry" id="entry" class="form-control" accept="application/pdf,image/jpeg,.psd">
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">Submit Entry</button>
+              <button type="submit" class="btn btn-warning black-button">Submit Entry</button>
               <a href="{{ route('landing') }}" class="btn btn-danger">Cancel</a>
             </div>
           </form>

@@ -68,8 +68,8 @@ class LayoutEditorController extends Controller
     {
         // get all submitted layouts
         $layouts = Layout::where('active', 1)
+                    ->where('layout_editor_id', Auth::user()->id)
                     ->where('eic_denied', 0)
-                    ->where('le_comply', 1)
                     ->orderBy('eic_approved', 'asc')
                     ->orderBy('created_at', 'desc')
                     ->paginate(5);
@@ -130,6 +130,7 @@ class LayoutEditorController extends Controller
 
         // add to layout
         $layout = new Layout();
+        $layout->layout_editor_id = Auth::user()->id;
         $layout->filename = $photoname;
         $layout->publication_id = $publication_id;
         $layout->section_id = $section_id;

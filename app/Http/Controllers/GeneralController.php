@@ -96,9 +96,9 @@ class GeneralController extends Controller
     public function postSubmitEntry(Request $request)
     {
     	$request->validate([
-    		'entry' => 'required|file|mimes:pdf,jpg,jpeg|max:20480',
+    		'entry' => 'required|file|mimes:pdf,jpg,jpeg,psd|max:20480',
             'email' => 'required|email',
-            'student_number' => 'required'
+            'student_number' => 'required|numeric'
     	]);
 
     	$id = $request['id'];

@@ -69,8 +69,10 @@
                   <img src="{{ asset('/uploads/banners/' . $v->banner) }}" width="90%" class="img-responsvie img-thumbnail">
                 </div>
                 <hr>
-                <div class="justify">
-                  {{ $v->rules }}
+                <div class="row">
+                  <div class="col-md-10 offset-1">
+                    {{ $v->rules }}
+                  </div>
                 </div>
                 <div class="text-center">
                   Activity Period: 
