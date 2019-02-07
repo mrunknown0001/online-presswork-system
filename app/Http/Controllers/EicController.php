@@ -23,6 +23,7 @@ use App\Activity;
 use App\ActivityEntry;
 use App\Publication;
 use App\OpenPublication;
+use App\ProofreadArticle;
 
 class EicController extends Controller
 {
@@ -705,13 +706,57 @@ class EicController extends Controller
 	}
 
 
+    // method to save proofread article to image
+    public function saveImageCanvas(Request $request)
+    {
+        $img = $request['imgBase64'];
+        $article_id = $request['article_id'];
+
+        $article = Article::findorfail($article_id);
+        
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $filename = uniqid() . '.png';
+        $file = "uploads/canvas/" . $filename;
+        $success = file_put_contents($file, $data);
+
+        // check if there is proofread in the article
+        $check = ProofreadArticle::where('article_id', $article_id)
+        			->where('eic_id', '!=', null)
+        			->whereActive(1)
+        			->first();
+
+        if(!empty($check)) {
+            $check->active = 0;
+            $check->save();
+        }
+
+        // add record here attaching document to the article
+        $proofread = new ProofreadArticle();
+        $proofread->filename = $filename;
+        $proofread->article_id = $article_id;
+        $proofread->section_editor_id = Auth::user()->id;
+        $proofread->save();
+
+        // mark se deny
+        $article->eic_deny = 1;
+        $article->eic_deny_date = now();
+        $article->save();
+
+        // add article version content
+        
+    }
+
+
+
 	// method use to approve article by eic
 	public function postApproveArticle(Request $request)
 	{
-		$request->validate([
-			'title' => 'required',
-			'content' => 'required'
-		]);
+		// $request->validate([
+		// 	'title' => 'required',
+		// 	'content' => 'required'
+		// ]);
 
 		$id = $request['id'];
 		$title = $request['title'];
@@ -818,6 +863,24 @@ class EicController extends Controller
 
 		return view('eic.article-denied', ['articles' => $articles]);
 
+	}
+
+
+	// method use to view article versions
+	public function aritcleVersions($id)
+	{
+		$article = Article::findorfail($id);
+
+		return view('eic.article-versions', ['article' => $article]);
+	}
+
+
+	// method use to view article versions content
+	public function viewArticleVersionContent($id)
+	{
+		$article = ArticleVersionContent::findorfail($id);
+
+		return view('eic.article-view', ['article' => $article]);
 	}
 
 

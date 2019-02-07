@@ -216,6 +216,10 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	Route::get('/article/{id}/view', 'EicController@viewArticle')->name('eic.view.article');
 
 
+	// route to proofread the article for section editor
+	Route::post('/article/view/edit/save/canvas', 'EicController@saveImageCanvas')->name('eic.save.image.canvas');
+
+
 	// route to save update in article
 	Route::post('/article/approve', 'EicController@postApproveArticle')->name('eic.approve.article');
 
@@ -232,6 +236,11 @@ Route::group(['prefix' => 'eic', 'middleware' => ['eic','prevent-back-history']]
 	Route::get('/article/deny', function () {
 		return redirect()->route('eic.article.management');
 	});
+
+	Route::get('/article/{id}/versions', 'EicController@aritcleVersions')->name('eic.article.versions');
+
+	Route::get('/article/version/{id}/content', 'EicController@viewArticleVersionContent')->name('eic.view.article.version.content');
+
 
 	// route to go to layout management
 	Route::get('/layout/management', 'EicController@layoutManagement')->name('eic.layout.management');
@@ -453,6 +462,9 @@ Route::get('/admin/article/{id}/download', 'AdminController@downloadArticle')->n
 
 Route::get('/layout/editor/article/{id}/download', 'LayoutEditorController@downloadArticle')->name('le.download.article');
 
+// route to download proofreaded aritcle
+Route::get('/section-editor/article/download/proofreaded/{id}', 'SectionEditorController@downloadProofreaded')->name('se.article.download.proofreade');
+
 
 
 // route to download entry
@@ -463,3 +475,5 @@ Route::get('/eic/activity/{a_id}/entry/{e_id}/download', 'EicController@download
 // database backup download
 // route to backup database and download applicable only in server
 Route::get('/admin/database/backup/download', 'AdminController@downloadDatabaseBackup')->name('admin.download.backup.database');
+
+

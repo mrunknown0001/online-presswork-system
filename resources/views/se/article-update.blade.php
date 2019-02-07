@@ -19,6 +19,9 @@
 		<div class="content-box-large box-with-header">
 			@include('includes.all')
 			<p>Correspondent: <strong>{{ ucwords($article->user->firstname . ' ' . $article->user->lastname) }}</strong> - {{ date('l, F j, Y g:i:s a', strtotime($article->created_at)) }}</p>
+			<p>
+				<a href="{{ route('se.article.download.proofreade', ['id' => $article->proofread->id]) }}" class="btn btn-primary">View &amp; Download Proofreaded Article</a>
+			</p>
 			<form action="{{ route('se.update.article.post') }}" method="POST" autocomplete="off">
 				{{ csrf_field() }}
 				<input type="hidden" name="id" value="{{ $article->id }}">

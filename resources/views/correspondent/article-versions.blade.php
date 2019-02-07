@@ -13,7 +13,7 @@
 
 		@include('includes.all')
 		
-		@if(count($article->versionContents) > 0)
+		@if(!empty($article->version))
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
@@ -39,6 +39,7 @@
 							</td>
 							<td class="text-center">
 								{{  number_format((float)$a->version, 1, '.', '') }}
+
 							</td>
 							<td class="text-center">
 								{{ date('l, F j, Y g:i:s a', strtotime($a->created_at)) }}

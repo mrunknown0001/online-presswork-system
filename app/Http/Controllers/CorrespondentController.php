@@ -232,6 +232,10 @@ class CorrespondentController extends Controller
         $avc->content = $article->content;
         $avc->save();
 
+        // remove the proofreaded in the article
+        $article->proofread->active = 0;
+        $article->proofread->save();
+
         // add activity log
         $action = 'Correspondent Updated Article: ' . ucwords($article->title);
         GeneralController::activity_log($action);

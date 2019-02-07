@@ -19,8 +19,13 @@
 			@include('includes.all')
 			
 			<label>Comment</label>
-			<div class="alert alert-info top-space">
-				<p>{{  ucwords($article->se_comment) }}</p>
+			<div class="">
+				{{-- <p>{{  ucwords($article->se_comment) }}</p> --}}
+				<p>
+					@if(!empty($article->proofread))
+						<a href="{{ route('se.article.download.proofreade', ['id' => $article->proofread->id]) }}" class="btn btn-primary">View &amp; Download Proofread Article</a>
+					@endif
+				</p>
 			</div>
 
 			<form action="{{ route('correspondent.update.article.post') }}" method="POST" autocomplete="off">

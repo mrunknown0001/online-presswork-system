@@ -128,6 +128,8 @@ class SectionEditorController extends Controller
     {
         $img = $request['imgBase64'];
         $article_id = $request['article_id'];
+
+        $article = Article::findorfail($article_id);
         
         $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
@@ -141,7 +143,7 @@ class SectionEditorController extends Controller
 
         if(!empty($check)) {
             $check->active = 0;
-            $check->save();
+            $check->delete();
         }
 
         // add record here attaching document to the article
@@ -150,6 +152,14 @@ class SectionEditorController extends Controller
         $proofread->article_id = $article_id;
         $proofread->section_editor_id = Auth::user()->id;
         $proofread->save();
+
+        // mark se deny
+        $article->se_deny = 1;
+        $article->se_deny_date = now();
+        $article->save();
+
+        // add article version content
+        
     }
 
 
@@ -373,7 +383,21 @@ class SectionEditorController extends Controller
     // method use to view proofreaded articles
     public function proofreadedArticles()
     {
-        return view('se.articles-proofreaded');
+        // get all proofreaded article
+        $proofreaded = Auth::user()->se_proofreaded;
+
+        return view('se.articles-proofreaded', ['proofreaded' => $proofreaded]);
+    }
+
+
+    // method use to download proofreaded file
+    public function downloadProofreaded($id)
+    {
+        $proof = ProofreadArticle::find($id);
+
+        $pathToFile = public_path('/uploads/canvas/') . $proof->filename;
+
+        return response()->download($pathToFile);
     }
 
 }
