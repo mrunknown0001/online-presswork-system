@@ -81,7 +81,7 @@
                 </div>
                 <hr>
                 <div class="text-center">
-                  <a href="{{ route('submit.entry', ['id' => $v->id]) }}" class="btn btn-primary">Submit Entry</a>
+                  <a href="{{ route('submit.entry', ['id' => $v->id]) }}" class="btn btn-warning black-button">Submit Entry</a>
                 </div>
                 <hr>
               @endforeach
