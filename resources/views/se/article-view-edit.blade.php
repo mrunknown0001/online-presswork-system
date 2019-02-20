@@ -61,7 +61,8 @@ $(document).ready(function() {
   $('#summernote').summernote();
 
   var article = "{!! $article->content !!}";
-  // var parsedArticle = $($.parseHTML(article)).html();
+  var parse1 = $($.parseHTML(article)).html();
+  var parsedArticle = $($.parseHTML(article)).html();
   
 
   		function wrapText(context, text, x, y, maxWidth, lineHeight) {
@@ -95,7 +96,7 @@ $(document).ready(function() {
       context.font = '15pt Calibri';
       context.fillStyle = '#333';
 
-      wrapText(context, article, x, y, maxWidth, lineHeight);
+      wrapText(context, parsedArticle, x, y, maxWidth, lineHeight);
 
 
 			  var boundings = canvas.getBoundingClientRect();
