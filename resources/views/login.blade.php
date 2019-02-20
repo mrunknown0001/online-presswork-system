@@ -22,7 +22,7 @@
                <div class="col-md-12">
                   <!-- Logo -->
                   <div class="logo">
-                     <h1 class=""><a>THE WORK</a></h1>
+                     <a class="navbar-brand" href="javascript:void(0)"><img src="{{ asset('uploads/logo/logo_1.png') }}" height="30px"></a>
                   </div>
                </div>
             </div>
