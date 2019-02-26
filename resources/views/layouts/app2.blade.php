@@ -23,6 +23,7 @@
     <script src="{{ asset('summernote/dist/summernote.js') }}"></script>
     {{-- <script src="{{ asset('summernote/dist/summernote-lite.js') }}"></script> --}}
     <script src="{{ asset('clipboardjs/clipboard.min.js') }}"></script>
+    <script src="{{ asset('js/mootools.js') }}"></script>
   </head>
   <body>
 
