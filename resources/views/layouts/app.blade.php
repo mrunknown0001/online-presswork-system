@@ -23,6 +23,7 @@
     <script src="{{ asset('summernote/dist/summernote.js') }}"></script>
     {{-- <script src="{{ asset('summernote/dist/summernote-lite.js') }}"></script> --}}
     <script src="{{ asset('clipboardjs/clipboard.min.js') }}"></script>
+    <script src="{{ asset('js/chart.js') }}"></script>
   </head>
   <body>
   	@if(Auth::user()->user_type == 1)
