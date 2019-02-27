@@ -233,8 +233,8 @@ $(document).ready(function() {
         var restore_state = pop.pop();
         var img = new Element('img', {'src':restore_state});
         img.onload = function() {
-          ctx.clearRect(0, 0, 600, 400);
-          ctx.drawImage(img, 0, 0, 600, 400, 0, 0, 600, 400);  
+          ctx.clearRect(0, 0, 1250, 800);
+          ctx.drawImage(img, 0, 0, 1250, 800, 0, 0, 1250, 800);  
         }
       }
     }
