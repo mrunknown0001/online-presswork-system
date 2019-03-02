@@ -13,7 +13,7 @@
 			<div class="col-md-4">
 			 <div class="card">
 		      <div class="card-body">
-		        <h3 class="card-title text-center"></h3>
+		        <h3 class="card-title text-center">{{ $approved_layouts }}</h3>
 		        <p class="card-text text-center">Approved Layouts</p>
 		        <a href="{{ route('admin.publish') }}" class="btn btn-primary btn-block">Layouts</a>
 		      </div>
@@ -22,7 +22,7 @@
 			<div class="col-md-4">
 			  <div class="card">
 		      <div class="card-body">
-		        <h3 class="card-title text-center"></h3>
+		        <h3 class="card-title text-center">{{ $activity_logs }}</h3>
 		        <p class="card-text text-center">Activity Logs</p>
 		        <a href="{{ route('admin.activity.log') }}" class="btn btn-primary btn-block">Activity Logs</a>
 		      </div>
@@ -31,8 +31,8 @@
 			<div class="col-md-4">
 			  <div class="card">
 		      <div class="card-body">
-		        <h3 class="card-title text-center"></h3>
-		        <p class="card-text text-center">Database Backup and Restore</p>
+		        <h3 class="card-title text-center">Database</h3>
+		        <p class="card-text text-center">Backup and Restore</p>
 		        <a href="{{ route('admin.backup.database') }}" class="btn btn-primary btn-block">Backup and Restore</a>
 		      </div>
 		    </div>

@@ -18,7 +18,10 @@ class AdminController extends Controller
     // method use to go to admin dashboard
     public function dashboard()
     {
-    	return view('admin.dashboard');
+        $approved_layouts = Layout::where('eic_approved', 1)->count();
+        $activity_logs = ActivityLog::count();
+
+    	return view('admin.dashboard', ['approved_layouts' => $approved_layouts, 'activity_logs' => $activity_logs]);
     }
 
 
