@@ -18,7 +18,11 @@ class SectionEditorController extends Controller
 
     public function dashboard()
     {
-    	return view('se.dashboard');
+        $articles_approved = Article::where('se_id', Auth::user()->id)->where('eic_proofread', 1)->where('eic_deny', 0)->count();
+        $articles_denied = Article::where('se_id', Auth::user()->id)->where('eic_proofread', 0)->where('eic_deny', 1)->count();
+        $articles_proofreaded = Article::where('se_id', Auth::user()->id)->where('eic_proofread', 1)->count();
+
+    	return view('se.dashboard', ['articles_denied' => $articles_denied, 'articles_approved' => $articles_approved, 'articles_proofreaded' => $articles_proofreaded]);
     }
 
 
