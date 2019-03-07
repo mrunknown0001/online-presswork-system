@@ -69,8 +69,12 @@ $(document).ready(function() {
 
   var article = "{!! $article->content !!}";
   var parse1 = $($.parseHTML(article)).html();
-  var parsedArticle = $($.parseHTML(article)).html();
+  var parsedArticle_old = $($.parseHTML(article)).html();
   
+  // removes the last 4 characters in the javascript string 
+  var parsedArticle = parsedArticle_old.substr(0, parsedArticle_old.length-4);
+
+  console.log(parsedArticle);
 
   		function wrapText(context, text, x, y, maxWidth, lineHeight) {
         var words = text.split(' ');
