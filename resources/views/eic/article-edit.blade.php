@@ -94,7 +94,7 @@ $(document).ready(function() {
       context.font = '15pt Calibri';
       context.fillStyle = '#333';
 
-      wrapText(context, parsedArticle, x, y, maxWidth, lineHeight);
+      wrapText(context, article, x, y, maxWidth, lineHeight);
 
 
 			  var boundings = canvas.getBoundingClientRect();
