@@ -98,7 +98,7 @@ class GeneralController extends Controller
     	$request->validate([
     		'entry' => 'required|file|mimes:pdf,jpg,jpeg,psd|max:20480',
             'email' => 'required|email',
-            'student_number' => 'required|numeric'
+            'student_number' => 'required|numeric|max:10'
     	]);
 
     	$id = $request['id'];
